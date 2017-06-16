@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import modelos.Carta;
+import modelos.Criatura;
 
 /**
  * @author Jose
@@ -55,16 +56,18 @@ public class Datos {
 
     // Convertir CSV a ArrayList utilizando el metodo Split
     private Carta csvToCarta(String csvLine) {
-        Carta carta = new Carta();
+        Carta c = null;
 
         if (csvLine != null) {
             String[] splitData = csvLine.split("\\s*,\\s*");
-            //if(splitData[1].compareTo("criatura")){
-                
-            //}
+            if(splitData[1].equalsIgnoreCase("criatura")){
+                c = new Criatura(splitData[0],Integer.parseInt(splitData[4]),Integer.parseInt(splitData[2]));
+            }else if(splitData[1].equalsIgnoreCase("hechizo")){
+                 c = new Criatura(splitData[0],Integer.parseInt(splitData[4]),Integer.parseInt(splitData[3]));
+            }
         }
 
-        return carta;
+        return c;
     }
 
 }
