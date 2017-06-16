@@ -22,6 +22,7 @@ public class Datos {
         }
 
         try {
+            
             String line;
             buffer = new BufferedReader(new FileReader(nombre));
 
@@ -58,11 +59,9 @@ public class Datos {
 
         if (csvLine != null) {
             String[] splitData = csvLine.split("\\s*,\\s*");
-            /*for (int i = 0; i < splitData.length; i++) {
-                if (!(splitData[i] == null) || !(splitData[i].length() == 0)) {
-                    
-                }
-            }*/
+            //if(splitData[1].compareTo("criatura")){
+                
+            //}
         }
 
         return carta;
