@@ -5,6 +5,8 @@
  */
 package vistas;
 
+import datos.Datos;
+
 /**
  *
  * @author Usuario
@@ -15,6 +17,8 @@ public class VistaPrincipal extends javax.swing.JFrame {
      * Creates new form VistaPrincipal
      */
     public VistaPrincipal() {
+        Datos dt = new Datos();
+        dt.cargarDatos(null);
         initComponents();
     }
 

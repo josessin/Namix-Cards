@@ -11,4 +11,19 @@ package modelos;
  */
 public class Hechizo extends Carta{
     
+    private Integer efecto;
+    
+    public Hechizo(){
+        super.tipo = Tipo.hechizo;
+    }
+
+    public Hechizo(String nombre, Integer coste, Integer efecto) {
+        super.tipo = Tipo.hechizo;
+        super.nombre = nombre;
+        super.coste = coste;
+        this.efecto = efecto;
+    }
+    
+    
+    
 }

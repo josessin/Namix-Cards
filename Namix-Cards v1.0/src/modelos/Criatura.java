@@ -11,12 +11,38 @@ package modelos;
  */
 public class Criatura extends Carta{
     
-    private Integer poderInicial;
-    private Integer poderActual;
-    
+    private Integer poder;
+
     public Criatura(){
-        tipo = Carta.Tipo.criatura;
-        
+        super.tipo = Tipo.criatura;   
     }
+    
+    public Criatura(String nombre, Integer coste, Integer poder){
+        super.tipo = Tipo.criatura;
+        super.nombre = nombre;
+        super.coste = coste;
+        this.poder = poder;
+    }
+
+    public Integer getPoder() {
+        return poder;
+    }
+
+    public void setPoder(Integer poder) {
+        this.poder = poder;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public Tipo getTipo() {
+        return tipo;
+    }
+
+    public Integer getCoste() {
+        return coste;
+    }
+    
     
 }

@@ -1,0 +1,5 @@
+﻿nombre;tipo;poder;effecto;coste;cantidad
+elfo;criatura;2;0;2;4
+goblin;criatura;1;1;2;3
+troll;criatura;4;0;5;3
+gnomo;criatura;1;0;1;4

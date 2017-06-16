@@ -18,5 +18,19 @@ public class Carta {
     }
     protected Tipo tipo;
     protected Integer coste;
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public Tipo getTipo() {
+        return tipo;
+    }
+
+    public Integer getCoste() {
+        return coste;
+    }
+    
+    
     
 }
