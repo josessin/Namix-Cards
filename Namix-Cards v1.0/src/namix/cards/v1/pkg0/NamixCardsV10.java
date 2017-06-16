@@ -7,7 +7,7 @@ package namix.cards.v1.pkg0;
 
 /**
  *
- * @author Usuario
+ * @author Jose Antonini 
  */
 public class NamixCardsV10 {
 
@@ -16,6 +16,7 @@ public class NamixCardsV10 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
     }
     
 }
