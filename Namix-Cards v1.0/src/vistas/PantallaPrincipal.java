@@ -6,6 +6,8 @@
 package vistas;
 
 import java.awt.Dimension;
+import javax.swing.JOptionPane;
+import vistaImagenes.CartaVisual;
 
 /**
  *
@@ -14,10 +16,13 @@ import java.awt.Dimension;
 public class PantallaPrincipal extends javax.swing.JFrame {
 
     Dimension tam = getToolkit().getScreenSize();
+    CartaVisual cv = new CartaVisual();
     
     public PantallaPrincipal() {
         initComponents();
         this.setSize(tam);
+        cv.setSize(tam.width/9, tam.height/4);
+        cv.setLocation(this.getWidth() - cv.getWidth(), this.getHeight() - cv.getHeight());
     }
 
     /**
@@ -29,10 +34,16 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Namix Cards");
         setFocusableWindowState(false);
         setModalExclusionType(java.awt.Dialog.ModalExclusionType.TOOLKIT_EXCLUDE);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -47,6 +58,10 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments
