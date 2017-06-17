@@ -18,7 +18,9 @@ public class Carta {
     }
     protected Tipo tipo;
     protected Integer coste;
-
+    protected boolean enJuego;
+    protected Jugador jugador;
+    
     public String getNombre() {
         return nombre;
     }
