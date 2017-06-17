@@ -5,42 +5,19 @@
  */
 package vistaImagenes;
 
-import java.awt.Dimension;
-import java.awt.Graphics;
-import javax.swing.ImageIcon;
-
 /**
  *
  * @author jeron
  */
-public class PanelCartaVisual extends javax.swing.JPanel {
+public class PanelPantallaPrin extends javax.swing.JPanel {
 
     /**
-     * Creates new form PanelCartaVisual
+     * Creates new form PanelPantallaPrin
      */
-    public PanelCartaVisual() {
+    public PanelPantallaPrin() {
         initComponents();
-        this.setSize(205, 205);
     }
-    public void paintmonstruo(Graphics g){
-    
-        Dimension tam = getSize();
-        ImageIcon fondo = new ImageIcon(getClass().getResource("/imagenes/Fondomonstruo.jpg"));
-        g.drawImage(fondo.getImage(),0,0,getWidth(), getHeight(),null);
-        setOpaque(false);
-        super.paintComponent(g);
-    
-    }
-    
-    public void painthechizo(Graphics g){
-        
-        Dimension tam = getSize();
-        ImageIcon fondo = new ImageIcon(getClass().getResource("/imagenes/FondoHechizo.jpg"));
-        g.drawImage(fondo.getImage(),0,0,getWidth(), getHeight(),null);
-        setOpaque(false);
-        super.paintComponent(g);
-    
-    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
