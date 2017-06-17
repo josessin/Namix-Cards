@@ -14,8 +14,10 @@ import java.awt.Dimension;
 public class PantallaPrincipal extends javax.swing.JFrame {
 
     Dimension tam = getToolkit().getScreenSize();
+    
     public PantallaPrincipal() {
         initComponents();
+        this.setSize(tam);
     }
 
     /**
@@ -28,6 +30,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         setTitle("Namix Cards");
+        setFocusableWindowState(false);
         setResizable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
