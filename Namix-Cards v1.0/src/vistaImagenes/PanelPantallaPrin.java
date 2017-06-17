@@ -5,17 +5,30 @@
  */
 package vistaImagenes;
 
+import java.awt.Dimension;
+import java.awt.Graphics;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author jeron
  */
 public class PanelPantallaPrin extends javax.swing.JPanel {
 
-    /**
-     * Creates new form PanelPantallaPrin
-     */
+    Dimension tam = getToolkit().getScreenSize();
     public PanelPantallaPrin() {
         initComponents();
+        this.setSize(tam);
+    }
+    
+     public void paint(Graphics g){
+    
+        Dimension tam = getSize();
+        ImageIcon fondo = new ImageIcon(getClass().getResource("/imagen/FondoNamix.jpg"));
+        g.drawImage(fondo.getImage(),0,0,getWidth(), getHeight(),null);
+        setOpaque(false);
+        super.paintComponent(g);
+    
     }
 
     /**

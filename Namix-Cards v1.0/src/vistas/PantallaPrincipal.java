@@ -31,6 +31,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         setTitle("Namix Cards");
         setFocusableWindowState(false);
+        setModalExclusionType(java.awt.Dialog.ModalExclusionType.TOOLKIT_EXCLUDE);
         setResizable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
