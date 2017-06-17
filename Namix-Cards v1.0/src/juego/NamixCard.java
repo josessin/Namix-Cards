@@ -12,6 +12,9 @@ package juego;
 public class NamixCard {
     
     public static void main(String[] args){
+        Juego juego;
+        //Crear la clase principal responsable de el loop 
+        juego = new Juego();
         
     }
     

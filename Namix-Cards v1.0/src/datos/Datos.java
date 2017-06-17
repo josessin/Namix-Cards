@@ -19,7 +19,7 @@ public class Datos {
         ArrayList<Carta> mazo = new ArrayList<Carta>();
 
         if (nombre == null) {
-            nombre = "mazo1.csv";
+            nombre = "csv/mazo1v2.csv";
         }
 
         try {
