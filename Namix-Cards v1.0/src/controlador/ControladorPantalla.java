@@ -38,13 +38,15 @@ public class ControladorPantalla {
     
     }
     //************************************************
-
+    //VISTAS 
     PantallaPrincipal pp = new PantallaPrincipal();
+    //CONTROLADOR
     ControladorCartaVisual ccv = new ControladorCartaVisual();
+    //VARIABLES
     private ArrayList<Carta> CartasManoJ;
     private ArrayList<Carta> CartasTableroPc;
     private ArrayList<Carta> CartasTableroJ;
-
+    //GETTERS Y SETTERS NO SE SI SON NECESARIOS PERO LO HICE ASI POR LAS DUDAS
     public ArrayList<Carta> getCartasManoJ() {
         return CartasManoJ;
     }
@@ -76,7 +78,7 @@ public class ControladorPantalla {
         fondo.repaint();
         pp.setVisible(true);
         //************************************
-        ActualizarPantalla(info);
+        ActualizarPantalla(info); //PARA PRUEBA
         //***********************************
     }
 
@@ -85,29 +87,31 @@ public class ControladorPantalla {
         //Se inicializa la pantalla
         //StartPantalla();
 
-
+        //SE SETTEAN LOS ARRAYS ENVIDOS POR INFOVISUAL
         setCartasManoJ(inf.getCartasJugadorMano());
         setCartasTableroPc(inf.getCartasPCTablero());
         setCartasTableroJ(inf.getCartasJugadorTablero());
+        //SE CREA VARIABLES NECESARIA
         int vidaJ, vidaPc, manaJ, manaPc, manaDisJ, manaDisPc;
-
+        //SE CARGAN LAS VARIABLES CON LOS VALORES RECIBIDOS
         vidaJ = inf.getVidasJugador();
         vidaPc = inf.getVidasPC();
         manaJ = inf.getManaTotalJugador();
         manaPc = inf.getManaTotalPC();
         manaDisJ = inf.getManaDispJugador();
         manaDisPc = inf.getManaDispPC();
-
+        //SE ENVIA LA INFORAMCION A PANTALLA PRINCIPAL
         pp.CargaInfoJuego(vidaJ, vidaPc, manaJ, manaPc, manaDisJ, manaDisPc, CartasManoJ, CartasTableroJ, CartasTableroPc);
-
+        //SE LLAMAN A LOS METODOS PARA CREAR LAS CARTAS DE LOS JUGADORES
         CargarCartasManoJugador(CartasManoJ);
         CargarCartasTableroJugador(CartasTableroJ);
         CargarCartasTableroPc(CartasTableroPc);
     }
-
+    //METODO CARGA CARTAS JUGADOR
     public void CargarCartasManoJugador(ArrayList<Carta> CartasManoJ) {
-
+        
         for (int i = 0; i < CartasManoJ.size(); i++) {
+            //SE LLAMAN A LOS METODOS DEL CONTROLADOR DE CARTA VISUAL
             ccv.AgregarImagenCarta(CartasManoJ.get(i).getNombre());
             ccv.AgregarNombre(CartasManoJ.get(i).getNombre());
             ccv.AgregarCoste(CartasManoJ.get(i).getCoste());
@@ -159,7 +163,7 @@ public class ControladorPantalla {
         }
 
     }
-
+    //SE COLOCA LA CARTA EN PANTALLA PRINCIPAL
     public void AgregarCartaATablero(CartaVisual cv) {
 
         pp.add(cv);

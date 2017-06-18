@@ -27,7 +27,7 @@ public class ControladorCartaVisual {
         //Vistas
         PantallaPrincipal pp = new PantallaPrincipal();
         CartaVisual cv = new CartaVisual();
-    
+    //METODO
     public void AgregarFondoCarta(Carta.Tipo tipo) {
         ControladorPantalla conp = new ControladorPantalla();
         if (tipo == Carta.Tipo.criatura) {
@@ -48,6 +48,7 @@ public class ControladorCartaVisual {
         }
 
     }
+    //METODO PARA IMAGEN DEL MONSTRUO EN EL CENTRO DE LA CARTA
     public void AgregarImagenCarta(String nombre) {
         
         imaCart.setNombre(nombre);
@@ -55,6 +56,7 @@ public class ControladorCartaVisual {
         cv.setImagen(imaCart);
         
     }
+    
     public void AgregarCoste(Integer coste){
         
         cv.setLblMana(coste);
