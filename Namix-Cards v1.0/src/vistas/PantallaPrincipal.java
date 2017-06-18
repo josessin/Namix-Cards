@@ -5,8 +5,11 @@
  */
 package vistas;
 
+import controlador.ControladorPantalla;
 import java.awt.Dimension;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import modelos.Carta;
 import vistaImagenes.CartaVisual;
 
 /**
@@ -14,8 +17,12 @@ import vistaImagenes.CartaVisual;
  * @author jeron
  */
 public class PantallaPrincipal extends javax.swing.JFrame {
-
-    Dimension tam = getToolkit().getScreenSize();
+    //Controlador
+    //private ControladorPantalla conp = new ControladorPantalla();
+    //Variables
+    private int vidaJ, vidaPc, manaJ, manaPc, manaDisJ, manaDisPc;
+    private ArrayList<Carta> CartasManoJ, CartasTableroJ, CartasTableroPc;
+    private Dimension tam = getToolkit().getScreenSize();
     //ESTO SE VA A BORRAR
     //--------------------------------------
     //CartaVisual cv = new CartaVisual();
@@ -31,6 +38,24 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         this.add(cv);*/
         //-------------------------------------------------------------------------------------------------------------
     }
+
+
+    
+    public void CargaInfoJuego(int vidaJ, int vidaPc, int manaJ,int manaPc,int manaDisJ,int manaDisPc, ArrayList<Carta> CartasManoJ, ArrayList<Carta> CartasTableroJ, ArrayList<Carta> CartasTableroPc){
+    
+        this.vidaJ = vidaJ;
+        this.vidaPc = vidaPc;
+        this.manaJ = manaJ;
+        this.manaPc = manaPc;
+        this.manaDisJ = manaDisJ;
+        this.manaDisPc = manaDisPc;
+        this.CartasManoJ = CartasManoJ;
+        this.CartasTableroJ = CartasTableroJ;
+        this.CartasTableroPc = CartasTableroPc;
+    }
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

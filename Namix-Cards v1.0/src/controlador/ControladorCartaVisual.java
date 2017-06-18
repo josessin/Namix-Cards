@@ -18,8 +18,8 @@ import vistas.PantallaPrincipal;
  * @author jeron
  */
 public class ControladorCartaVisual {
-    //Controladores
-        ControladorPantalla conp = new ControladorPantalla();
+
+        
         //Paneles
         PanelFondoCartaC fondoC = new PanelFondoCartaC();
         PanelFondoCartaH fondoH = new PanelFondoCartaH();
@@ -29,7 +29,7 @@ public class ControladorCartaVisual {
         CartaVisual cv = new CartaVisual();
     
     public void AgregarFondoCarta(Carta.Tipo tipo) {
-        
+        ControladorPantalla conp = new ControladorPantalla();
         if (tipo == Carta.Tipo.criatura) {
             
             cv.add(fondoC, BorderLayout.CENTER);
@@ -52,8 +52,31 @@ public class ControladorCartaVisual {
         
         imaCart.setNombre(nombre);
         imaCart.repaint();
-        cv.setIma(imaCart);
+        cv.setImagen(imaCart);
         
+    }
+    public void AgregarCoste(Integer coste){
+        
+        cv.setLblMana(coste);
+        
+    }
+    
+    public void AgregarPoder(Integer poder){
+    
+        cv.setLblPoder(poder);
+    
+    }
+    
+    public void AgregarEfecto(Integer efecto){
+    
+        cv.setLblPoder(efecto);
+    
+    }
+    
+    public void AgregarNombre(String nombre){
+    
+        cv.setLblNombre(nombre);
+    
     }
     
 }

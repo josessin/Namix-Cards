@@ -34,7 +34,7 @@ public class PanelImagenCarta extends javax.swing.JPanel {
     public void paint(Graphics g){
     
         Dimension tam = super.getSize();
-        ImageIcon fondo = new ImageIcon(getClass().getResource("/imagen/golem.png"));
+        ImageIcon fondo = new ImageIcon(getClass().getResource("/imagenes/golem.png"));
         g.drawImage(fondo.getImage(),0,0,getWidth(), getHeight(),null);
         setOpaque(false);
         super.paintComponent(g);

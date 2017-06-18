@@ -25,7 +25,7 @@ public class PanelFondoCartaC extends javax.swing.JPanel {
     public void paintC(Graphics g){
     
         Dimension tam = getSize();
-        ImageIcon fondo = new ImageIcon(getClass().getResource("/imagen/FondoMonstruov2.jpg"));
+        ImageIcon fondo = new ImageIcon(getClass().getResource("/imagenes/FondoMonstruov2.jpg"));
         g.drawImage(fondo.getImage(),0,0,getWidth(), getHeight(),null);
         setOpaque(false);
         super.paintComponent(g);

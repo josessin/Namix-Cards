@@ -7,6 +7,7 @@ package vistaImagenes;
 
 import controlador.ControladorPantalla;
 import java.awt.BorderLayout;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
@@ -29,12 +30,39 @@ public class CartaVisual extends javax.swing.JPanel {
         ima.repaint();*/
     }
 
-    public JPanel getIma() {
-        return Ima;
+    public JLabel getLblMana() {
+        return lblMana;
     }
 
-    public void setIma(JPanel Ima) {
-        this.Ima = Ima;
+    public void setLblMana(Integer mana) {
+        String manaTxt = String.valueOf(mana);
+        this.lblMana.setText(manaTxt);
+    }
+
+    public JLabel getLblNombre() {
+        return lblNombre;
+    }
+
+    public void setLblNombre(String nombre) {
+        this.lblNombre.setText(nombre);
+    }
+
+    public JLabel getLblPoder() {
+        return lblPoder;
+    }
+
+    public void setLblPoder(Integer poder) {
+        String poderTxt = String.valueOf(poder);
+        this.lblPoder.setText(poderTxt);
+    }
+    
+
+    public JPanel getImagen() {
+        return Imagen;
+    }
+
+    public void setImagen(JPanel Imagen) {
+        this.Imagen = Imagen;
     }
     
     
@@ -50,19 +78,22 @@ public class CartaVisual extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Ima = new javax.swing.JPanel();
-        Ima.setSize(super.getWidth()/2,super.getHeight()/2);
+        Imagen = new javax.swing.JPanel();
+        Imagen.setSize(super.getWidth()/2,super.getHeight()/2);
+        lblNombre = new javax.swing.JLabel();
+        lblPoder = new javax.swing.JLabel();
+        lblMana = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 102, 102));
 
-        javax.swing.GroupLayout ImaLayout = new javax.swing.GroupLayout(Ima);
-        Ima.setLayout(ImaLayout);
-        ImaLayout.setHorizontalGroup(
-            ImaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout ImagenLayout = new javax.swing.GroupLayout(Imagen);
+        Imagen.setLayout(ImagenLayout);
+        ImagenLayout.setHorizontalGroup(
+            ImagenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 100, Short.MAX_VALUE)
         );
-        ImaLayout.setVerticalGroup(
-            ImaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        ImagenLayout.setVerticalGroup(
+            ImagenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
@@ -70,26 +101,42 @@ public class CartaVisual extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 134, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(30, Short.MAX_VALUE)
+                .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(lblMana, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblPoder, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 17, Short.MAX_VALUE)
-                    .addComponent(Ima, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Imagen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 17, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 178, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblPoder, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblMana, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 39, Short.MAX_VALUE)
-                    .addComponent(Ima, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Imagen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 39, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel Ima;
+    private javax.swing.JPanel Imagen;
+    private javax.swing.JLabel lblMana;
+    private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblPoder;
     // End of variables declaration//GEN-END:variables
 }

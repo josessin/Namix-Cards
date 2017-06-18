@@ -21,11 +21,20 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="134" max="32767" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace pref="30" max="32767" attributes="0"/>
+              <Component id="lblNombre" min="-2" pref="81" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <Component id="lblMana" min="-2" pref="33" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="lblPoder" min="-2" pref="33" max="-2" attributes="0"/>
+          </Group>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace min="0" pref="17" max="32767" attributes="0"/>
-                  <Component id="Ima" min="-2" max="-2" attributes="0"/>
+                  <Component id="Imagen" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="17" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -33,11 +42,19 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="178" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="lblNombre" min="-2" pref="17" max="-2" attributes="0"/>
+              <EmptySpace pref="115" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="lblPoder" alignment="1" min="-2" pref="35" max="-2" attributes="0"/>
+                  <Component id="lblMana" alignment="1" min="-2" pref="35" max="-2" attributes="0"/>
+              </Group>
+          </Group>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace min="0" pref="39" max="32767" attributes="0"/>
-                  <Component id="Ima" min="-2" max="-2" attributes="0"/>
+                  <Component id="Imagen" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="39" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -45,9 +62,9 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="Ima">
+    <Container class="javax.swing.JPanel" name="Imagen">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="Ima.setSize(super.getWidth()/2,super.getHeight()/2);"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="Imagen.setSize(super.getWidth()/2,super.getHeight()/2);"/>
       </AuxValues>
 
       <Layout>
@@ -63,5 +80,11 @@
         </DimensionLayout>
       </Layout>
     </Container>
+    <Component class="javax.swing.JLabel" name="lblNombre">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblPoder">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblMana">
+    </Component>
   </SubComponents>
 </Form>

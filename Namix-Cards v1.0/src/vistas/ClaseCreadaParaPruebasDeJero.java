@@ -6,6 +6,8 @@
 package vistas;
 
 import controlador.ControladorPantalla;
+import modelos.Carta;
+import modelos.InfoVisualJuego;
 
 /**
  *
@@ -13,9 +15,12 @@ import controlador.ControladorPantalla;
  */
 public class ClaseCreadaParaPruebasDeJero {
     public static void main(String[] args){
-    
+        
         ControladorPantalla cp = new ControladorPantalla();
         cp.StartPantalla();
+        
+        
+        
     
     }
 }
