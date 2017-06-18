@@ -19,8 +19,5 @@ public class ClaseCreadaParaPruebasDeJero {
         ControladorPantalla cp = new ControladorPantalla();
         cp.StartPantalla();
         
-        
-        
-    
     }
 }

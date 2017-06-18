@@ -43,6 +43,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     
     public void CargaInfoJuego(int vidaJ, int vidaPc, int manaJ,int manaPc,int manaDisJ,int manaDisPc, ArrayList<Carta> CartasManoJ, ArrayList<Carta> CartasTableroJ, ArrayList<Carta> CartasTableroPc){
     
+        //Calculo que esta parte aun esta incompleta
+        
         this.vidaJ = vidaJ;
         this.vidaPc = vidaPc;
         this.manaJ = manaJ;

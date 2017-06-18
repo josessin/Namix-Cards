@@ -12,10 +12,11 @@ import java.util.ArrayList;
  * @author Jose
  */
 public class InfoVisualJuego {
-    
+
     private ArrayList<Carta> cartasJugadorMano;
     private ArrayList<Carta> cartasJugadorTablero;
     private ArrayList<Carta> cartasPCTablero;
+    private ArrayList<Carta> cartasPCMano;
     private int vidasJugador;
     private int vidasPC;
     private int manaTotalJugador;
@@ -23,11 +24,10 @@ public class InfoVisualJuego {
     private int manaTotalPC;
     private int manaDispPC;
 
-    public InfoVisualJuego(){
-        
+    public InfoVisualJuego() {
+
     }
-    
-    
+
     public ArrayList<Carta> getCartasJugadorMano() {
         return cartasJugadorMano;
     }
@@ -50,6 +50,14 @@ public class InfoVisualJuego {
 
     public void setCartasPCTablero(ArrayList<Carta> cartasPCTablero) {
         this.cartasPCTablero = cartasPCTablero;
+    }
+
+    public ArrayList<Carta> getCartasPCMano() {
+        return cartasPCMano;
+    }
+
+    public void setCartasPCMano(ArrayList<Carta> cartasPCMano) {
+        this.cartasPCMano = cartasPCMano;
     }
 
     public int getVidasJugador() {
@@ -99,7 +107,5 @@ public class InfoVisualJuego {
     public void setManaDispPC(int manaDispPC) {
         this.manaDispPC = manaDispPC;
     }
-    
-    
-    
+
 }

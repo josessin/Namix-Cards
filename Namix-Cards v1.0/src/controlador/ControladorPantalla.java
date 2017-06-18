@@ -30,12 +30,18 @@ public class ControladorPantalla {
     public ControladorPantalla(){
         
         
-        ArrayList<Carta> lista2 =  new ArrayList<Carta>();
-        lista2.add(carta);
-        lista2.add(carta1);
-        lista2.add(carta2);
-        info.setCartasJugadorMano(lista2);
-    
+        ArrayList<Carta> listaJM =  new ArrayList<Carta>();
+        listaJM.add(carta);
+        listaJM.add(carta1);
+        listaJM.add(carta2);
+        info.setCartasJugadorMano(listaJM);
+        //<JOSE> Agregue estas dos listas (con las mismas cartas) para q funcione la prueba
+        info.setCartasJugadorTablero(listaJM);
+        info.setCartasPCTablero(listaJM);
+        //<JOSE>ATENCION!! esto es nuevo en InfoVisualJugador, pero es para que tengas tb esta info!!!!!!!! 
+        //(podes mostrar la cantidad correcta de cartas para dadas vuelta)
+        info.setCartasPCMano(listaJM);
+        
     }
     //************************************************
     //VISTAS 
@@ -43,33 +49,9 @@ public class ControladorPantalla {
     //CONTROLADOR
     ControladorCartaVisual ccv = new ControladorCartaVisual();
     //VARIABLES
-    private ArrayList<Carta> CartasManoJ;
-    private ArrayList<Carta> CartasTableroPc;
-    private ArrayList<Carta> CartasTableroJ;
-    //GETTERS Y SETTERS NO SE SI SON NECESARIOS PERO LO HICE ASI POR LAS DUDAS
-    public ArrayList<Carta> getCartasManoJ() {
-        return CartasManoJ;
-    }
-
-    public void setCartasManoJ(ArrayList<Carta> CartasManoJ) {
-        this.CartasManoJ = CartasManoJ;
-    }
-
-    public ArrayList<Carta> getCartasTableroPc() {
-        return CartasTableroPc;
-    }
-
-    public void setCartasTableroPc(ArrayList<Carta> CartasTableroPc) {
-        this.CartasTableroPc = CartasTableroPc;
-    }
-
-    public ArrayList<Carta> getCartasTableroJ() {
-        return CartasTableroJ;
-    }
-
-    public void setCartasTableroJ(ArrayList<Carta> CartasTableroJ) {
-        this.CartasTableroJ = CartasTableroJ;
-    }
+    //<JOSE> Borre las variables, es mas facil de ver y seguir el rastro asi
+    //simplemente se usa info.getCartasJugadorMano(), etc
+    
 
     public void StartPantalla() {
 
@@ -87,13 +69,11 @@ public class ControladorPantalla {
         //Se inicializa la pantalla
         //StartPantalla();
 
-        //SE SETTEAN LOS ARRAYS ENVIDOS POR INFOVISUAL
-        setCartasManoJ(inf.getCartasJugadorMano());
-        setCartasTableroPc(inf.getCartasPCTablero());
-        setCartasTableroJ(inf.getCartasJugadorTablero());
         //SE CREA VARIABLES NECESARIA
         int vidaJ, vidaPc, manaJ, manaPc, manaDisJ, manaDisPc;
         //SE CARGAN LAS VARIABLES CON LOS VALORES RECIBIDOS
+        //<JOSE> si estas variables no se van a usar en otro lado, esto es inesecario
+        //se pueden pasar los parametros directamente (inf.geVidasJugador), sin guardar los datos previamente en una variable
         vidaJ = inf.getVidasJugador();
         vidaPc = inf.getVidasPC();
         manaJ = inf.getManaTotalJugador();
@@ -101,11 +81,11 @@ public class ControladorPantalla {
         manaDisJ = inf.getManaDispJugador();
         manaDisPc = inf.getManaDispPC();
         //SE ENVIA LA INFORAMCION A PANTALLA PRINCIPAL
-        pp.CargaInfoJuego(vidaJ, vidaPc, manaJ, manaPc, manaDisJ, manaDisPc, CartasManoJ, CartasTableroJ, CartasTableroPc);
+        pp.CargaInfoJuego(vidaJ, vidaPc, manaJ, manaPc, manaDisJ, manaDisPc, inf.getCartasJugadorMano(), inf.getCartasJugadorTablero(), inf.getCartasPCTablero());
         //SE LLAMAN A LOS METODOS PARA CREAR LAS CARTAS DE LOS JUGADORES
-        CargarCartasManoJugador(CartasManoJ);
-        CargarCartasTableroJugador(CartasTableroJ);
-        CargarCartasTableroPc(CartasTableroPc);
+        CargarCartasManoJugador(inf.getCartasJugadorMano());
+        CargarCartasTableroJugador(inf.getCartasJugadorTablero());
+        CargarCartasTableroPc(inf.getCartasPCTablero());
     }
     //METODO CARGA CARTAS JUGADOR
     public void CargarCartasManoJugador(ArrayList<Carta> CartasManoJ) {
@@ -164,6 +144,7 @@ public class ControladorPantalla {
 
     }
     //SE COLOCA LA CARTA EN PANTALLA PRINCIPAL
+    //<JOSE> Este metodo nunca se llama?? 
     public void AgregarCartaATablero(CartaVisual cv) {
 
         pp.add(cv);
