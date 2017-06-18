@@ -25,7 +25,11 @@ public class InfoVisualJuego {
     private int manaDispPC;
 
     public InfoVisualJuego() {
-
+        //Crear las listas de cartas
+        cartasJugadorMano = new ArrayList<Carta>();
+        cartasJugadorTablero = new ArrayList<Carta>();
+        cartasPCMano = new ArrayList<Carta>();
+        cartasPCTablero = new ArrayList<Carta>();
     }
 
     public ArrayList<Carta> getCartasJugadorMano() {
