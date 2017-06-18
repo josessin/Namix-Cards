@@ -16,13 +16,20 @@ import vistaImagenes.CartaVisual;
 public class PantallaPrincipal extends javax.swing.JFrame {
 
     Dimension tam = getToolkit().getScreenSize();
-    CartaVisual cv = new CartaVisual();
+    //ESTO SE VA A BORRAR
+    //--------------------------------------
+    //CartaVisual cv = new CartaVisual();
+    //--------------------------------------
     
     public PantallaPrincipal() {
         initComponents();
         this.setSize(tam);
-        cv.setSize(tam.width/9, tam.height/4);
-        cv.setLocation(this.getWidth() - cv.getWidth(), this.getHeight() - cv.getHeight());
+        //ESTO SE VA A BORRAR
+        //-------------------------------------------------------------------------------------------------------------
+        /*cv.setSize(tam.width/9, tam.height/4);
+        cv.setLocation(this.getWidth() - (cv.getWidth() + cv.getWidth()), this.getHeight() - (cv.getHeight() + cv.getHeight()));
+        this.add(cv);*/
+        //-------------------------------------------------------------------------------------------------------------
     }
 
     /**
@@ -39,6 +46,11 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         setFocusableWindowState(false);
         setModalExclusionType(java.awt.Dialog.ModalExclusionType.TOOLKIT_EXCLUDE);
         setResizable(false);
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
@@ -62,6 +74,10 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
     }//GEN-LAST:event_formWindowActivated
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+
+    }//GEN-LAST:event_formMouseClicked
 
     /**
      * @param args the command line arguments

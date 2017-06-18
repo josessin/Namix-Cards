@@ -5,39 +5,41 @@
  */
 package vistaImagenes;
 
-import java.awt.Dimension;
-import java.awt.Graphics;
-import javax.swing.ImageIcon;
+import controlador.ControladorPantalla;
+import java.awt.BorderLayout;
+import javax.swing.JPanel;
+
 
 /**
  *
  * @author jeron
  */
 public class CartaVisual extends javax.swing.JPanel {
-
-    Dimension tam = getToolkit().getScreenSize();
+    
+    
+    
     public CartaVisual() {
         initComponents();
+        
+        /*PanelImagenCarta ima = new PanelImagenCarta();
+        
+       /* ima.setSize(Ima.getWidth(), Ima.getHeight());
+        ima.setVisible(true);
+        Ima.add(ima, BorderLayout.CENTER);
+        ima.repaint();*/
+    }
 
+    public JPanel getIma() {
+        return Ima;
     }
-    public void paintH(Graphics g){
-        this.setSize(tam.width/9, tam.height/4);
-        //Dimension tam = getSize();
-        ImageIcon fondo = new ImageIcon(getClass().getResource("/imagen/FondoHechizo.jpg"));
-        g.drawImage(fondo.getImage(),0,0,getWidth(), getHeight(),null);
-        setOpaque(false);
-        super.paintComponent(g);
+
+    public void setIma(JPanel Ima) {
+        this.Ima = Ima;
+    }
     
-    }
-    public void paintC(Graphics g){
-        this.setSize(tam.width/9, tam.height/4);
-        //Dimension tam = getSize();
-        ImageIcon fondo = new ImageIcon(getClass().getResource("/imagen/FondoMonstruo.jpg"));
-        g.drawImage(fondo.getImage(),0,0,getWidth(), getHeight(),null);
-        setOpaque(false);
-        super.paintComponent(g);
     
-    }
+    
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -48,23 +50,46 @@ public class CartaVisual extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Ima = new javax.swing.JPanel();
+        Ima.setSize(super.getWidth()/2,super.getHeight()/2);
+
         setBackground(new java.awt.Color(255, 102, 102));
-        setFocusable(false);
+
+        javax.swing.GroupLayout ImaLayout = new javax.swing.GroupLayout(Ima);
+        Ima.setLayout(ImaLayout);
+        ImaLayout.setHorizontalGroup(
+            ImaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        ImaLayout.setVerticalGroup(
+            ImaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 167, Short.MAX_VALUE)
+            .addGap(0, 134, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 17, Short.MAX_VALUE)
+                    .addComponent(Ima, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 17, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 229, Short.MAX_VALUE)
+            .addGap(0, 178, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 39, Short.MAX_VALUE)
+                    .addComponent(Ima, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 39, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel Ima;
     // End of variables declaration//GEN-END:variables
 }
