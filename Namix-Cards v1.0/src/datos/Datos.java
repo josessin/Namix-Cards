@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import modelos.Carta;
 
 /**
@@ -18,21 +19,21 @@ public class Datos {
         ArrayList<Carta> mazo = new ArrayList<Carta>();
 
         if (nombre == null) {
-            nombre = "csv/mazo1v2.csv";
+            nombre = "src/csv/mazo1v2.csv";
         }
 
         try {
-            
+
             String line;
             buffer = new BufferedReader(new FileReader(nombre));
 
-            boolean firstLine = false;
             while ((line = buffer.readLine()) != null) {
-                //Nos saltiamos la primera del archivo ya que son los nombres de las columna
-                if (firstLine) {
-                    firstLine = true;
-                } else {
-                    mazo.add(csvToCarta(line));
+                //Nos saltiamos cualquier line que no empieze con 0
+                if (line.startsWith("0")) {
+                    Carta c = csvToCarta(line);
+                    if (c != null) {
+                        mazo.add(c);
+                    }
                 }
             }
 
@@ -58,11 +59,12 @@ public class Datos {
         Carta c = null;
 
         if (csvLine != null) {
-            String[] splitData = csvLine.split("\\s*,\\s*");
-            if(splitData[1].equalsIgnoreCase("criatura")){
-                c = new Carta(splitData[0],Integer.parseInt(splitData[4]),Integer.parseInt(splitData[2]),Carta.Tipo.criatura);
-            }else if(splitData[1].equalsIgnoreCase("hechizo")){
-                 c = new Carta(splitData[0],Integer.parseInt(splitData[4]),Integer.parseInt(splitData[3]),Carta.Tipo.hechizo);
+            String[] splitData = csvLine.split("\\s*;\\s*");
+            for (int i = 0; i < Integer.parseInt(splitData[6]); i++) {
+
+                Carta.Tipo tipo = splitData[1].equalsIgnoreCase("criatura") ? Carta.Tipo.criatura : Carta.Tipo.hechizo;
+                c = new Carta(splitData[1], Integer.parseInt(splitData[5]), Integer.parseInt(splitData[3]), tipo);
+
             }
         }
 

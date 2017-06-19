@@ -27,17 +27,17 @@ public class Juego {
     private Jugador Jugador2;
     private InfoVisualJuego infoVisual;
     private ControladorPantalla contPant;
-    
+
     public Juego() {
         infoVisual = new InfoVisualJuego();
         contPant = new ControladorPantalla();
-        contPant.StartPantalla();
+        //contPant.StartPantalla();
         nuevoJuego();
     }
 
     private void nuevoJuego() {
         crearJugagores();
-       //actualizarPantallas inicial
+        //actualizarPantallas inicial
         actualizarPantalla();
     }
 
@@ -46,25 +46,24 @@ public class Juego {
         if (HOMBRE_VS_PC) {
             Datos d = new Datos();
             //Cargar el mazo de el archivo .csv
-            ArrayList<Carta> mazoJugador1 = d.cargarDatos("csv/mazo1v2.csv");
-             ArrayList<Carta> mazoJugador2 = d.cargarDatos("csv/mazo1v2.csv");
+            ArrayList<Carta> mazoJugador1 = d.cargarDatos("src/csv/mazo1v2.csv");
+            ArrayList<Carta> mazoJugador2 = d.cargarDatos("src/csv/mazo1v2.csv");
             //Humano
             Jugador1 = new Jugador(mazoJugador1, true);
             Jugador1.setTipoJugador(Jugador.TipoJugador.humano);
             //PC
             Jugador2 = new Jugador(mazoJugador2, false);
             Jugador2.setTipoJugador(Jugador.TipoJugador.pc);
-            
+
         } else {
             //TODO: hombre vs hombre
         }
     }
 
     private void actualizarPantalla() {
-        
+
         infoVisual.actualizarInfo(Jugador1, Jugador1);
         contPant.ActualizarPantalla(infoVisual);
     }
-
 
 }

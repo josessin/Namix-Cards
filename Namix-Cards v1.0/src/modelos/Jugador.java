@@ -42,6 +42,9 @@ public class Jugador {
             this.manaTotal = 2;
         }
 
+        cartasEnJuego = new ArrayList<>();
+        cartasEnMano = new ArrayList<>();
+        
         asignarJugadorACartas();
         mezclar();
         manoInicial();
@@ -89,7 +92,7 @@ public class Jugador {
     //Indicar el judar "dueño" de la carta
     private void asignarJugadorACartas() {
         for (int i = 0; i < mazo.size(); i++) {
-            mazo.get(i).jugador = this;
+            mazo.get(i).setJugador(this);
         }
     }
 
