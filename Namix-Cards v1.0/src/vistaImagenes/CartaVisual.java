@@ -22,7 +22,7 @@ public class CartaVisual extends javax.swing.JPanel {
     public CartaVisual() {
         initComponents();
         
-        /*PanelImagenCarta ima = new PanelImagenCarta();
+        
         
        /* ima.setSize(Ima.getWidth(), Ima.getHeight());
         ima.setVisible(true);
@@ -59,17 +59,7 @@ public class CartaVisual extends javax.swing.JPanel {
     public void setPoder(Integer poder) {
         String poderTxt = String.valueOf(poder);
         this.lblPoder.setText(poderTxt);
-    }
-    
-
-    public JPanel getImagen() {
-        return Imagen;
-    }
-
-    public void setImagen(JPanel Imagen) {
-        this.Imagen = Imagen;
-    }
-    
+    }   
     
     
 
@@ -83,24 +73,17 @@ public class CartaVisual extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Imagen = new javax.swing.JPanel();
-        Imagen.setSize(super.getWidth()/2,super.getHeight()/2);
         lblNombre = new javax.swing.JLabel();
         lblPoder = new javax.swing.JLabel();
         lblMana = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 102, 102));
 
-        javax.swing.GroupLayout ImagenLayout = new javax.swing.GroupLayout(Imagen);
-        Imagen.setLayout(ImagenLayout);
-        ImagenLayout.setHorizontalGroup(
-            ImagenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        ImagenLayout.setVerticalGroup(
-            ImagenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
+        lblNombre.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+
+        lblPoder.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+
+        lblMana.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -114,11 +97,6 @@ public class CartaVisual extends javax.swing.JPanel {
                 .addComponent(lblMana, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblPoder, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 17, Short.MAX_VALUE)
-                    .addComponent(Imagen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 17, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,17 +107,11 @@ public class CartaVisual extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblPoder, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblMana, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 39, Short.MAX_VALUE)
-                    .addComponent(Imagen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 39, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel Imagen;
     private javax.swing.JLabel lblMana;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblPoder;

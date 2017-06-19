@@ -46,10 +46,8 @@ public class ControladorPantalla {
 
     public void StartPantalla() {
 
-        PanelPantallaPrin fondo = new PanelPantallaPrin();
-        pp.add(fondo, BorderLayout.CENTER);
-        fondo.repaint();
-        pp.setVisible(true);
+        
+        
         //************************************
         ActualizarPantalla(info); //PARA PRUEBA
         //***********************************
@@ -58,7 +56,7 @@ public class ControladorPantalla {
     public void ActualizarPantalla(InfoVisualJuego inf) {
 
         //Se inicializa la pantalla
-        //StartPantalla();
+        //StartPantalla();//SE TIENE Q COMENTAR PARA PRUEBA
         //SE ENVIA LA INFORAMCION A PANTALLA PRINCIPAL
         pp.CargaInfoJuego(inf.getVidasJugador(), inf.getVidasPC(), inf.getManaTotalJugador(), inf.getManaTotalPC(),
                 inf.getManaDispJugador(), inf.getManaDispPC(), inf.getCartasJugadorMano(),
@@ -72,9 +70,9 @@ public class ControladorPantalla {
 
     //METODO CARGA CARTAS JUGADOR
     public void CargarCartas(ArrayList<Carta> InfoCartas) {
-
+        ControladorCartaVisual ccv = new ControladorCartaVisual(pp);
         for (int i = 0; i < InfoCartas.size(); i++) {
-            ControladorCartaVisual ccv = new ControladorCartaVisual(pp);
+            
             //SE LLAMAN A LOS METODOS DEL CONTROLADOR DE CARTA VISUAL
             ccv.AgregarImagenCarta(InfoCartas.get(i).getNombre());
             ccv.AgregarNombre(InfoCartas.get(i).getNombre());
@@ -95,13 +93,16 @@ public class ControladorPantalla {
 
     public void AgregarCartaATablero(CartaVisual cv,PantallaPrincipal pp) {
 
-        
+        PanelPantallaPrin fondo = new PanelPantallaPrin();
         cv.setSize(pp.getWidth() / 9, pp.getHeight() / 4);
         cv.setLocation(pp.getWidth() - (cv.getWidth() + cv.getWidth()),
                 pp.getHeight() - (cv.getHeight() + cv.getHeight()));
         
         
         pp.add(cv);
+        pp.add(fondo, BorderLayout.CENTER);
+        fondo.repaint();
+        pp.setVisible(true);
         
         
         

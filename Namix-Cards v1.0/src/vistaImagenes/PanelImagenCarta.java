@@ -41,7 +41,7 @@ public class PanelImagenCarta extends javax.swing.JPanel {
         this.repaint();
     
     }
-    /*public void paintXnombre(Graphics g){
+    /*public void paint(Graphics g){
     
         Dimension tam = super.getSize();
         ImageIcon fondo = new ImageIcon(getClass().getResource("/imagen/" + nombre + ".png"));
