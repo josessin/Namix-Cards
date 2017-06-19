@@ -5,6 +5,7 @@
  */
 package jose;
 
+import juego.Juego;
 import modelos.Carta;
 
 /**
@@ -14,9 +15,11 @@ import modelos.Carta;
 public class CartaVisualBasica extends javax.swing.JPanel {
 
     private Carta carta;
-
-    public CartaVisualBasica() {
+    private Juego juego;
+    
+    public CartaVisualBasica(Juego juego) {
         initComponents();
+        this.juego = juego;
     }
 
     /**
@@ -29,7 +32,10 @@ public class CartaVisualBasica extends javax.swing.JPanel {
     private void initComponents() {
 
         lblNombre = new javax.swing.JLabel();
+        lblCoste = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         lblPoder = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 0));
         setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 0, 0)));
@@ -43,43 +49,73 @@ public class CartaVisualBasica extends javax.swing.JPanel {
         lblNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNombre.setText("nombre");
 
+        lblCoste.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lblCoste.setForeground(new java.awt.Color(51, 204, 0));
+        lblCoste.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblCoste.setText("0");
+
+        jLabel1.setText("Poder:");
+
         lblPoder.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        lblPoder.setForeground(new java.awt.Color(204, 0, 0));
         lblPoder.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblPoder.setText("0");
+
+        jLabel2.setText("Coste:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(62, 62, 62)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(jLabel2))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblNombre)
-                    .addComponent(lblPoder, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(65, Short.MAX_VALUE))
+                    .addComponent(lblPoder, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCoste, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblNombre)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
-                .addComponent(lblPoder)
-                .addGap(72, 72, 72))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblPoder)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(16, 16, 16)))
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCoste)
+                    .addComponent(jLabel2))
+                .addGap(21, 21, 21))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
-        // TODO add your handling code here:
+        juego.cartaClickeda(carta);
     }//GEN-LAST:event_formMouseClicked
 
     public void setValores(Carta carta) {
         this.carta = carta;
         lblNombre.setText(carta.getNombre());
+        lblCoste.setText(carta.getCoste().toString());
         lblPoder.setText(carta.getPoder().toString());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel lblCoste;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblPoder;
     // End of variables declaration//GEN-END:variables

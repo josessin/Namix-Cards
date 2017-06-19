@@ -27,7 +27,7 @@ public class Jugador {
     private int vidas;
     private int manaTotal;
     private int manaDisponible;
-
+    private boolean activo;
     private TipoJugador tipoJugador;
 
     public Jugador(ArrayList<Carta> mazo, boolean juegaPrimero) {
@@ -37,6 +37,7 @@ public class Jugador {
         if (juegaPrimero) {
             this.manaDisponible = 1;
             this.manaTotal = 1;
+            this.activo = true;
         } else {
             this.manaDisponible = 2;
             this.manaTotal = 2;
@@ -96,6 +97,16 @@ public class Jugador {
         }
     }
 
+    //GETTER SETTERS//
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
+    
     public ArrayList<Carta> getMazo() {
         return mazo;
     }
