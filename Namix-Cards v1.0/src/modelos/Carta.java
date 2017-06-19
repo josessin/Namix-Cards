@@ -10,17 +10,28 @@ package modelos;
  * @author Usuario
  */
 public class Carta {
-    
+
     protected String nombre;
-    public enum Tipo{
+
+    public enum Tipo {
         hechizo,
         criatura
     }
     protected Tipo tipo;
     protected Integer coste;
+    protected Integer poder;
     protected boolean enJuego;
     protected Jugador jugador;
-    
+
+    public Carta(String nombre, Integer coste, Integer poder, Tipo tipo) {
+        this.tipo = tipo;
+        this.nombre = nombre;
+        this.coste = coste;
+        this.poder = poder;
+        this.jugador = null;
+        this.enJuego = false;
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -32,7 +43,30 @@ public class Carta {
     public Integer getCoste() {
         return coste;
     }
-    
+
+    public Integer getPoder() {
+        return poder;
+    }
+
+    public void setPoder(Integer poder) {
+        this.poder = poder;
+    }
+
+    public boolean isEnJuego() {
+        return enJuego;
+    }
+
+    public void setEnJuego(boolean enJuego) {
+        this.enJuego = enJuego;
+    }
+
+    public Jugador getJugador() {
+        return jugador;
+    }
+
+    public void setJugador(Jugador jugador) {
+        this.jugador = jugador;
+    }
     
     
 }

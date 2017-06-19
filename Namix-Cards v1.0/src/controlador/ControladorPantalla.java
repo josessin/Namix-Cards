@@ -8,7 +8,6 @@ package controlador;
 import java.awt.BorderLayout;
 import java.util.ArrayList;
 import modelos.Carta;
-import modelos.Criatura;
 import modelos.InfoVisualJuego;
 import vistaImagenes.CartaVisual;
 import vistaImagenes.PanelPantallaPrin;
@@ -21,9 +20,9 @@ import vistas.PantallaPrincipal;
 public class ControladorPantalla {
     //Para Prueba -------------------------------------------------
     InfoVisualJuego info = new InfoVisualJuego();
-    Criatura carta = new Criatura("asesino", 50, 50);
-    Criatura carta1 = new Criatura("elfo", 5, 5);
-    Criatura carta2 = new Criatura("golem", 10, 10);
+    Carta carta = new Carta("asesino", 50, 50,Carta.Tipo.criatura);
+    Carta carta1 = new Carta("elfo", 5, 5,Carta.Tipo.criatura);
+    Carta carta2 = new Carta("golem", 10, 10,Carta.Tipo.criatura);
     
     
     

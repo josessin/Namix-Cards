@@ -5,7 +5,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import modelos.Carta;
-import modelos.Criatura;
 
 /**
  * @author Jose
@@ -61,9 +60,9 @@ public class Datos {
         if (csvLine != null) {
             String[] splitData = csvLine.split("\\s*,\\s*");
             if(splitData[1].equalsIgnoreCase("criatura")){
-                c = new Criatura(splitData[0],Integer.parseInt(splitData[4]),Integer.parseInt(splitData[2]));
+                c = new Carta(splitData[0],Integer.parseInt(splitData[4]),Integer.parseInt(splitData[2]),Carta.Tipo.criatura);
             }else if(splitData[1].equalsIgnoreCase("hechizo")){
-                 c = new Criatura(splitData[0],Integer.parseInt(splitData[4]),Integer.parseInt(splitData[3]));
+                 c = new Carta(splitData[0],Integer.parseInt(splitData[4]),Integer.parseInt(splitData[3]),Carta.Tipo.hechizo);
             }
         }
 
