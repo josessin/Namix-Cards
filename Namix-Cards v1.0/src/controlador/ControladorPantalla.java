@@ -46,7 +46,7 @@ public class ControladorPantalla {
     //VISTAS 
     PantallaPrincipal pp = new PantallaPrincipal();
     //CONTROLADOR
-    ControladorCartaVisual ccv = new ControladorCartaVisual();
+    ControladorCartaVisual ccv = new ControladorCartaVisual(pp);
     //VARIABLES
     //<JOSE> Borre las variables, es mas facil de ver y seguir el rastro asi
     //simplemente se usa info.getCartasJugadorMano(), etc
@@ -68,84 +68,41 @@ public class ControladorPantalla {
         //Se inicializa la pantalla
         //StartPantalla();
 
-        //SE CREA VARIABLES NECESARIA
-        int vidaJ, vidaPc, manaJ, manaPc, manaDisJ, manaDisPc;
-        //SE CARGAN LAS VARIABLES CON LOS VALORES RECIBIDOS
-        //<JOSE> si estas variables no se van a usar en otro lado, esto es inesecario
-        //se pueden pasar los parametros directamente (inf.geVidasJugador), sin guardar los datos previamente en una variable
-        vidaJ = inf.getVidasJugador();
-        vidaPc = inf.getVidasPC();
-        manaJ = inf.getManaTotalJugador();
-        manaPc = inf.getManaTotalPC();
-        manaDisJ = inf.getManaDispJugador();
-        manaDisPc = inf.getManaDispPC();
         //SE ENVIA LA INFORAMCION A PANTALLA PRINCIPAL
-        pp.CargaInfoJuego(vidaJ, vidaPc, manaJ, manaPc, manaDisJ, manaDisPc, inf.getCartasJugadorMano(), inf.getCartasJugadorTablero(), inf.getCartasPCTablero());
+        pp.CargaInfoJuego(inf.getVidasJugador(), inf.getVidasPC(), inf.getManaTotalJugador(), inf.getManaTotalPC(),
+                inf.getManaDispJugador(), inf.getManaDispPC(), inf.getCartasJugadorMano(),
+                inf.getCartasJugadorTablero(), inf.getCartasPCTablero(), inf.getCartasPCMano());
         //SE LLAMAN A LOS METODOS PARA CREAR LAS CARTAS DE LOS JUGADORES
-        CargarCartasManoJugador(inf.getCartasJugadorMano());
-        CargarCartasTableroJugador(inf.getCartasJugadorTablero());
-        CargarCartasTableroPc(inf.getCartasPCTablero());
+        CargarCartas(inf.getCartasJugadorMano());
+        CargarCartas(inf.getCartasJugadorTablero());
+        CargarCartas(inf.getCartasPCTablero());
     }
     //METODO CARGA CARTAS JUGADOR
-    public void CargarCartasManoJugador(ArrayList<Carta> CartasManoJ) {
+    
+    public void CargarCartas(ArrayList<Carta> InfoCartas) {
         
-        for (int i = 0; i < CartasManoJ.size(); i++) {
+        for (int i = 0; i < InfoCartas.size(); i++) {
             //SE LLAMAN A LOS METODOS DEL CONTROLADOR DE CARTA VISUAL
-            ccv.AgregarImagenCarta(CartasManoJ.get(i).getNombre());
-            ccv.AgregarNombre(CartasManoJ.get(i).getNombre());
-            ccv.AgregarCoste(CartasManoJ.get(i).getCoste());
-            if (CartasManoJ.get(i).getTipo() == Carta.Tipo.criatura) {
+            ccv.AgregarImagenCarta(InfoCartas.get(i).getNombre());
+            ccv.AgregarNombre(InfoCartas.get(i).getNombre());
+            ccv.AgregarCoste(InfoCartas.get(i).getCoste());
+            if (InfoCartas.get(i).getTipo() == Carta.Tipo.criatura) {
 
                 // ccv.AgregarPoder();
             } else {
 
                 // ccv.AgregarEfecto();
             }
-            ccv.AgregarFondoCarta(CartasManoJ.get(i).getTipo());
+            ccv.AgregarFondoCarta(InfoCartas.get(i).getTipo());
 
         }
 
     }
-
-    public void CargarCartasTableroJugador(ArrayList<Carta> CartasTableroJ) {
-
-        for (int i = 0; i < CartasTableroJ.size(); i++) {
-            ccv.AgregarImagenCarta(CartasTableroJ.get(i).getNombre());
-            ccv.AgregarNombre(CartasTableroJ.get(i).getNombre());
-            ccv.AgregarCoste(CartasTableroJ.get(i).getCoste());
-            if (CartasTableroJ.get(i).getTipo() == Carta.Tipo.criatura) {
-
-                // ccv.AgregarPoder();
-            } else {
-
-                // ccv.AgregarEfecto();
-            }
-            ccv.AgregarFondoCarta(CartasTableroJ.get(i).getTipo());
-        }
-
-    }
-
-    public void CargarCartasTableroPc(ArrayList<Carta> CartasTableroPc) {
-
-        for (int i = 0; i < CartasTableroPc.size(); i++) {
-            ccv.AgregarImagenCarta(CartasTableroPc.get(i).getNombre());
-            ccv.AgregarNombre(CartasTableroPc.get(i).getNombre());
-            ccv.AgregarCoste(CartasTableroPc.get(i).getCoste());
-            if (CartasTableroPc.get(i).getTipo() == Carta.Tipo.criatura) {
-
-                // ccv.AgregarPoder();
-            } else {
-
-                // ccv.AgregarEfecto();
-            }
-            ccv.AgregarFondoCarta(CartasTableroPc.get(i).getTipo());
-        }
-
-    }
-    //SE COLOCA LA CARTA EN PANTALLA PRINCIPAL
-    //<JOSE> Este metodo nunca se llama?? 
+     //SE COLOCA LA CARTA EN PANTALLA PRINCIPAL
     public void AgregarCartaATablero(CartaVisual cv) {
-
+        
+        cv.setSize(pp.getWidth()/9, pp.getHeight()/4);
+        cv.setLocation(pp.getWidth() - (cv.getWidth() + cv.getWidth()), pp.getHeight() - (cv.getHeight() + cv.getHeight()));
         pp.add(cv);
 
     }

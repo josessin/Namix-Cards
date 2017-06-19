@@ -31,6 +31,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     public PantallaPrincipal() {
         initComponents();
         this.setSize(tam);
+        
         //ESTO SE VA A BORRAR
         //-------------------------------------------------------------------------------------------------------------
         /*cv.setSize(tam.width/9, tam.height/4);
@@ -41,7 +42,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
 
     
-    public void CargaInfoJuego(int vidaJ, int vidaPc, int manaJ,int manaPc,int manaDisJ,int manaDisPc, ArrayList<Carta> CartasManoJ, ArrayList<Carta> CartasTableroJ, ArrayList<Carta> CartasTableroPc){
+    public void CargaInfoJuego(int vidaJ, int vidaPc, int manaJ,int manaPc,int manaDisJ,int manaDisPc, 
+            ArrayList<Carta> CartasManoJ, ArrayList<Carta> CartasTableroJ, ArrayList<Carta> CartasTableroPc,
+            ArrayList<Carta> CartasManoPc){
     
         //Calculo que esta parte aun esta incompleta
         

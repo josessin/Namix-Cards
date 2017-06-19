@@ -18,15 +18,18 @@ import vistas.PantallaPrincipal;
  * @author jeron
  */
 public class ControladorCartaVisual {
-
-        
+        //Vistas
+        private CartaVisual cv = new CartaVisual();
+        private PantallaPrincipal pp;
         //Paneles
         PanelFondoCartaC fondoC = new PanelFondoCartaC();
         PanelFondoCartaH fondoH = new PanelFondoCartaH();
         PanelImagenCarta imaCart = new PanelImagenCarta();
-        //Vistas
-        PantallaPrincipal pp = new PantallaPrincipal();
-        CartaVisual cv = new CartaVisual();
+        public ControladorCartaVisual(PantallaPrincipal datos){
+            
+        this.pp = datos;
+       
+        }
     //METODO
     public void AgregarFondoCarta(Carta.Tipo tipo) {
         ControladorPantalla conp = new ControladorPantalla();
@@ -34,15 +37,11 @@ public class ControladorCartaVisual {
             
             cv.add(fondoC, BorderLayout.CENTER);
             fondoC.repaint();
-            cv.setSize(pp.getWidth()/9, pp.getHeight()/4);
-            cv.setLocation(pp.getWidth() - (cv.getWidth() + cv.getWidth()), pp.getHeight() - (cv.getHeight() + cv.getHeight()));
             conp.AgregarCartaATablero(cv);
             
         } else {
             cv.add(fondoH, BorderLayout.CENTER);
             fondoH.repaint();
-            cv.setSize(pp.getWidth()/9, pp.getHeight()/4);
-            cv.setLocation(pp.getWidth() - (cv.getWidth() + cv.getWidth()), pp.getHeight() - (cv.getHeight() + cv.getHeight()));
             conp.AgregarCartaATablero(cv);
 
         }
@@ -80,5 +79,6 @@ public class ControladorCartaVisual {
         cv.setLblNombre(nombre);
     
     }
+
     
 }
