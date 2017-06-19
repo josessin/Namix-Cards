@@ -27,6 +27,7 @@ public class ControladorCartaVisual {
         PanelFondoCartaC fondoC = new PanelFondoCartaC();
         PanelFondoCartaH fondoH = new PanelFondoCartaH();
         PanelImagenCarta imaCart = new PanelImagenCarta();
+        
         public ControladorCartaVisual(PantallaPrincipal datos){
             
         this.pp = datos;
@@ -51,9 +52,9 @@ public class ControladorCartaVisual {
     }
     //METODO PARA IMAGEN DEL MONSTRUO EN EL CENTRO DE LA CARTA
     public void AgregarImagenCarta(String nombre) {
-        
         //imaCart.setNombre(nombre);
-        imaCart.setBackground(Color.red);
+        //imaCart.repaint();
+        imaCart.setBackground(Color.BLUE);
         imaCart.setSize(cv.getWidth()/2,cv.getHeight()/2);
         javax.swing.GroupLayout ImagenLayout = new javax.swing.GroupLayout(imaCart);
         imaCart.setLayout(ImagenLayout);
