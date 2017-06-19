@@ -39,8 +39,8 @@ public class ControladorPantalla {
         Dimension tam = Toolkit.getDefaultToolkit().getScreenSize();
         pp.setSize(tam);
         
-        /*pp.add(fondo, BorderLayout.CENTER);
-        fondo.repaint();*/
+        pp.add(fondo, BorderLayout.CENTER);
+        fondo.repaint();
         pp.setVisible(true);
        
 
@@ -64,7 +64,7 @@ public class ControladorPantalla {
         //SE LLAMAN A LOS METODOS PARA CREAR LAS CARTAS DE LOS JUGADORES
         
         CargarCartas(inf.getCartasJugadorMano(),pp.getHeight()/15.0F, false);
-        CargarCartas(inf.getCartasJugadorTablero(), pp.getHeight()/1.5F, false);
+        CargarCartas(inf.getCartasJugadorTablero(), pp.getHeight()/4.5F, false);
         CargarCartas(inf.getCartasPCTablero(),( pp.getHeight() - pp.getHeight() / 2.5f), false);
         CargarCartas(inf.getCartasPCMano(), ( pp.getHeight() - pp.getHeight() / 9.0f), false);
     }
@@ -75,7 +75,9 @@ public class ControladorPantalla {
         for (int i = 0; i < InfoCartas.size(); i++) {
             CartaVisual cv = new CartaVisual(juego);
             cartasParaMostrar.add(cv);
-            cv.setSize(pp.getWidth() / (InfoCartas.size()*2), pp.getHeight() / 5);
+            int aux = InfoCartas.size();
+            if(aux<5){
+                cv.setSize(pp.getWidth() / 6, pp.getHeight() / 5);
             Point p = new Point();
                     p.x = (pp.getWidth()/2 - cv.getWidth()/2) - (cv.getWidth()*inf.getCartasJugadorMano().size())/2+(i*(cv.getWidth()+10));
                     p.y = pp.getHeight() - (int) posicionY - cv.getSize().height;
@@ -89,6 +91,22 @@ public class ControladorPantalla {
             cv.setLocation(p);
             cv.setVisible(true);
             
+            }else{
+            
+            cv.setSize(pp.getWidth() / (InfoCartas.size()*2), pp.getHeight() / 5);
+            Point p = new Point();
+                    p.x = (pp.getWidth()/2 - cv.getWidth()/2) - (cv.getWidth()*inf.getCartasJugadorMano().size())/2+(i*(cv.getWidth()+10));
+                    p.y = pp.getHeight() - (int) posicionY - cv.getSize().height;
+            pp.getContentPane().add(cv);
+            
+             if (!escondido) {
+                ccv.AgregarCarta(cv, InfoCartas.get(i), juego);
+            } else {
+                //TODO: mostrar parte de atras
+            }
+            cv.setLocation(p);
+            cv.setVisible(true);
+            }
         }
     }
      private void DestruirCartasViejas() {

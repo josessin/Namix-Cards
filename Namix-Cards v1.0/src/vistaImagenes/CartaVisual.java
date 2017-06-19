@@ -27,6 +27,7 @@ public class CartaVisual extends javax.swing.JPanel {
     private boolean enJuego;
     private Juego juego;
     private ControladorCartaVisual ccv;
+    private Carta carta;
     
 
     private ArrayList<Carta> CartasEnJuego = new ArrayList<Carta>();
@@ -37,7 +38,7 @@ public class CartaVisual extends javax.swing.JPanel {
 
     public void setValores(Carta carta) {
         ccv = new ControladorCartaVisual(juego);
-        Carta ObjetoCarta = new Carta(carta.getNombre(), carta.getCoste(), carta.getPoder(), carta.getTipo());
+        this.carta = carta;
         lblNombre.setText(carta.getNombre());
         lblPoder.setText(carta.getPoder().toString());
         lblMana.setText(carta.getCoste().toString());
@@ -65,6 +66,11 @@ public class CartaVisual extends javax.swing.JPanel {
         lblMana = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(204, 0, 0));
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
 
         lblNombre.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lblNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -99,6 +105,10 @@ public class CartaVisual extends javax.swing.JPanel {
                     .addComponent(lblMana, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        juego.cartaClickeda(carta);
+    }//GEN-LAST:event_formMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

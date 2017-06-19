@@ -58,7 +58,7 @@ public class ControladorCartaVisual {
         ImagenLayout.setVerticalGroup(
                 ImagenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGap(0, 100, Short.MAX_VALUE));
-        imaCart.setLocation(cv.getWidth()/2, cv.getHeight()/2);
+        imaCart.setLocation(cv.getWidth()/2, cv.getHeight()/2 );
 
         cv.add(imaCart);
 

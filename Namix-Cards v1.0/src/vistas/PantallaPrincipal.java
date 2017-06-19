@@ -110,28 +110,36 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
 
         lblLifePointsJ1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblLifePointsJ1.setForeground(new java.awt.Color(153, 153, 255));
         lblLifePointsJ1.setText("Life Points");
 
         lblManaNumJ1.setBackground(new java.awt.Color(0, 204, 51));
         lblManaNumJ1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        lblManaNumJ1.setForeground(new java.awt.Color(153, 255, 102));
 
         lblManaJ1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblManaJ1.setForeground(new java.awt.Color(153, 255, 102));
         lblManaJ1.setText("Mana");
 
         lblLifePointsNumJ1.setBackground(new java.awt.Color(255, 51, 51));
         lblLifePointsNumJ1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        lblLifePointsNumJ1.setForeground(new java.awt.Color(153, 153, 255));
 
         lblLifePointsJ2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblLifePointsJ2.setForeground(new java.awt.Color(153, 153, 255));
         lblLifePointsJ2.setText("Life Points");
 
         lblManaJ2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblManaJ2.setForeground(new java.awt.Color(153, 255, 102));
         lblManaJ2.setText("Mana");
 
         lblLifePointsNumJ2.setBackground(new java.awt.Color(255, 51, 51));
         lblLifePointsNumJ2.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        lblLifePointsNumJ2.setForeground(new java.awt.Color(153, 153, 255));
 
         lblManaNumJ2.setBackground(new java.awt.Color(0, 204, 51));
         lblManaNumJ2.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        lblManaNumJ2.setForeground(new java.awt.Color(153, 255, 102));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
