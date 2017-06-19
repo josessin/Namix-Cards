@@ -8,6 +8,7 @@ package juego;
 import controlador.ControladorPantalla;
 import datos.Datos;
 import java.util.ArrayList;
+import jose.ControlVistaPrincipal;
 import modelos.Carta;
 import modelos.InfoVisualJuego;
 import modelos.Jugador;
@@ -27,11 +28,17 @@ public class Juego {
     private Jugador Jugador2;
     private InfoVisualJuego infoVisual;
     private ControladorPantalla contPant;
-
+    //TEST
+    private ControlVistaPrincipal contVistaPPL;
+    
     public Juego() {
         infoVisual = new InfoVisualJuego();
+        //OJO! COMENTADO PARA PRUEBAS NO COMMITEAR
         contPant = new ControladorPantalla();
-        //contPant.StartPantalla();
+        
+        //ESTO ES PARA PROBAR VISTA JOSE
+        //contVistaPPL = new ControlVistaPrincipal();
+        
         nuevoJuego();
     }
 
@@ -63,7 +70,10 @@ public class Juego {
     private void actualizarPantalla() {
 
         infoVisual.actualizarInfo(Jugador1, Jugador1);
+        
+        //OJO! COMENTADO PARA PRUEBAS NO COMMITEAR
         contPant.ActualizarPantalla(infoVisual);
+        //contVistaPPL.actualizarPantalla(infoVisual);
     }
 
 }
