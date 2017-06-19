@@ -5,6 +5,7 @@
  */
 package juego;
 
+import controlador.ControladorPantalla;
 import datos.Datos;
 import java.util.ArrayList;
 import modelos.Carta;
@@ -24,30 +25,34 @@ public class Juego {
 
     private Jugador Jugador1;
     private Jugador Jugador2;
-    private InfoVisualJuego ivj;
-
+    private InfoVisualJuego infoVisual;
+    private ControladorPantalla contPant;
+    
     public Juego() {
-        ivj = new InfoVisualJuego();
+        infoVisual = new InfoVisualJuego();
+        contPant = new ControladorPantalla();
+        contPant.StartPantalla();
         nuevoJuego();
     }
 
     private void nuevoJuego() {
-        CrearJugagores();
-
-        //Actualizar Pantallas
+        crearJugagores();
+       //actualizarPantallas inicial
+        actualizarPantalla();
     }
 
-    private void CrearJugagores() {
+    private void crearJugagores() {
 
         if (HOMBRE_VS_PC) {
             Datos d = new Datos();
             //Cargar el mazo de el archivo .csv
-            ArrayList<Carta> mazo = d.cargarDatos("csv/mazo1v2.csv");
+            ArrayList<Carta> mazoJugador1 = d.cargarDatos("csv/mazo1v2.csv");
+             ArrayList<Carta> mazoJugador2 = d.cargarDatos("csv/mazo1v2.csv");
             //Humano
-            Jugador1 = new Jugador(mazo, true);
+            Jugador1 = new Jugador(mazoJugador1, true);
             Jugador1.setTipoJugador(Jugador.TipoJugador.humano);
             //PC
-            Jugador2 = new Jugador(mazo, false);
+            Jugador2 = new Jugador(mazoJugador2, false);
             Jugador2.setTipoJugador(Jugador.TipoJugador.pc);
             
         } else {
@@ -56,7 +61,10 @@ public class Juego {
     }
 
     private void actualizarPantalla() {
-
+        
+        infoVisual.actualizarInfo(Jugador1, Jugador1);
+        contPant.ActualizarPantalla(infoVisual);
     }
+
 
 }

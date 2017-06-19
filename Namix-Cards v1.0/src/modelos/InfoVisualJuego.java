@@ -26,10 +26,27 @@ public class InfoVisualJuego {
 
     public InfoVisualJuego() {
         //Crear las listas de cartas
-        cartasJugadorMano = new ArrayList<Carta>();
-        cartasJugadorTablero = new ArrayList<Carta>();
-        cartasPCMano = new ArrayList<Carta>();
-        cartasPCTablero = new ArrayList<Carta>();
+        cartasJugadorMano = new ArrayList<>();
+        cartasJugadorTablero = new ArrayList<>();
+        cartasPCMano = new ArrayList<>();
+        cartasPCTablero = new ArrayList<>();
+    }
+
+    public void actualizarInfo(Jugador j1, Jugador j2pc) {
+
+        cartasJugadorMano = j1.getCartasEnMano();
+        cartasJugadorTablero = j1.getCartasEnJuego();
+        cartasPCMano = j2pc.getCartasEnMano();
+        cartasPCTablero = j2pc.getCartasEnJuego();
+
+        vidasJugador = j1.getVidas();
+        vidasPC = j2pc.getVidas();
+
+        manaTotalJugador = j1.getManaTotal();
+        manaDispJugador = j1.getManaDisponible();
+        manaTotalPC = j2pc.getManaTotal();
+        manaDispPC = j2pc.getManaDisponible();
+
     }
 
     public ArrayList<Carta> getCartasJugadorMano() {

@@ -14,8 +14,8 @@ import juego.Juego;
  * @author Jose
  */
 public class Jugador {
-    
-    public enum TipoJugador{
+
+    public enum TipoJugador {
         pc,
         humano
     }
@@ -27,35 +27,69 @@ public class Jugador {
     private int vidas;
     private int manaTotal;
     private int manaDisponible;
-    
+
     private TipoJugador tipoJugador;
-    
-    public Jugador(ArrayList<Carta> mazo, boolean juegaPrimero){
+
+    public Jugador(ArrayList<Carta> mazo, boolean juegaPrimero) {
         this.mazo = mazo;
         this.vidas = 20;
-        
-        if(juegaPrimero){
+
+        if (juegaPrimero) {
             this.manaDisponible = 1;
             this.manaTotal = 1;
-        }else{
+        } else {
             this.manaDisponible = 2;
             this.manaTotal = 2;
         }
+
+        asignarJugadorACartas();
         mezclar();
         manoInicial();
-        
+
     }
-    
-    
-    private void mezclar(){
+
+    private void mezclar() {
         Collections.shuffle(mazo);
     }
-    
-    private void manoInicial(){
-        
+
+    private void manoInicial() {
+
         for (int i = 0; i < Juego.MANO_INICIAL; i++) {
-            cartasEnMano.add(mazo.get(mazo.size()-1));
-            mazo.remove(mazo.size()-1);
+            cartasEnMano.add(mazo.get(mazo.size() - 1));
+            mazo.remove(mazo.size() - 1);
+        }
+    }
+
+    ////METODOS PUBLICOS///
+    public void robarCarta() {
+        if (mazo.size() <= 0) {
+            System.out.println("Jugador.robarCarta: no hay mas cartas "
+                    + "en el mazo");
+            return;
+        }
+
+        int index = mazo.size() - 1;
+        cartasEnMano.add(mazo.get(index));
+        mazo.remove(index);
+
+    }
+
+    public void jugarCarta(Carta carta) {
+        
+        if (cartasEnMano.contains(carta)) {
+            cartasEnJuego.add(carta);
+            cartasEnMano.remove(carta);
+        }else{
+            System.out.println("Carta.jugarCarta: la carta que se intenta jugar "
+                    + "no se encouentra en la mano de el jugador");
+        }
+
+    }
+
+    //Indicar el judar "dueño" de la carta
+    private void asignarJugadorACartas() {
+        for (int i = 0; i < mazo.size(); i++) {
+            mazo.get(i).jugador = this;
         }
     }
 
@@ -114,7 +148,5 @@ public class Jugador {
     public void setTipoJugador(TipoJugador tipoJugador) {
         this.tipoJugador = tipoJugador;
     }
-    
-    
-    
+
 }
