@@ -46,8 +46,10 @@ public class ControladorPantalla {
 
     public void StartPantalla() {
 
-        
-        
+        PanelPantallaPrin fondo = new PanelPantallaPrin();
+        //pp.add(fondo, BorderLayout.CENTER);
+        //fondo.repaint();
+        //pp.setVisible(true);
         //************************************
        // ActualizarPantalla(info); //PARA PRUEBA
         //***********************************
@@ -93,7 +95,7 @@ public class ControladorPantalla {
 
     public void AgregarCartaATablero(CartaVisual cv,PantallaPrincipal pp) {
 
-        PanelPantallaPrin fondo = new PanelPantallaPrin();
+
         cv.setSize(pp.getWidth() / 9, pp.getHeight() / 4);
         cv.setLocation(pp.getWidth() - (cv.getWidth() + cv.getWidth()),
                 pp.getHeight() - (cv.getHeight() + cv.getHeight()));
@@ -103,9 +105,7 @@ public class ControladorPantalla {
         cv.getPoder();
         pp.add(cv);
         
-        //pp.add(fondo, BorderLayout.CENTER);
-        //fondo.repaint();
-        pp.setVisible(true);
+        
         
         
         
