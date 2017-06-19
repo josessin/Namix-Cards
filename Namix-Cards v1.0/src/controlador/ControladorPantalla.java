@@ -20,7 +20,7 @@ import vistas.PantallaPrincipal;
 public class ControladorPantalla {
 
     //Para Prueba -------------------------------------------------
-    InfoVisualJuego info = new InfoVisualJuego();
+    /*InfoVisualJuego info = new InfoVisualJuego();
     Carta carta = new Carta("asesino", 50, 50, Carta.Tipo.criatura);
     Carta carta1 = new Carta("elfo", 5, 5, Carta.Tipo.criatura);
     Carta carta2 = new Carta("golem", 10, 10, Carta.Tipo.criatura);
@@ -37,7 +37,7 @@ public class ControladorPantalla {
         info.setCartasPCTablero(listaJM);
         info.setCartasPCMano(listaJM);
 
-    }
+    }*/
     //************************************************
     //VISTAS 
     PantallaPrincipal pp = new PantallaPrincipal();
@@ -49,14 +49,14 @@ public class ControladorPantalla {
         
         
         //************************************
-        ActualizarPantalla(info); //PARA PRUEBA
+       // ActualizarPantalla(info); //PARA PRUEBA
         //***********************************
     }
 
     public void ActualizarPantalla(InfoVisualJuego inf) {
 
         //Se inicializa la pantalla
-        //StartPantalla();//SE TIENE Q COMENTAR PARA PRUEBA
+        StartPantalla();//SE TIENE Q COMENTAR PARA PRUEBA
         //SE ENVIA LA INFORAMCION A PANTALLA PRINCIPAL
         pp.CargaInfoJuego(inf.getVidasJugador(), inf.getVidasPC(), inf.getManaTotalJugador(), inf.getManaTotalPC(),
                 inf.getManaDispJugador(), inf.getManaDispPC(), inf.getCartasJugadorMano(),
@@ -98,10 +98,13 @@ public class ControladorPantalla {
         cv.setLocation(pp.getWidth() - (cv.getWidth() + cv.getWidth()),
                 pp.getHeight() - (cv.getHeight() + cv.getHeight()));
         
-        
+        cv.getName();
+        cv.getMana();
+        cv.getPoder();
         pp.add(cv);
-        pp.add(fondo, BorderLayout.CENTER);
-        fondo.repaint();
+        
+        //pp.add(fondo, BorderLayout.CENTER);
+        //fondo.repaint();
         pp.setVisible(true);
         
         
