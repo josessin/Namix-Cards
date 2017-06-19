@@ -20,7 +20,7 @@ import vistas.PantallaPrincipal;
 public class ControladorPantalla {
 
     //Para Prueba -------------------------------------------------
-    InfoVisualJuego info = new InfoVisualJuego();
+    /*InfoVisualJuego info = new InfoVisualJuego();
     Carta carta = new Carta("asesino", 50, 50, Carta.Tipo.criatura);
     Carta carta1 = new Carta("elfo", 5, 5, Carta.Tipo.criatura);
     Carta carta2 = new Carta("golem", 10, 10, Carta.Tipo.criatura);
@@ -32,12 +32,11 @@ public class ControladorPantalla {
         listaJM.add(carta1);
         listaJM.add(carta2);
         info.setCartasJugadorMano(listaJM);
-        //<JOSE> Agregue estas dos listas (con las mismas cartas) para q funcione la prueba
         info.setCartasJugadorTablero(listaJM);
         info.setCartasPCTablero(listaJM);
         info.setCartasPCMano(listaJM);
 
-    }
+    }*/
     //************************************************
     //VISTAS 
     PantallaPrincipal pp = new PantallaPrincipal();
@@ -46,17 +45,19 @@ public class ControladorPantalla {
 
     public void StartPantalla() {
 
-        
-        
+        PanelPantallaPrin fondo = new PanelPantallaPrin();
+        pp.add(fondo, BorderLayout.CENTER);
+        fondo.repaint();
+        pp.setVisible(true);
         //************************************
-        ActualizarPantalla(info); //PARA PRUEBA
+       // ActualizarPantalla(info); //PARA PRUEBA
         //***********************************
     }
 
     public void ActualizarPantalla(InfoVisualJuego inf) {
-
+        System.out.println("HEY ESTOY ACA EN ACTUALIZAR PANTALLA");
         //Se inicializa la pantalla
-        //StartPantalla();//SE TIENE Q COMENTAR PARA PRUEBA
+        StartPantalla();//SE TIENE Q COMENTAR PARA PRUEBA
         //SE ENVIA LA INFORAMCION A PANTALLA PRINCIPAL
         pp.CargaInfoJuego(inf.getVidasJugador(), inf.getVidasPC(), inf.getManaTotalJugador(), inf.getManaTotalPC(),
                 inf.getManaDispJugador(), inf.getManaDispPC(), inf.getCartasJugadorMano(),
@@ -77,11 +78,11 @@ public class ControladorPantalla {
             ccv.AgregarImagenCarta(InfoCartas.get(i).getNombre());
             ccv.AgregarNombre(InfoCartas.get(i).getNombre());
             ccv.AgregarCoste(InfoCartas.get(i).getCoste());
-            if (InfoCartas.get(i).getTipo() == Carta.Tipo.criatura) {
-
+            if (InfoCartas.get(i).getTipo().equals(Carta.Tipo.criatura)) {
+                ccv.AgregarTipo(Carta.Tipo.criatura);
                 ccv.AgregarPoder(InfoCartas.get(i).getPoder());
             } else {
-
+                ccv.AgregarTipo(Carta.Tipo.hechizo);
                 ccv.AgregarEfecto(InfoCartas.get(i).getPoder());
             }
             ccv.AgregarFondoCarta(InfoCartas.get(i).getTipo());
@@ -93,16 +94,18 @@ public class ControladorPantalla {
 
     public void AgregarCartaATablero(CartaVisual cv,PantallaPrincipal pp) {
 
-        PanelPantallaPrin fondo = new PanelPantallaPrin();
+
         cv.setSize(pp.getWidth() / 9, pp.getHeight() / 4);
         cv.setLocation(pp.getWidth() - (cv.getWidth() + cv.getWidth()),
                 pp.getHeight() - (cv.getHeight() + cv.getHeight()));
         
-        
+        cv.getNombre();
+        cv.getMana();
+        cv.getPoder();
+        cv.getTipo();
         pp.add(cv);
-        pp.add(fondo, BorderLayout.CENTER);
-        fondo.repaint();
-        pp.setVisible(true);
+        
+        
         
         
         

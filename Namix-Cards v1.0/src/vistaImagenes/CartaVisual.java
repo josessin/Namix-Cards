@@ -17,7 +17,7 @@ import javax.swing.JPanel;
  */
 public class CartaVisual extends javax.swing.JPanel {
     
-    
+    private String Tipo;
     
     public CartaVisual() {
         initComponents();
@@ -29,6 +29,16 @@ public class CartaVisual extends javax.swing.JPanel {
         Ima.add(ima, BorderLayout.CENTER);
         ima.repaint();*/
     }
+
+    public String getTipo() {
+        System.out.println("Tipo:" + Tipo);
+        return Tipo;
+    }
+
+    public void setTipo(String Tipo) {
+        this.Tipo = Tipo;
+    }
+    
 
     public void getMana() {
         String manaTxt = lblMana.getText();
@@ -80,10 +90,13 @@ public class CartaVisual extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 102, 102));
 
         lblNombre.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         lblPoder.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblPoder.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
 
         lblMana.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblMana.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

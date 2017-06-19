@@ -6,7 +6,9 @@
 package controlador;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import modelos.Carta;
+import modelos.Carta.Tipo;
 import vistaImagenes.CartaVisual;
 import vistaImagenes.PanelFondoCartaC;
 import vistaImagenes.PanelFondoCartaH;
@@ -50,8 +52,8 @@ public class ControladorCartaVisual {
     //METODO PARA IMAGEN DEL MONSTRUO EN EL CENTRO DE LA CARTA
     public void AgregarImagenCarta(String nombre) {
         
-        imaCart.setNombre(nombre);
-        imaCart.repaint();
+        //imaCart.setNombre(nombre);
+        imaCart.setBackground(Color.red);
         imaCart.setSize(cv.getWidth()/2,cv.getHeight()/2);
         javax.swing.GroupLayout ImagenLayout = new javax.swing.GroupLayout(imaCart);
         imaCart.setLayout(ImagenLayout);
@@ -61,6 +63,7 @@ public class ControladorCartaVisual {
         ImagenLayout.setVerticalGroup(
             ImagenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 100, Short.MAX_VALUE));
+        imaCart.setLocation(cv.getWidth(), cv.getHeight());
         cv.add(imaCart);
         
     }
@@ -69,6 +72,13 @@ public class ControladorCartaVisual {
         
         cv.setMana(coste);
         
+    }
+    
+    public void AgregarTipo(Carta.Tipo tipo){
+    
+       cv.setTipo(String.valueOf(tipo));
+    
+    
     }
     
     public void AgregarPoder(Integer poder){
