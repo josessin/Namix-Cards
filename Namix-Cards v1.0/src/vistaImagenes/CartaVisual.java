@@ -17,7 +17,7 @@ import javax.swing.JPanel;
  */
 public class CartaVisual extends javax.swing.JPanel {
     
-    
+    private String Tipo;
     
     public CartaVisual() {
         initComponents();
@@ -29,6 +29,15 @@ public class CartaVisual extends javax.swing.JPanel {
         Ima.add(ima, BorderLayout.CENTER);
         ima.repaint();*/
     }
+
+    public String getTipo() {
+        return Tipo;
+    }
+
+    public void setTipo(String Tipo) {
+        this.Tipo = Tipo;
+    }
+    
 
     public void getMana() {
         String manaTxt = lblMana.getText();

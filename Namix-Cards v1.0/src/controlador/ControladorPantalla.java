@@ -79,10 +79,10 @@ public class ControladorPantalla {
             ccv.AgregarNombre(InfoCartas.get(i).getNombre());
             ccv.AgregarCoste(InfoCartas.get(i).getCoste());
             if (InfoCartas.get(i).getTipo() == Carta.Tipo.criatura) {
-
+                ccv.AgregarTipo(Carta.Tipo.criatura);
                 ccv.AgregarPoder(InfoCartas.get(i).getPoder());
             } else {
-
+                ccv.AgregarTipo(Carta.Tipo.hechizo);
                 ccv.AgregarEfecto(InfoCartas.get(i).getPoder());
             }
             ccv.AgregarFondoCarta(InfoCartas.get(i).getTipo());
@@ -99,9 +99,10 @@ public class ControladorPantalla {
         cv.setLocation(pp.getWidth() - (cv.getWidth() + cv.getWidth()),
                 pp.getHeight() - (cv.getHeight() + cv.getHeight()));
         
-        cv.getName();
+        cv.getNombre();
         cv.getMana();
         cv.getPoder();
+        cv.getTipo();
         pp.add(cv);
         
         

@@ -8,6 +8,7 @@ package controlador;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import modelos.Carta;
+import modelos.Carta.Tipo;
 import vistaImagenes.CartaVisual;
 import vistaImagenes.PanelFondoCartaC;
 import vistaImagenes.PanelFondoCartaH;
@@ -71,6 +72,13 @@ public class ControladorCartaVisual {
         
         cv.setMana(coste);
         
+    }
+    
+    public void AgregarTipo(Carta.Tipo tipo){
+    
+       cv.setTipo(String.valueOf(tipo));
+    
+    
     }
     
     public void AgregarPoder(Integer poder){
