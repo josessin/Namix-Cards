@@ -46,9 +46,9 @@ public class ControladorPantalla {
     public void StartPantalla() {
 
         PanelPantallaPrin fondo = new PanelPantallaPrin();
-        //pp.add(fondo, BorderLayout.CENTER);
-        //fondo.repaint();
-        //pp.setVisible(true);
+        pp.add(fondo, BorderLayout.CENTER);
+        fondo.repaint();
+        pp.setVisible(true);
         //************************************
        // ActualizarPantalla(info); //PARA PRUEBA
         //***********************************
@@ -78,7 +78,7 @@ public class ControladorPantalla {
             ccv.AgregarImagenCarta(InfoCartas.get(i).getNombre());
             ccv.AgregarNombre(InfoCartas.get(i).getNombre());
             ccv.AgregarCoste(InfoCartas.get(i).getCoste());
-            if (InfoCartas.get(i).getTipo() == Carta.Tipo.criatura) {
+            if (InfoCartas.get(i).getTipo().equals(Carta.Tipo.criatura)) {
                 ccv.AgregarTipo(Carta.Tipo.criatura);
                 ccv.AgregarPoder(InfoCartas.get(i).getPoder());
             } else {
