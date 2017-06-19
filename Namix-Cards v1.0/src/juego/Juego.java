@@ -38,7 +38,7 @@ public class Juego {
     public Juego() {
         infoVisual = new InfoVisualJuego();
         //OJO! COMENTADO PARA PRUEBAS NO COMMITEAR
-        //contPant = new ControladorPantalla();
+       // contPant = new ControladorPantalla();
 
         //ESTO ES PARA PROBAR VISTA JOSE
         contVistaPPL = new ControlVistaPrincipal(this);

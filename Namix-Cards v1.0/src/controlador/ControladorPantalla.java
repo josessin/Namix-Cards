@@ -10,6 +10,7 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Toolkit;
 import java.util.ArrayList;
+import juego.Juego;
 import modelos.Carta;
 import modelos.InfoVisualJuego;
 import vistaImagenes.CartaVisual;
@@ -21,30 +22,17 @@ import vistas.PantallaPrincipal;
  * @author jeron
  */
 public class ControladorPantalla {
+    private Juego juego;
+    private final PantallaPrincipal pp;
+    private ArrayList<CartaVisual> cartasParaMostrar;
+    private InfoVisualJuego inf;
 
-    //Para Prueba -------------------------------------------------
-    /*InfoVisualJuego info = new InfoVisualJuego();
-    Carta carta = new Carta("asesino", 50, 50, Carta.Tipo.criatura);
-    Carta carta1 = new Carta("elfo", 5, 5, Carta.Tipo.criatura);
-    Carta carta2 = new Carta("golem", 10, 10, Carta.Tipo.criatura);
-
-    public ControladorPantalla() {
-
-        ArrayList<Carta> listaJM = new ArrayList<Carta>();
-        listaJM.add(carta);
-        listaJM.add(carta1);
-        listaJM.add(carta2);
-        info.setCartasJugadorMano(listaJM);
-        info.setCartasJugadorTablero(listaJM);
-        info.setCartasPCTablero(listaJM);
-        info.setCartasPCMano(listaJM);
-
-    }*/
-    //************************************************
-    //VISTAS 
-    PantallaPrincipal pp = new PantallaPrincipal();
-    //CONTROLADOR
-
+    public ControladorPantalla(Juego juego){
+        this.juego = juego;
+        pp = new PantallaPrincipal(this);
+        cartasParaMostrar = new ArrayList<>();
+        
+    }
     public void StartPantalla() {
 
         PanelPantallaPrin fondo = new PanelPantallaPrin();
@@ -54,110 +42,68 @@ public class ControladorPantalla {
         /*pp.add(fondo, BorderLayout.CENTER);
         fondo.repaint();*/
         pp.setVisible(true);
-        //************************************
-        // ActualizarPantalla(info); //PARA PRUEBA
-        //***********************************
+       
+
     }
 
     public void ActualizarPantalla(InfoVisualJuego inf) {
+        if (inf == null) {
+            return;
+        }
+         DestruirCartasViejas();
         //Se inicializa la pantalla
-        StartPantalla();//SE TIENE Q COMENTAR PARA PRUEBA
+        StartPantalla();
+        
+        this.inf = inf;
+        
         //SE ENVIA LA INFORAMCION A PANTALLA PRINCIPAL
         pp.CargaInfoJuego(inf.getVidasJugador(), inf.getVidasPC(), inf.getManaTotalJugador(), inf.getManaTotalPC(),
                 inf.getManaDispJugador(), inf.getManaDispPC(), inf.getCartasJugadorMano(),
                 inf.getCartasJugadorTablero(), inf.getCartasPCTablero(), inf.getCartasPCMano());
+        
         //SE LLAMAN A LOS METODOS PARA CREAR LAS CARTAS DE LOS JUGADORES
-        int aux = 1;
-        CargarCartas(inf.getCartasJugadorMano(), aux, inf);
-        aux = 2;
-        CargarCartas(inf.getCartasJugadorTablero(), aux, inf);
-        aux = 3;
-        CargarCartas(inf.getCartasPCTablero(), aux, inf);
-        aux = 4;
-        CargarCartas(inf.getCartasPCMano(), aux, inf);
+        
+        CargarCartas(inf.getCartasJugadorMano(),pp.getHeight()/15.0F, false);
+        CargarCartas(inf.getCartasJugadorTablero(), pp.getHeight()/1.5F, false);
+        CargarCartas(inf.getCartasPCTablero(),( pp.getHeight() - pp.getHeight() / 2.5f), false);
+        CargarCartas(inf.getCartasPCMano(), ( pp.getHeight() - pp.getHeight() / 9.0f), false);
     }
 
     //METODO CARGA CARTAS JUGADOR
-    public void CargarCartas(ArrayList<Carta> InfoCartas, int aux, InfoVisualJuego inf) {
-        ControladorCartaVisual ccv = new ControladorCartaVisual(pp);
+    public void CargarCartas(ArrayList<Carta> InfoCartas, float posicionY, boolean escondido) {
+        ControladorCartaVisual ccv = new ControladorCartaVisual(juego);
         for (int i = 0; i < InfoCartas.size(); i++) {
-
-            //SE LLAMAN A LOS METODOS DEL CONTROLADOR DE CARTA VISUAL
-            ccv.AgregarImagenCarta(InfoCartas.get(i).getNombre());
-            ccv.AgregarNombre(InfoCartas.get(i).getNombre());
-            ccv.AgregarCoste(InfoCartas.get(i).getCoste());
-            if (InfoCartas.get(i).getTipo().equals(Carta.Tipo.criatura)) {
-                ccv.AgregarTipo(Carta.Tipo.criatura);
-                ccv.AgregarPoder(InfoCartas.get(i).getPoder());
+            CartaVisual cv = new CartaVisual(juego);
+            cartasParaMostrar.add(cv);
+            cv.setSize(pp.getWidth() / (InfoCartas.size()*2), pp.getHeight() / 5);
+            Point p = new Point();
+                    p.x = (pp.getWidth()/2 - cv.getWidth()/2) - (cv.getWidth()*inf.getCartasJugadorMano().size())/2+(i*(cv.getWidth()+10));
+                    p.y = pp.getHeight() - (int) posicionY - cv.getSize().height;
+            pp.getContentPane().add(cv);
+            
+             if (!escondido) {
+                ccv.AgregarCarta(cv, InfoCartas.get(i), juego);
             } else {
-                ccv.AgregarTipo(Carta.Tipo.hechizo);
-                ccv.AgregarEfecto(InfoCartas.get(i).getPoder());
+                //TODO: mostrar parte de atras
             }
-            ccv.AgregarFondoCarta(InfoCartas.get(i).getTipo(), aux, inf);
-
+            cv.setLocation(p);
+            cv.setVisible(true);
+            
         }
-
     }
-    //SE COLOCA LA CARTA EN PANTALLA PRINCIPAL
+     private void DestruirCartasViejas() {
 
-    public void AgregarCartaATablero(CartaVisual cv, PantallaPrincipal pp, int aux, InfoVisualJuego inf) {
-
-        if (aux == 1) {
-            for (int i = 0; i < inf.getCartasJugadorMano().size(); i++) {
-                cv.setSize(pp.getWidth() / 10, pp.getHeight() / 4);
-                    pp.getContentPane().add(cv);
-                    Point p = new Point();
-                    p.x = (pp.getWidth()/2 - cv.getWidth()/2) -  cv.getWidth()*inf.getCartasJugadorMano().size()/2+i*(cv.getWidth()+ 20);
-                    p.y = pp.getHeight() - 100 - cv.getSize().height;
-                    cv.setLocation(p);
-                    cv.setVisible(true);
-                    pp.pack();
-
-            }
-        } else {
-            /*if (aux == 2) {
-                for (int i = 0; i < inf.getCartasJugadorTablero().size(); i++) {
-                    cv.setSize(pp.getWidth() / 10, pp.getHeight() / 4);
-                    pp.getContentPane().add(cv);
-                    Point p = new Point();
-                    p.x = (pp.getWidth()/2 - cv.getWidth()/2) -  cv.getWidth()*inf.getCartasJugadorTablero().size()/2+i*(cv.getWidth()+ 20);
-                    p.y = pp.getHeight() - 100 - cv.getSize().height;
-                    cv.setLocation(p);
-                    cv.setVisible(true);
-                    pp.pack();
-                }
-            } else {
-                if (aux == 3) {
-                    for (int i = 0; i < inf.getCartasPCTablero().size(); i++) {
-                        cv.setSize(pp.getWidth() / 10, pp.getHeight() / 4);
-                    pp.getContentPane().add(cv);
-                    Point p = new Point();
-                    p.x = (pp.getWidth()/2 - cv.getWidth()/2) -  cv.getWidth()*inf.getCartasPCTablero().size()/2+i*(cv.getWidth()+ 20);
-                    p.y = pp.getHeight() - 100 - cv.getSize().height;
-                    cv.setLocation(p);
-                    cv.setVisible(true);
-                    pp.pack();                    }
-
-                } else {
-                    for (int i = 0; i < inf.getCartasPCMano().size(); i++) {
-                        cv.setSize(pp.getWidth() / 10, pp.getHeight() / 4);
-                    pp.getContentPane().add(cv);
-                    Point p = new Point();
-                    p.x = (pp.getWidth()/2 - cv.getWidth()/2) -  cv.getWidth()*inf.getCartasPCMano().size()/2+i*(cv.getWidth()+ 20);
-                    p.y = pp.getHeight() - 100 - cv.getSize().height;
-                    cv.setLocation(p);
-                    cv.setVisible(true);
-                    pp.pack();
-                    }
-                }
-            }*/
+        for (int i = 0; i < cartasParaMostrar.size(); i++) {
+            pp.remove(cartasParaMostrar.get(i));
         }
-        cv.getNombre();
-        cv.getMana();
-        cv.getPoder();
-        cv.getTipo();
+        //Actualizar VistaPrincipal para vizualisar cambios
+        pp.revalidate();
+        pp.repaint();
 
-        //pp.add(cv);
-
+        cartasParaMostrar.clear();
     }
+    public Juego getJuego() {
+        return juego;
+    }
+
 }

@@ -7,6 +7,8 @@ package controlador;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.util.ArrayList;
+import juego.Juego;
 import modelos.Carta;
 import modelos.Carta.Tipo;
 import modelos.InfoVisualJuego;
@@ -23,23 +25,28 @@ import vistas.PantallaPrincipal;
 public class ControladorCartaVisual {
     //Vistas
 
-    private CartaVisual cv = new CartaVisual();
-    private PantallaPrincipal pp;
+ 
+
+    private Juego juego;
+    private ArrayList<CartaVisual> listadoCartas;
+    private CartaVisual cv;
     //Paneles
-    PanelFondoCartaC fondoC = new PanelFondoCartaC();
-    PanelFondoCartaH fondoH = new PanelFondoCartaH();
-    PanelImagenCarta imaCart = new PanelImagenCarta();
 
-    public ControladorCartaVisual(PantallaPrincipal datos) {
 
-        this.pp = datos;
+    public ControladorCartaVisual(Juego juego) {
 
+        
+        this.juego = juego;
+        listadoCartas = new ArrayList<>();
     }
     //METODO
 
     //METODO PARA IMAGEN DEL MONSTRUO EN EL CENTRO DE LA CARTA
-    public void AgregarImagenCarta(String nombre) {
-        //imaCart.setNombre(nombre);
+    public void AgregarImagenCarta(String nombre, CartaVisual cv) {
+        this.cv = cv;
+        System.out.println("Estoy en agregar imagen de carta");
+        PanelImagenCarta imaCart = new PanelImagenCarta();
+        imaCart.setNombre(nombre);
         imaCart.repaint();
         //imaCart.setBackground(Color.BLUE);
         imaCart.setSize(cv.getWidth() / 2, cv.getHeight() / 2);
@@ -51,53 +58,36 @@ public class ControladorCartaVisual {
         ImagenLayout.setVerticalGroup(
                 ImagenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGap(0, 100, Short.MAX_VALUE));
-        imaCart.setLocation(cv.getWidth(), cv.getHeight());
+        imaCart.setLocation(cv.getWidth()/2, cv.getHeight()/2);
 
         cv.add(imaCart);
 
     }
+    
+    public void AgregarCarta(CartaVisual cv, Carta carta, Juego juego){
+            this.cv=cv;
+            System.out.println("Estoy en agregar carta");
+            cv.setValores(carta);
+        }
+        
+    
+    
 
-    public void AgregarNombre(String nombre) {
-
-        cv.setNombre(nombre);
-
-    }
-
-    public void AgregarCoste(Integer coste) {
-
-        cv.setMana(coste);
-
-    }
-
-    public void AgregarTipo(Carta.Tipo tipo) {
-
-        cv.setTipo(String.valueOf(tipo));
-
-    }
-
-    public void AgregarPoder(Integer poder) {
-
-        cv.setPoder(poder);
-
-    }
-
-    public void AgregarEfecto(Integer efecto) {
-
-        cv.setPoder(efecto);
-
-    }
-
-    public void AgregarFondoCarta(Carta.Tipo tipo, int aux, InfoVisualJuego inf) {
-        ControladorPantalla conp = new ControladorPantalla();
+    public void AgregarFondoCarta(Carta.Tipo tipo, CartaVisual cv) {
+        this.cv=cv;
+        System.out.println("Estot en Agregar FondoCarta");
+        PanelFondoCartaC fondoC = new PanelFondoCartaC();
+        PanelFondoCartaH fondoH = new PanelFondoCartaH();
+        
         if (tipo.equals(Carta.Tipo.criatura)) {
             cv.add(fondoC, BorderLayout.CENTER);
             fondoC.repaint();
-            conp.AgregarCartaATablero(cv, pp, aux, inf);
+
 
         } else {
             cv.add(fondoH, BorderLayout.CENTER);
             fondoH.repaint();
-            conp.AgregarCartaATablero(cv, pp, aux, inf);
+
 
         }
 
