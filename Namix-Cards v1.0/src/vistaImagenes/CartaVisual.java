@@ -30,28 +30,33 @@ public class CartaVisual extends javax.swing.JPanel {
         ima.repaint();*/
     }
 
-    public JLabel getLblMana() {
-        return lblMana;
+    public void getMana() {
+        String manaTxt = lblMana.getText();
+        System.out.println("Mana: " + manaTxt);
+        
     }
 
-    public void setLblMana(Integer mana) {
+    public void setMana(Integer mana) {
         String manaTxt = String.valueOf(mana);
         this.lblMana.setText(manaTxt);
     }
 
-    public JLabel getLblNombre() {
-        return lblNombre;
+    public void getNombre() {
+        String nombreTxt = lblNombre.getText();
+        System.out.println("Nombre: " + nombreTxt );
+
     }
 
-    public void setLblNombre(String nombre) {
+    public void setNombre(String nombre) {
         this.lblNombre.setText(nombre);
     }
 
-    public JLabel getLblPoder() {
-        return lblPoder;
+    public void getPoder() {
+        String poderTxt = lblPoder.getText();
+        System.out.println("Poder: " + poderTxt);
     }
 
-    public void setLblPoder(Integer poder) {
+    public void setPoder(Integer poder) {
         String poderTxt = String.valueOf(poder);
         this.lblPoder.setText(poderTxt);
     }

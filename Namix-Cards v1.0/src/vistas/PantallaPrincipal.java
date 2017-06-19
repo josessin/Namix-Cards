@@ -35,7 +35,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         //ESTO SE VA A BORRAR
         //-------------------------------------------------------------------------------------------------------------
         /*cv.setSize(tam.width/9, tam.height/4);
-        cv.setLocation(this.getWidth() - (cv.getWidth() + cv.getWidth()), this.getHeight() - (cv.getHeight() + cv.getHeight()));
+        cv.setLocation(this.getWidth() - (cv.getWidth() + cv.getWidth()),
+        this.getHeight() - (cv.getHeight() + cv.getHeight()));
         this.add(cv);*/
         //-------------------------------------------------------------------------------------------------------------
     }
@@ -45,8 +46,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     public void CargaInfoJuego(int vidaJ, int vidaPc, int manaJ,int manaPc,int manaDisJ,int manaDisPc, 
             ArrayList<Carta> CartasManoJ, ArrayList<Carta> CartasTableroJ, ArrayList<Carta> CartasTableroPc,
             ArrayList<Carta> CartasManoPc){
-    
-        //Calculo que esta parte aun esta incompleta
         
         this.vidaJ = vidaJ;
         this.vidaPc = vidaPc;
@@ -57,6 +56,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         this.CartasManoJ = CartasManoJ;
         this.CartasTableroJ = CartasTableroJ;
         this.CartasTableroPc = CartasTableroPc;
+        
     }
     
     

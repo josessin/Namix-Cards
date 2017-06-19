@@ -37,12 +37,12 @@ public class ControladorCartaVisual {
             
             cv.add(fondoC, BorderLayout.CENTER);
             fondoC.repaint();
-            conp.AgregarCartaATablero(cv);
+            conp.AgregarCartaATablero(cv,pp);
             
         } else {
             cv.add(fondoH, BorderLayout.CENTER);
             fondoH.repaint();
-            conp.AgregarCartaATablero(cv);
+            conp.AgregarCartaATablero(cv,pp);
 
         }
 
@@ -58,25 +58,25 @@ public class ControladorCartaVisual {
     
     public void AgregarCoste(Integer coste){
         
-        cv.setLblMana(coste);
+        cv.setMana(coste);
         
     }
     
     public void AgregarPoder(Integer poder){
     
-        cv.setLblPoder(poder);
+        cv.setPoder(poder);
     
     }
     
     public void AgregarEfecto(Integer efecto){
     
-        cv.setLblPoder(efecto);
+        cv.setPoder(efecto);
     
     }
     
     public void AgregarNombre(String nombre){
     
-        cv.setLblNombre(nombre);
+        cv.setNombre(nombre);
     
     }
 
