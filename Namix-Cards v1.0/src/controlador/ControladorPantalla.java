@@ -32,7 +32,6 @@ public class ControladorPantalla {
         listaJM.add(carta1);
         listaJM.add(carta2);
         info.setCartasJugadorMano(listaJM);
-        //<JOSE> Agregue estas dos listas (con las mismas cartas) para q funcione la prueba
         info.setCartasJugadorTablero(listaJM);
         info.setCartasPCTablero(listaJM);
         info.setCartasPCMano(listaJM);
@@ -56,7 +55,7 @@ public class ControladorPantalla {
     }
 
     public void ActualizarPantalla(InfoVisualJuego inf) {
-
+        System.out.println("HEY ESTOY ACA EN ACTUALIZAR PANTALLA");
         //Se inicializa la pantalla
         StartPantalla();//SE TIENE Q COMENTAR PARA PRUEBA
         //SE ENVIA LA INFORAMCION A PANTALLA PRINCIPAL
