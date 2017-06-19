@@ -8,10 +8,8 @@ package vistas;
 import controlador.ControladorPantalla;
 import java.awt.Dimension;
 import java.util.ArrayList;
-import java.util.Objects;
-import javax.swing.JOptionPane;
 import modelos.Carta;
-import vistaImagenes.CartaVisual;
+
 
 /**
  *
@@ -19,26 +17,15 @@ import vistaImagenes.CartaVisual;
  */
 public class PantallaPrincipal extends javax.swing.JFrame {
     //Controlador
-    //private ControladorPantalla conp = new ControladorPantalla();
+    private ControladorPantalla conp;
     //Variables
     private Dimension tam = getToolkit().getScreenSize();
     private ArrayList envioInfo = new ArrayList();
-    //ESTO SE VA A BORRAR
-    //--------------------------------------
-    //CartaVisual cv = new CartaVisual();
-    //--------------------------------------
+    private int manaDisJ, manaDisP;
     
-    public PantallaPrincipal() {
+    public PantallaPrincipal(final ControladorPantalla conp) {
         initComponents();
-        this.setSize(tam);
-        
-        //ESTO SE VA A BORRAR
-        //-------------------------------------------------------------------------------------------------------------
-        /*cv.setSize(tam.width/9, tam.height/4);
-        cv.setLocation(this.getWidth() - (cv.getWidth() + cv.getWidth()),
-        this.getHeight() - (cv.getHeight() + cv.getHeight()));
-        this.add(cv);*/
-        //-------------------------------------------------------------------------------------------------------------
+        this.conp = conp;
     }
 
     public ArrayList getEnvioInfo() {
@@ -64,6 +51,12 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         envioInfo.add(CartasTableroPc);
         envioInfo.add(CartasManoPc);
         
+        lblLifePointsNumJ1.setText(String.valueOf(vidaJ));
+        lblLifePointsNumJ2.setText(String.valueOf(vidaPc));
+        lblManaNumJ1.setText(String.valueOf(manaJ));
+        lblManaNumJ2.setText(String.valueOf(manaPc));
+        this.manaDisJ = manaDisJ;
+        this.manaDisP = manaDisPc;
         setEnvioInfo(envioInfo);
       
     }
@@ -81,12 +74,21 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         btnTerminarT = new javax.swing.JButton();
+        lblLifePointsJ1 = new javax.swing.JLabel();
+        lblManaNumJ1 = new javax.swing.JLabel();
+        lblManaJ1 = new javax.swing.JLabel();
+        lblLifePointsNumJ1 = new javax.swing.JLabel();
+        lblLifePointsJ2 = new javax.swing.JLabel();
+        lblManaJ2 = new javax.swing.JLabel();
+        lblLifePointsNumJ2 = new javax.swing.JLabel();
+        lblManaNumJ2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Namix Cards");
         setFocusableWindowState(false);
         setModalExclusionType(java.awt.Dialog.ModalExclusionType.TOOLKIT_EXCLUDE);
         setResizable(false);
+        setSize(new java.awt.Dimension(0, 0));
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 formMouseClicked(evt);
@@ -98,27 +100,90 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        btnTerminarT.setText("Terminar Truno");
+        btnTerminarT.setBackground(new java.awt.Color(153, 153, 255));
+        btnTerminarT.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnTerminarT.setText("Paso");
         btnTerminarT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTerminarTActionPerformed(evt);
             }
         });
 
+        lblLifePointsJ1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblLifePointsJ1.setText("Life Points");
+
+        lblManaNumJ1.setBackground(new java.awt.Color(0, 204, 51));
+        lblManaNumJ1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+
+        lblManaJ1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblManaJ1.setText("Mana");
+
+        lblLifePointsNumJ1.setBackground(new java.awt.Color(255, 51, 51));
+        lblLifePointsNumJ1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+
+        lblLifePointsJ2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblLifePointsJ2.setText("Life Points");
+
+        lblManaJ2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblManaJ2.setText("Mana");
+
+        lblLifePointsNumJ2.setBackground(new java.awt.Color(255, 51, 51));
+        lblLifePointsNumJ2.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+
+        lblManaNumJ2.setBackground(new java.awt.Color(0, 204, 51));
+        lblManaNumJ2.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 293, Short.MAX_VALUE)
-                .addComponent(btnTerminarT))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblLifePointsJ1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblManaJ1)
+                        .addGap(26, 26, 26))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lblLifePointsNumJ1, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
+                        .addGap(287, 287, 287)
+                        .addComponent(lblManaNumJ1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(lblLifePointsNumJ2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblLifePointsJ2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblManaNumJ2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblManaJ2))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnTerminarT))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(172, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblManaNumJ2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblLifePointsNumJ2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(3, 3, 3)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblLifePointsJ2)
+                    .addComponent(lblManaJ2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
                 .addComponent(btnTerminarT)
-                .addGap(105, 105, 105))
+                .addGap(78, 78, 78)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblLifePointsJ1)
+                            .addComponent(lblManaJ1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblManaNumJ1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblLifePointsNumJ1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         pack();
@@ -133,6 +198,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_formMouseClicked
 
     private void btnTerminarTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTerminarTActionPerformed
+        conp.getJuego().terminarTurno();
         
     }//GEN-LAST:event_btnTerminarTActionPerformed
 
@@ -142,5 +208,13 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnTerminarT;
+    private javax.swing.JLabel lblLifePointsJ1;
+    private javax.swing.JLabel lblLifePointsJ2;
+    private javax.swing.JLabel lblLifePointsNumJ1;
+    private javax.swing.JLabel lblLifePointsNumJ2;
+    private javax.swing.JLabel lblManaJ1;
+    private javax.swing.JLabel lblManaJ2;
+    private javax.swing.JLabel lblManaNumJ1;
+    private javax.swing.JLabel lblManaNumJ2;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,12 +5,15 @@
  */
 package vistaImagenes;
 
+import controlador.ControladorCartaVisual;
 import controlador.ControladorPantalla;
 import java.awt.BorderLayout;
 import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import juego.Juego;
 import modelos.Carta;
+import modelos.Jugador;
 
 
 /**
@@ -19,75 +22,35 @@ import modelos.Carta;
  */
 public class CartaVisual extends javax.swing.JPanel {
     
-    private String Tipo;
-    private Carta carta;
+    private String tipo;
+    private Jugador jugador;
+    private boolean enJuego;
+    private Juego juego;
+    private ControladorCartaVisual ccv;
+    
+
     private ArrayList<Carta> CartasEnJuego = new ArrayList<Carta>();
-    public CartaVisual() {
+    public CartaVisual(Juego juego) {
         initComponents();
+        this.juego = juego;
+    }
+
+    public void setValores(Carta carta) {
+        ccv = new ControladorCartaVisual(juego);
+        Carta ObjetoCarta = new Carta(carta.getNombre(), carta.getCoste(), carta.getPoder(), carta.getTipo());
+        lblNombre.setText(carta.getNombre());
+        lblPoder.setText(carta.getPoder().toString());
+        lblMana.setText(carta.getCoste().toString());
+        jugador = carta.getJugador();
+        tipo = String.valueOf(carta.getTipo());
+        ccv.AgregarFondoCarta(carta.getTipo(), this);
+        ccv.AgregarImagenCarta(carta.getNombre(), this);
         
-        //this.setLayout(null);
-        
-       /* ima.setSize(Ima.getWidth(), Ima.getHeight());
-        ima.setVisible(true);
-        Ima.add(ima, BorderLayout.CENTER);
-        ima.repaint();*/
-    }
-
-    public void AgregarCarta(String nombre, Integer coste, Integer poder, Carta.Tipo tipo){
-        carta = new Carta(nombre, coste, poder, tipo);
-       
-    
-    }
-    public void SumarCartaALaLista(Carta carta){
-    
-        CartasEnJuego.add(carta);
-    
-    }
-
-    public String getTipo() {
-        System.out.println("Tipo:" + Tipo);
-        return Tipo;
-    }
-
-    public void setTipo(String Tipo) {
-        this.Tipo = Tipo;
-    }
-    
-
-    public void getMana() {
-        String manaTxt = lblMana.getText();
-        System.out.println("Mana: " + manaTxt);
         
     }
-
-    public void setMana(Integer mana) {
-        String manaTxt = String.valueOf(mana);
-        this.lblMana.setText(manaTxt);
-    }
-
-    public void getNombre() {
-        String nombreTxt = lblNombre.getText();
-        System.out.println("Nombre: " + nombreTxt );
-
-    }
-
-    public void setNombre(String nombre) {
-        this.lblNombre.setText(nombre);
-    }
-
-    public void getPoder() {
-        String poderTxt = lblPoder.getText();
-        System.out.println("Poder: " + poderTxt);
-    }
-
-    public void setPoder(Integer poder) {
-        String poderTxt = String.valueOf(poder);
-        this.lblPoder.setText(poderTxt);
-    }   
     
     
-
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -102,22 +65,39 @@ public class CartaVisual extends javax.swing.JPanel {
         lblMana = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(204, 0, 0));
-        setLayout(null);
 
         lblNombre.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lblNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        add(lblNombre);
-        lblNombre.setBounds(30, 11, 81, 17);
 
-        lblPoder.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblPoder.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblPoder.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        add(lblPoder);
-        lblPoder.setBounds(101, 143, 33, 35);
 
-        lblMana.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblMana.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblMana.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        add(lblMana);
-        lblMana.setBounds(0, 143, 33, 35);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(lblMana, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                .addGap(68, 68, 68)
+                .addComponent(lblPoder, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 17, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblPoder, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblMana, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
     }// </editor-fold>//GEN-END:initComponents
 
 
