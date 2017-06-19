@@ -62,7 +62,7 @@ public class Datos {
             String[] splitData = csvLine.split("\\s*;\\s*");
             for (int i = 0; i < Integer.parseInt(splitData[6]); i++) {
 
-                Carta.Tipo tipo = splitData[1].equalsIgnoreCase("criatura") ? Carta.Tipo.criatura : Carta.Tipo.hechizo;
+                Carta.Tipo tipo = splitData[2].equalsIgnoreCase("criatura") ? Carta.Tipo.criatura : Carta.Tipo.hechizo;
                 c = new Carta(splitData[1], Integer.parseInt(splitData[5]), Integer.parseInt(splitData[3]), tipo);
 
             }
