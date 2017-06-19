@@ -8,6 +8,7 @@ package vistas;
 import controlador.ControladorPantalla;
 import java.awt.Dimension;
 import java.util.ArrayList;
+import java.util.Objects;
 import javax.swing.JOptionPane;
 import modelos.Carta;
 import vistaImagenes.CartaVisual;
@@ -20,9 +21,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     //Controlador
     //private ControladorPantalla conp = new ControladorPantalla();
     //Variables
-    private int vidaJ, vidaPc, manaJ, manaPc, manaDisJ, manaDisPc;
-    private ArrayList<Carta> CartasManoJ, CartasTableroJ, CartasTableroPc;
     private Dimension tam = getToolkit().getScreenSize();
+    private ArrayList envioInfo = new ArrayList();
     //ESTO SE VA A BORRAR
     //--------------------------------------
     //CartaVisual cv = new CartaVisual();
@@ -41,24 +41,33 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         //-------------------------------------------------------------------------------------------------------------
     }
 
+    public ArrayList getEnvioInfo() {
+        return envioInfo;
+    }
 
-    
+    public void setEnvioInfo(ArrayList envioInfo) {
+        this.envioInfo = envioInfo;
+    }
+
     public void CargaInfoJuego(int vidaJ, int vidaPc, int manaJ,int manaPc,int manaDisJ,int manaDisPc, 
             ArrayList<Carta> CartasManoJ, ArrayList<Carta> CartasTableroJ, ArrayList<Carta> CartasTableroPc,
             ArrayList<Carta> CartasManoPc){
         
-        this.vidaJ = vidaJ;
-        this.vidaPc = vidaPc;
-        this.manaJ = manaJ;
-        this.manaPc = manaPc;
-        this.manaDisJ = manaDisJ;
-        this.manaDisPc = manaDisPc;
-        this.CartasManoJ = CartasManoJ;
-        this.CartasTableroJ = CartasTableroJ;
-        this.CartasTableroPc = CartasTableroPc;
+        envioInfo.add(vidaJ);
+        envioInfo.add(vidaPc);
+        envioInfo.add(manaJ);
+        envioInfo.add(manaPc);
+        envioInfo.add(manaDisJ);
+        envioInfo.add(manaDisPc);
+        envioInfo.add(CartasManoJ);
+        envioInfo.add(CartasTableroJ);
+        envioInfo.add(CartasTableroPc);
+        envioInfo.add(CartasManoPc);
         
+        setEnvioInfo(envioInfo);
+      
     }
-    
+   
     
     
 
@@ -90,6 +99,11 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
 
         btnTerminarT.setText("Terminar Truno");
+        btnTerminarT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTerminarTActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -117,6 +131,10 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
 
     }//GEN-LAST:event_formMouseClicked
+
+    private void btnTerminarTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTerminarTActionPerformed
+        
+    }//GEN-LAST:event_btnTerminarTActionPerformed
 
     /**
      * @param args the command line arguments
