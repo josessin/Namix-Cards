@@ -7,8 +7,10 @@ package vistaImagenes;
 
 import controlador.ControladorPantalla;
 import java.awt.BorderLayout;
+import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import modelos.Carta;
 
 
 /**
@@ -18,16 +20,28 @@ import javax.swing.JPanel;
 public class CartaVisual extends javax.swing.JPanel {
     
     private String Tipo;
-    
+    private Carta carta;
+    private ArrayList<Carta> CartasEnJuego = new ArrayList<Carta>();
     public CartaVisual() {
         initComponents();
         
-        
+        //this.setLayout(null);
         
        /* ima.setSize(Ima.getWidth(), Ima.getHeight());
         ima.setVisible(true);
         Ima.add(ima, BorderLayout.CENTER);
         ima.repaint();*/
+    }
+
+    public void AgregarCarta(String nombre, Integer coste, Integer poder, Carta.Tipo tipo){
+        carta = new Carta(nombre, coste, poder, tipo);
+       
+    
+    }
+    public void SumarCartaALaLista(Carta carta){
+    
+        CartasEnJuego.add(carta);
+    
     }
 
     public String getTipo() {
@@ -87,40 +101,23 @@ public class CartaVisual extends javax.swing.JPanel {
         lblPoder = new javax.swing.JLabel();
         lblMana = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 102, 102));
+        setBackground(new java.awt.Color(204, 0, 0));
+        setLayout(null);
 
         lblNombre.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lblNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        add(lblNombre);
+        lblNombre.setBounds(30, 11, 81, 17);
 
         lblPoder.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lblPoder.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        add(lblPoder);
+        lblPoder.setBounds(101, 143, 33, 35);
 
         lblMana.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lblMana.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(30, Short.MAX_VALUE)
-                .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(lblMana, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblPoder, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblPoder, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblMana, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        );
+        add(lblMana);
+        lblMana.setBounds(0, 143, 33, 35);
     }// </editor-fold>//GEN-END:initComponents
 
 
