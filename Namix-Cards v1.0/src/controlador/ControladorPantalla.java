@@ -39,8 +39,8 @@ public class ControladorPantalla {
         Dimension tam = Toolkit.getDefaultToolkit().getScreenSize();
         pp.setSize(tam);
         
-        pp.add(fondo, BorderLayout.CENTER);
-        fondo.repaint();
+       // pp.add(fondo, BorderLayout.CENTER);
+       // fondo.repaint();
         pp.setVisible(true);
        
 
