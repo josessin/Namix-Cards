@@ -30,9 +30,9 @@ public class Datos {
             while ((line = buffer.readLine()) != null) {
                 //Nos saltiamos cualquier line que no empieze con 0
                 if (line.startsWith("0")) {
-                    Carta c = csvToCarta(line);
+                    ArrayList<Carta> c = csvToCarta(line);
                     if (c != null) {
-                        mazo.add(c);
+                        mazo.addAll(c);
                     }
                 }
             }
@@ -54,17 +54,17 @@ public class Datos {
         return null;
     }
 
-    // Convertir CSV a ArrayList utilizando el metodo Split
-    private Carta csvToCarta(String csvLine) {
-        Carta c = null;
+    // Convertir CSV a ArrayList the cartas utilizando el metodo Split
+    private ArrayList<Carta> csvToCarta(String csvLine) {
+        ArrayList<Carta> c = new ArrayList<>();
 
         if (csvLine != null) {
             String[] splitData = csvLine.split("\\s*;\\s*");
-            for (int i = 0; i < Integer.parseInt(splitData[6]); i++) {
+            for (int i = 0; i < Integer.parseInt(splitData[5]); i++) {
 
                 Carta.Tipo tipo = splitData[2].equalsIgnoreCase("criatura") ? Carta.Tipo.criatura : Carta.Tipo.hechizo;
-                c = new Carta(splitData[1], Integer.parseInt(splitData[5]), Integer.parseInt(splitData[3]), tipo);
-
+                Carta cr = new Carta(splitData[1], Integer.parseInt(splitData[4]), Integer.parseInt(splitData[3]), tipo);
+                c.add(cr);
             }
         }
 
