@@ -6,6 +6,7 @@
 package LogsJuego;
 
 import java.awt.Color;
+import java.awt.Toolkit;
 import java.net.URL;
 import javax.swing.ImageIcon;
 
@@ -24,7 +25,9 @@ public class LogsJuego extends javax.swing.JFrame {
         URL url = getClass().getResource("/imagenes/NamixCardIco.png");
         ImageIcon imag = new ImageIcon(url);
         setIconImage(imag.getImage());
+        this.setBackground(Color.BLACK);
         this.setVisible(true);
+        this.setLocation(0,(int) Toolkit.getDefaultToolkit().getScreenSize().getHeight()/4);
         
         
     }
@@ -48,32 +51,51 @@ public class LogsJuego extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtJuego = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Logs");
+        setAlwaysOnTop(true);
         setBackground(new java.awt.Color(0, 0, 0));
+        setForeground(java.awt.Color.black);
         setResizable(false);
 
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+
+        txtJuego.setBackground(new java.awt.Color(0, 0, 0));
+        txtJuego.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        txtJuego.setEnabled(false);
         txtJuego.setOpaque(false);
         jScrollPane1.setViewportView(txtJuego);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -85,6 +107,7 @@ public class LogsJuego extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextPane txtJuego;
     // End of variables declaration//GEN-END:variables
