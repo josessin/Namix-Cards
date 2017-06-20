@@ -14,7 +14,9 @@ import juego.Juego;
 import modelos.Carta;
 import modelos.InfoVisualJuego;
 import vistaImagenes.CartaVisual;
+import vistaImagenes.PanelFinal;
 import vistaImagenes.PanelPantallaPrin;
+import vistas.FinDelJuego;
 import vistas.PantallaPrincipal;
 
 /**
@@ -121,6 +123,46 @@ public class ControladorPantalla {
 
     public Juego getJuego() {
         return juego;
+    }
+    
+    public void PantallaFinal(String Ganador){
+        FinDelJuego pantalla = new FinDelJuego();
+        PanelFinal fondo = new PanelFinal();
+        
+        if(Ganador.equals("Jugador 1")){
+            
+            String[] nombreFondo = new String[4];
+            for (int i = 0; i < nombreFondo.length; i++) {
+                String nombreArchivo = "Victoria" + (i + 1);
+                nombreFondo[i] = nombreArchivo;
+            }
+            int numRandom = (int) Math.round(Math.random()*4);
+            
+            String nombreDeArchivoSelec = nombreFondo[numRandom];
+            
+            fondo.setNombre(nombreDeArchivoSelec);
+            
+            pantalla.add(fondo,BorderLayout.CENTER);
+            fondo.repaint();
+        }else{
+            
+            String[] nombreFondo = new String[3];
+            for (int i = 0; i < nombreFondo.length; i++) {
+                String nombreArchivo = "HasPerdido" + (i + 1);
+                nombreFondo[i] = nombreArchivo;
+            }
+            int numRandom = (int) Math.round(Math.random()*3);
+            
+            String nombreDeArchivoSelec = nombreFondo[numRandom];
+            
+            fondo.setNombre(nombreDeArchivoSelec);
+            
+            pantalla.add(fondo,BorderLayout.CENTER);
+            fondo.repaint();
+        
+        
+        }
+    
     }
 
 }
