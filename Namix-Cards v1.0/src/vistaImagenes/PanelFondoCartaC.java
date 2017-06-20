@@ -22,13 +22,13 @@ public class PanelFondoCartaC extends javax.swing.JPanel {
         initComponents();
         this.cv = cv;
         
-        this.setSize(cv.getWidth(), cv.getHeight());
+        this.setSize(cv.getWidth(), cv.getHeight());   
     }
     public void paintC(Graphics g){
         System.out.println("ACA ESTOY");
         Dimension tam = getSize();
-        ImageIcon fondo = new ImageIcon(getClass().getResource("/imagenes/FondoMonstruov2.jpg"));
-        g.drawImage(fondo.getImage(),0,0,getWidth(), getHeight(),null);
+        ImageIcon fondo = new ImageIcon(getClass().getResource("/imagenes/FondoMonstruov2.png"));
+        g.drawImage(fondo.getImage(),0, 0, tam.width, tam.height, this);
         setOpaque(false);
         super.paintComponent(g);
         

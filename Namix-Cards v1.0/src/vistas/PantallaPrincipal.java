@@ -7,30 +7,50 @@ package vistas;
 
 import controlador.ControladorPantalla;
 import java.awt.Dimension;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.net.URL;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import modelos.Carta;
-
+import modelos.InfoVisualJuego;
 
 /**
  *
  * @author jeron
  */
 public class PantallaPrincipal extends javax.swing.JFrame {
+
     //Controlador
     private ControladorPantalla conp;
     //Variables
     private Dimension tam = getToolkit().getScreenSize();
     private ArrayList envioInfo = new ArrayList();
     private int manaDisJ, manaDisP;
-    
+
     public PantallaPrincipal(final ControladorPantalla conp) {
         initComponents();
         this.conp = conp;
         URL url = getClass().getResource("/imagenes/NamixCardIco.png");
         ImageIcon imag = new ImageIcon(url);
         setIconImage(imag.getImage());
+
+        //REGistrando rezise event
+        this.getRootPane().addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                // This is only called when the user releases the mouse button.
+                if (conp != null) {
+                    conp.ActualizarPantalla(conp.getIvj());
+                }
+            }
+        });
+
+        Dimension tam = getToolkit().getScreenSize();
+        this.setPreferredSize(tam);
+        pack();
+        this.setVisible(true);
+
     }
 
     public ArrayList getEnvioInfo() {
@@ -41,33 +61,13 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         this.envioInfo = envioInfo;
     }
 
-    public void CargaInfoJuego(int vidaJ, int vidaPc, int manaJ,int manaPc,int manaDisJ,int manaDisPc, 
-            ArrayList<Carta> CartasManoJ, ArrayList<Carta> CartasTableroJ, ArrayList<Carta> CartasTableroPc,
-            ArrayList<Carta> CartasManoPc){
-        
-        envioInfo.add(vidaJ);
-        envioInfo.add(vidaPc);
-        envioInfo.add(manaJ);
-        envioInfo.add(manaPc);
-        envioInfo.add(manaDisJ);
-        envioInfo.add(manaDisPc);
-        envioInfo.add(CartasManoJ);
-        envioInfo.add(CartasTableroJ);
-        envioInfo.add(CartasTableroPc);
-        envioInfo.add(CartasManoPc);
-        
-        lblLifePointsNumJ1.setText(String.valueOf(vidaJ));
-        lblLifePointsNumJ2.setText(String.valueOf(vidaPc));
-        lblManaNumJ1.setText(String.valueOf(manaJ));
-        lblManaNumJ2.setText(String.valueOf(manaPc));
-        this.manaDisJ = manaDisJ;
-        this.manaDisP = manaDisPc;
-        setEnvioInfo(envioInfo);
-      
+    public void CargaInfoJuego(InfoVisualJuego inf) {
+
+        lblLifePointsNumJ1.setText(String.valueOf(inf.getVidasJugador()));
+        lblLifePointsNumJ2.setText(String.valueOf(inf.getVidasPC()));
+        lblManaNumJ1.setText(String.valueOf(inf.getManaDispJugador()));
+        lblManaNumJ2.setText(String.valueOf(inf.getManaDispPC()));
     }
-   
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -88,6 +88,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         lblLifePointsNumJ2 = new javax.swing.JLabel();
         lblManaNumJ2 = new javax.swing.JLabel();
         AtaqueALaCabeza = new javax.swing.JLabel();
+        AtaqueALaCabeza1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Namix Cards");
@@ -109,6 +110,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         btnTerminarT.setBackground(new java.awt.Color(153, 153, 255));
         btnTerminarT.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnTerminarT.setText("Paso");
+        btnTerminarT.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnTerminarT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTerminarTActionPerformed(evt);
@@ -148,6 +150,20 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         lblManaNumJ2.setForeground(new java.awt.Color(153, 255, 102));
 
         AtaqueALaCabeza.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ALaCabeza.png"))); // NOI18N
+        AtaqueALaCabeza.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        AtaqueALaCabeza.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AtaqueALaCabezaMouseClicked(evt);
+            }
+        });
+
+        AtaqueALaCabeza1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ALaCabeza.png"))); // NOI18N
+        AtaqueALaCabeza1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        AtaqueALaCabeza1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AtaqueALaCabeza1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -179,7 +195,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                                 .addContainerGap())
                             .addComponent(btnTerminarT, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(AtaqueALaCabeza, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(AtaqueALaCabeza, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(AtaqueALaCabeza1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -196,7 +214,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 .addComponent(AtaqueALaCabeza, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(btnTerminarT)
-                .addGap(78, 78, 78)
+                .addGap(33, 33, 33)
+                .addComponent(AtaqueALaCabeza1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -220,8 +240,20 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     private void btnTerminarTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTerminarTActionPerformed
         conp.getJuego().terminarTurno();
-        
+
     }//GEN-LAST:event_btnTerminarTActionPerformed
+
+    private void AtaqueALaCabezaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AtaqueALaCabezaMouseClicked
+
+        conp.getJuego().oponenteClickeado(conp.getJuego().getJugador2());
+
+    }//GEN-LAST:event_AtaqueALaCabezaMouseClicked
+
+    private void AtaqueALaCabeza1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AtaqueALaCabeza1MouseClicked
+
+        conp.getJuego().oponenteClickeado(conp.getJuego().getJugador1());
+
+    }//GEN-LAST:event_AtaqueALaCabeza1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -229,6 +261,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AtaqueALaCabeza;
+    private javax.swing.JLabel AtaqueALaCabeza1;
     private javax.swing.JButton btnTerminarT;
     private javax.swing.JLabel lblLifePointsJ1;
     private javax.swing.JLabel lblLifePointsJ2;

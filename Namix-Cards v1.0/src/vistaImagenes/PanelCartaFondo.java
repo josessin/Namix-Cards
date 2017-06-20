@@ -21,8 +21,7 @@ public class PanelCartaFondo extends javax.swing.JPanel {
    public PanelCartaFondo(CartaVisual cv) {
         initComponents();
         this.cv = cv;
-        
-        this.setSize(cv.getWidth(), cv.getHeight());
+
     }
     public void paintC(Graphics g){
         System.out.println("ACA ESTOY");
