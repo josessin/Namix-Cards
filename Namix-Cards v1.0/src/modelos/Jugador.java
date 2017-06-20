@@ -19,12 +19,13 @@ public class Jugador {
         pc,
         humano
     }
-    public enum RobarCartas{
+
+    public enum RobarCartas {
         robaNormal,
         noHayMasMazo,
         noHayMasLugar
     }
-    
+
     private ArrayList<Carta> mazo;
     private ArrayList<Carta> cartasEnMano;
     private ArrayList<Carta> cartasEnJuego;
@@ -35,8 +36,7 @@ public class Jugador {
     private boolean activo;
     private TipoJugador tipoJugador;
     private String nombre;
-    
-    
+
     public Jugador(ArrayList<Carta> mazo, boolean juegaPrimero) {
         this.mazo = mazo;
         this.vidas = 20;
@@ -77,15 +77,15 @@ public class Jugador {
             System.out.println("Jugador.robarCarta: no hay mas cartas "
                     + "en el mazo");
             return RobarCartas.noHayMasMazo;
-        }
-        else if(cartasEnMano.size() >= 7) {
+        } else if (cartasEnMano.size() >= 7) {
+            return RobarCartas.noHayMasLugar;
+        } else {
+
             int index = mazo.size() - 1;
             cartasEnMano.add(mazo.get(index));
             mazo.remove(index);
             return RobarCartas.robaNormal;
 
-        } else {
-            return RobarCartas.noHayMasLugar;
         }
 
     }
