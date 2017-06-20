@@ -240,7 +240,7 @@ public class Juego {
         logger.log(cartaAgresora.getNombre() + " hace " + cartaAgresora.getPoder() + " daños a " + jugadorPasivo.getNombre());
         actualizarPantalla();
         if (oponente.getVidas() <= 0) {
-            //contPant.PantallaFinal(dañado);
+            contPant.PantallaFinal(jugadorActivo);
             //Juego terminado
             //JOptionPane.showMessageDialog(null, "Juego Terminado! A ganado el" + jugadorActivo.getNombre());
             //TODO: mejorar salida de el programa
