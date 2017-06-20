@@ -19,7 +19,8 @@ public class Logger {
         lg = new LogsJuego();
     }
     
-    public void logger(String nuevaLine){
+    public void log(String nuevaLine){
+        lg.CargarTexto(nuevaLine);
         
     }
     

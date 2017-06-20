@@ -34,7 +34,7 @@ public class Juego {
     private Carta cartaCriaturaActiva = null;
     private Carta cartaHechizoActiva = null;
     private AI ai;
-    private Logger logger;
+    public Logger logger;
     
     //TEST
     private ControlVistaPrincipal contVistaPPL;
@@ -158,7 +158,7 @@ public class Juego {
         jugadorPasivo = jugador2;
         ai = new AI(this, jugador2);
 
-        System.out.println("<<< TURNO DE: " + jugadorActivo.getNombre().toUpperCase() + " >>>");
+        logger.log("<<< TURNO DE: " + jugadorActivo.getNombre().toUpperCase() + " >>>");
     }
 
     private void actualizarPantalla() {
@@ -180,9 +180,9 @@ public class Juego {
                 jugadorActivo.getCartasEnJuego().add(carta);
                 //restar el mana disponible
                 jugadorActivo.setManaDisponible(jugadorActivo.getManaDisponible() - carta.getCoste());
-                System.out.println("Jugar Carta: " + carta.getNombre());
+                logger.log("Jugar Carta: " + carta.getNombre());
             }else{
-                System.out.println("Intento de jugar nueva criatura negado: no se pueden tener mas de 8 cartas en juego");
+                logger.log("Intento de jugar nueva criatura negado: no se pueden tener mas de 8 cartas en juego");
                 JOptionPane.showMessageDialog(null, "No se pueden jugar mas cartas, 8 es el máximo");
             }
         }
@@ -194,7 +194,7 @@ public class Juego {
         if (cartaCriaturaActiva == null) {
             return;
         }
-        System.out.println("Atacando: " + cartaCriaturaActiva.getNombre() + " ataca a " + cartaAtacada.getNombre());
+        logger.log("Atacando: " + cartaCriaturaActiva.getNombre() + " ataca a " + cartaAtacada.getNombre());
         //Se hacen daño (debemos guardar el poder para poder usarlo luego de cambiarlo)
         int poderCriaturaAtacada = cartaAtacada.getPoder();
         cartaAtacada.setPoder(cartaAtacada.getPoder() - cartaCriaturaActiva.getPoder());
@@ -203,13 +203,13 @@ public class Juego {
         cartaCriaturaActiva.setActiva(false);
         //Resolucion
         if (cartaAtacada.getPoder() <= 0) {
-            System.out.println("Muere " + cartaAtacada.getNombre() + " de " + cartaAtacada.getJugador().getNombre());
+            logger.log("Muere " + cartaAtacada.getNombre() + " de " + cartaAtacada.getJugador().getNombre());
             jugadorPasivo.getCartasEnJuego().remove(cartaAtacada);
 
         }
 
         if (cartaCriaturaActiva.getPoder() <= 0) {
-            System.out.println("Muere " + cartaCriaturaActiva.getNombre() + " de " + cartaCriaturaActiva.getJugador().getNombre());
+            logger.log("Muere " + cartaCriaturaActiva.getNombre() + " de " + cartaCriaturaActiva.getJugador().getNombre());
             jugadorActivo.getCartasEnJuego().remove(cartaCriaturaActiva);
             cartaCriaturaActiva = null;
         }
@@ -220,11 +220,11 @@ public class Juego {
         if (cartaHechizoActiva == null) {
             return;
         }
-        System.out.println("Hechizo: " + cartaHechizoActiva.getNombre() + " daña a " + carta.getNombre());
+        logger.log("Hechizo: " + cartaHechizoActiva.getNombre() + " daña a " + carta.getNombre());
         carta.setPoder(carta.getPoder() - cartaHechizoActiva.getPoder());
         jugadorActivo.setManaDisponible(jugadorActivo.getManaDisponible() - carta.getCoste());
         if (carta.getPoder() <= 0) {
-            System.out.println("Muere " + carta.getNombre() + " de " + carta.getJugador().getNombre());
+            logger.log("Muere " + carta.getNombre() + " de " + carta.getJugador().getNombre());
             jugadorPasivo.getCartasEnJuego().remove(carta);
             jugadorActivo.getCartasEnMano().remove(cartaHechizoActiva);
             cartaHechizoActiva = null;
@@ -237,7 +237,7 @@ public class Juego {
 
         oponente.setVidas(oponente.getVidas() - cartaAgresora.getPoder());
         String dañado;
-        System.out.println(cartaAgresora.getNombre() + " hace " + cartaAgresora.getPoder() + " daños a " + jugadorPasivo.getNombre());
+        logger.log(cartaAgresora.getNombre() + " hace " + cartaAgresora.getPoder() + " daños a " + jugadorPasivo.getNombre());
         actualizarPantalla();
         if (oponente.getVidas() <= 0) {
             //Juego terminado
