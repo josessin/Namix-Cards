@@ -43,10 +43,10 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Component id="lblNombre" min="-2" pref="18" max="-2" attributes="0"/>
-              <EmptySpace pref="202" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="lblMana" max="32767" attributes="0"/>
-                  <Component id="lblPoder" min="-2" pref="38" max="-2" attributes="0"/>
+              <EmptySpace pref="213" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="lblPoder" alignment="1" min="-2" pref="27" max="-2" attributes="0"/>
+                  <Component id="lblMana" alignment="1" min="-2" pref="27" max="-2" attributes="0"/>
               </Group>
           </Group>
       </Group>
