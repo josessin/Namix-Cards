@@ -45,7 +45,7 @@ public class ControladorCartaVisual {
         imaCart.setNombre(nombre);
 
         //imaCart.setBackground(Color.BLUE);
-        imaCart.setSize(cv.getWidth() / 2, cv.getHeight() / 2);
+        imaCart.setSize(cv.getWidth() - 10, cv.getHeight() -15);
         javax.swing.GroupLayout ImagenLayout = new javax.swing.GroupLayout(imaCart);
         imaCart.setLayout(ImagenLayout);
         ImagenLayout.setHorizontalGroup(
@@ -54,7 +54,7 @@ public class ControladorCartaVisual {
         ImagenLayout.setVerticalGroup(
                 ImagenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGap(0, 100, Short.MAX_VALUE));
-        imaCart.setLocation(cv.getWidth() / 4, cv.getHeight() / 4);
+        imaCart.setLocation(cv.getWidth() / 22, cv.getHeight() / 32);
         imaCart.repaint();
         cv.add(imaCart);
 
