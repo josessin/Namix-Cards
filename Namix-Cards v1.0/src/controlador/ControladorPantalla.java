@@ -84,7 +84,6 @@ public class ControladorPantalla {
             cartasParaMostrar.add(cv);
             
             int aux = InfoCartas.size();
-            //if(aux<5){
                 cv.setSize((int) tam.getWidth()/ 12, (int) tam.getHeight() / 5);
            
             pp.getContentPane().add(cv);
@@ -98,26 +97,7 @@ public class ControladorPantalla {
             cv.setLocation(p);
             
             cv.setVisible(true);
-            //ccv.AgregarFondoCarta(InfoCartas.get(i).getTipo(), cv);
             
-            /*}else{
-            
-            cv.setSize(pp.getWidth() / (InfoCartas.size()*2), pp.getHeight() / 5);
-            Point p = new Point();
-                    p.x = (pp.getWidth()/2 - cv.getWidth()/2) - (cv.getWidth()*inf.getCartasJugadorMano().size())/2+(i*(cv.getWidth()+10));
-                    p.y = pp.getHeight() - (int) posicionY - cv.getSize().height;
-            pp.getContentPane().add(cv);
-            
-             if (!escondido) {
-                ccv.AgregarCarta(cv, InfoCartas.get(i), juego);
-            } else {
-                //TODO: mostrar parte de atras
-            }
-            cv.setLocation(p);
-            cv.setVisible(true);
-            ccv.AgregarFondoCarta(InfoCartas.get(i).getTipo(), cv);
-            
-            //}*/
         }
 
         
