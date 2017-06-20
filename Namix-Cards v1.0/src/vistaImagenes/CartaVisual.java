@@ -6,33 +6,28 @@
 package vistaImagenes;
 
 import controlador.ControladorCartaVisual;
-import controlador.ControladorPantalla;
-import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Font;
 import java.util.ArrayList;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 import juego.Juego;
 import modelos.Carta;
 import modelos.Jugador;
-import vistas.PantallaPrincipal;
-
 
 /**
  *
  * @author jeron
  */
 public class CartaVisual extends javax.swing.JPanel {
-    
+
     private String tipo;
     private Jugador jugador;
     private boolean enJuego;
     private Juego juego;
     private ControladorCartaVisual ccv;
     private Carta carta;
-    
-    
 
     private ArrayList<Carta> CartasEnJuego = new ArrayList<Carta>();
+
     public CartaVisual(Juego juego) {
         initComponents();
 
@@ -50,10 +45,15 @@ public class CartaVisual extends javax.swing.JPanel {
         tipo = String.valueOf(carta.getTipo());
         ccv.AgregarImagenCarta(carta.getNombre(), this);
         ccv.AgregarFondoCarta(carta.getTipo(), this);
-        
-        
+        if (carta.isAtaco()) {
+            lblNombre.setForeground(Color.GRAY);
+        }
+        if (carta.isActiva()) {
+            lblNombre.setFont(new Font("Tahoma", 1, 14));
+        }
+
     }
-    
+
     public void setValores(Carta carta, boolean escondido) {
         ccv = new ControladorCartaVisual(juego);
         this.carta = carta;
@@ -66,11 +66,9 @@ public class CartaVisual extends javax.swing.JPanel {
         jugador = carta.getJugador();
         tipo = String.valueOf(carta.getTipo());
         ccv.AgregarFondoManoPc(this);
-        
+
     }
-    
-    
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -85,13 +83,14 @@ public class CartaVisual extends javax.swing.JPanel {
         lblMana = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(204, 0, 0));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 formMouseClicked(evt);
             }
         });
 
-        lblNombre.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblNombre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         lblPoder.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -108,12 +107,13 @@ public class CartaVisual extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblMana, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                        .addGap(48, 48, 48)
+                        .addComponent(lblPoder, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(lblMana, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
-                .addGap(68, 68, 68)
-                .addComponent(lblPoder, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,7 +129,7 @@ public class CartaVisual extends javax.swing.JPanel {
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
         juego.cartaClickeda(carta);
-        
+
     }//GEN-LAST:event_formMouseClicked
 
 

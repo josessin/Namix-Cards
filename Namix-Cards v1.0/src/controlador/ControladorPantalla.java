@@ -22,6 +22,7 @@ import vistas.PantallaPrincipal;
  * @author jeron
  */
 public class ControladorPantalla {
+
     private Juego juego;
     private final PantallaPrincipal pp;
     private ArrayList<CartaVisual> cartasParaMostrar;
@@ -29,21 +30,23 @@ public class ControladorPantalla {
     private Dimension tam;
     PanelPantallaPrin fondo = new PanelPantallaPrin();
 
-    public ControladorPantalla(Juego juego){      
+    public ControladorPantalla(Juego juego) {
         this.juego = juego;
-        pp = new PantallaPrincipal(this);       
+        pp = new PantallaPrincipal(this);
         cartasParaMostrar = new ArrayList<>();
-        
+
     }
+
     public void StartPantalla() {
 
         Dimension tam = Toolkit.getDefaultToolkit().getScreenSize();
         pp.setSize(tam);
-        
+
         pp.setVisible(true);
     }
-    public void PonerFondoAPantallaP(){
-    
+
+    public void PonerFondoAPantallaP() {
+
         pp.add(fondo, BorderLayout.CENTER);
         fondo.repaint();
     }
@@ -52,29 +55,30 @@ public class ControladorPantalla {
         if (inf == null) {
             return;
         }
-        
-         DestruirCartasViejas();
+
+        DestruirCartasViejas();
         //Se inicializa la pantalla
-        
+
         StartPantalla();
         tam = pp.getSize();
-        
+
         this.inf = inf;
-        
+
         //SE ENVIA LA INFORAMCION A PANTALLA PRINCIPAL
-        pp.CargaInfoJuego(inf.getVidasJugador(), inf.getVidasPC(), inf.getManaTotalJugador(), inf.getManaTotalPC(),
-                inf.getManaDispJugador(), inf.getManaDispPC(), inf.getCartasJugadorMano(),
-                inf.getCartasJugadorTablero(), inf.getCartasPCTablero(), inf.getCartasPCMano());
-        
+        pp.CargaInfoJuego(inf);
+
         //SE LLAMAN A LOS METODOS PARA CREAR LAS CARTAS DE LOS JUGADORES
-        
-        CargarCartas(inf.getCartasJugadorMano(),tam.height/7.0F, false);
-        CargarCartas(inf.getCartasPCMano(), ( tam.height - tam.height / 90.0f), true);
-        CargarCartas(inf.getCartasJugadorTablero(), (int)(tam.height /2.7F), false);
-        CargarCartas(inf.getCartasPCTablero(),(int)( tam.height - tam.height /3.7f), false);
-        
+        CargarCartas(inf.getCartasJugadorMano(), tam.height / 7.0F, false);
+        CargarCartas(inf.getCartasPCMano(), (tam.height - tam.height / 90.0f), true);
+        CargarCartas(inf.getCartasJugadorTablero(), (int) (tam.height / 2.7F), false);
+        CargarCartas(inf.getCartasPCTablero(), (int) (tam.height - tam.height / 3.7f), false);
+
         PonerFondoAPantallaP();
-            
+
+    }
+
+    public InfoVisualJuego getIvj() {
+        return inf;
     }
 
     //METODO CARGA CARTAS JUGADOR
@@ -83,27 +87,27 @@ public class ControladorPantalla {
         for (int i = 0; i < InfoCartas.size(); i++) {
             CartaVisual cv = new CartaVisual(juego);
             cartasParaMostrar.add(cv);
-            
+
             int aux = InfoCartas.size();
-                cv.setSize((int) tam.getWidth()/ 12, (int) tam.getHeight() / 5);
-           
+            cv.setSize((int) tam.getWidth() / 12, (int) tam.getHeight() / 5);
+
             pp.getContentPane().add(cv);
-            
+
             ccv.AgregarCarta(cv, InfoCartas.get(i), juego, escondido);
-                
-              Point p = new Point();
-                    p.x = (pp.getWidth() / 2 - cv.getWidth() / 2) - cv.getWidth()
+
+            Point p = new Point();
+            p.x = (pp.getWidth() / 2 - cv.getWidth() / 2) - cv.getWidth()
                     * InfoCartas.size() / 2 + i * (cv.getWidth() + 10);
             p.y = (int) (tam.height - posicionY - cv.getSize().height / 2);
             cv.setLocation(p);
-            
+
             cv.setVisible(true);
-            
+
         }
 
-        
     }
-     private void DestruirCartasViejas() {
+
+    private void DestruirCartasViejas() {
 
         for (int i = 0; i < cartasParaMostrar.size(); i++) {
             pp.remove(cartasParaMostrar.get(i));
@@ -112,8 +116,9 @@ public class ControladorPantalla {
         pp.revalidate();
         pp.remove(fondo);
         cartasParaMostrar.clear();
-                
+
     }
+
     public Juego getJuego() {
         return juego;
     }
