@@ -74,13 +74,30 @@ class AI {
     private void jugar() {
         //Matar oponenete si es posible
         if (dañoMaximoPosible >= dañoExtraParaGanar) {
-            jugarCartas(combinacionMaxima);
+            jugarCartas(combinacionMaxima, true);
             attacarJugador(yo.getCartasEnJuego());
             return;
         }
-        if (mueroEnProxTurno) {
-           hechizosACriaturas();
+        if (mueroEnProxTurno || chanceDePerder > 0.75) {
+            hechizosACriaturas();
+            jugarCartas(combinacionMaxima, false);
+            ataqueDefensivo(yo.getCartasEnJuego());
+        } else {
+            jugarCartas(combinacionMaxima, false);
+            ataqueOfensivo(yo.getCartasEnJuego());
+        }
+    }
 
+    private void ataqueDefensivo(ArrayList<Carta> cartasEnJuego) {
+        for (Carta c : cartasEnJuego) {
+            atacarCarta(c, mejorObjectivoCriatura(c, true));
+            
+        }
+    }
+
+    private void ataqueOfensivo(ArrayList<Carta> cartasEnJuego) {
+         for (Carta c : cartasEnJuego) {
+            atacarCarta(c, mejorObjectivoCriatura(c, false));
         }
     }
 
@@ -145,22 +162,21 @@ class AI {
         return juego.getJugadorPasivo().getVidas() - poderDisponible;
     }
 
-    private void jugarCartas(ArrayList<Carta> cartas) {
+    private void jugarCartas(ArrayList<Carta> cartas, boolean conHechizos) {
         for (Carta c : cartas) {
             if (c.getTipo() == Carta.Tipo.criatura) {
                 juego.cartaClickeda(c);
-            } else {
+            } else if (conHechizos) {
                 juego.cartaClickeda(c);
                 juego.oponenteClickeado(yo);
             }
-            pause(500);
+            
         }
     }
 
     private void attacarJugador(ArrayList<Carta> cartas) {
         for (Carta c : cartas) {
             juego.cartaClickeda(c);
-            pause(500);
         }
     }
 
@@ -186,24 +202,24 @@ class AI {
 
         for (Carta hechizo : yo.getCartasEnMano()) {
             if (hechizo.getTipo() == Carta.Tipo.hechizo && hechizo.getCoste() <= yo.getManaDisponible()) {
-                Carta cartaADañar = encontrarMejorObjetivo(hechizo);
-                if(cartaADañar != null){
+                Carta cartaADañar = mejorObjetivoHechizo(hechizo);
+                if (cartaADañar != null) {
                     juego.cartaClickeda(hechizo);
                     juego.cartaClickeda(cartaADañar);
-                    
+
                 }
             }
         }
     }
 
-    private Carta encontrarMejorObjetivo(Carta hechizo) {
+    private Carta mejorObjetivoHechizo(Carta hechizo) {
         //buscar carta de igual poder
         for (Carta cObj : juego.getJugadorPasivo().getCartasEnJuego()) {
             if (cObj.getPoder() == hechizo.getPoder()) {
                 return cObj;
             }
         }
-        
+
         //Buscar la mas grande que podamos matar
         int selIndex = -1;
         int maxPoder = 0;
@@ -217,15 +233,46 @@ class AI {
             }
             i++;
         }
-        
-        if(selIndex > -1){
+
+        if (selIndex > -1) {
             return juego.getJugadorActivo().getCartasEnJuego().get(selIndex);
         }
         //si no podemos matar devolvemos null
         return null;
     }
 
-    //Crea un nuevo array de cartas basado en poder 
+    private Carta mejorObjectivoCriatura(Carta criatura, boolean noOptimo) {
+
+        for (Carta c : juego.getJugadorPasivo().getCartasEnJuego()) {
+            if (c.getPoder() == criatura.getPoder()) {
+                return c;
+            }
+        }
+
+        if (noOptimo) {
+            //Buscar la mas grande de todas
+            int selIndex = -1;
+            int maxPoder = 0;
+            int i = 0;
+            for (Carta cFuerta : juego.getJugadorActivo().getCartasEnJuego()) {
+                if (cFuerta.getPoder() > criatura.getPoder()) {
+                    if (cFuerta.getPoder() > maxPoder) {
+                        selIndex = i;
+                        maxPoder = cFuerta.getPoder();
+                    }
+                }
+                i++;
+            }
+
+            if (selIndex > -1) {
+                return juego.getJugadorActivo().getCartasEnJuego().get(selIndex);
+            }
+        }
+        //si no podemos matar devolvemos null
+        return null;
+    }
+
+    //Ordena basado en poder 
     private ArrayList<Carta> ordenar(ArrayList<Carta> cartas) {
 
         //Ordenar
@@ -237,6 +284,15 @@ class AI {
         });
 
         return cartas;
+    }
+
+    private void atacarCarta(Carta cartaAtacante, Carta mejorObjetivo) {
+        if (cartaAtacante == null || mejorObjetivo == null) {
+            return;
+        }
+
+        juego.cartaClickeda(cartaAtacante);
+        juego.cartaClickeda(mejorObjetivo);
     }
 
 }

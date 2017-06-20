@@ -24,7 +24,7 @@ public class ControlVistaPrincipal {
     private InfoVisualJuego ivj;
     private ArrayList<CartaVisualBasica> cartasMostradas;
     private Juego juego;
-    
+
     public ControlVistaPrincipal(Juego juego) {
 
         vppl = new VistaPrincipal(this);
@@ -42,10 +42,10 @@ public class ControlVistaPrincipal {
         DestruirCartasViejas();
         this.ivj = ivj;
         generarCartas(ivj.getCartasJugadorMano(), tam.height / 6, false);
-        generarCartas(ivj.getCartasJugadorTablero(), (int)(tam.height / 2.5f), false);
-        generarCartas(ivj.getCartasPCTablero(),(int)( tam.height - tam.height / 3.5f), false);
+        generarCartas(ivj.getCartasJugadorTablero(), (int) (tam.height / 2.5f), false);
+        generarCartas(ivj.getCartasPCTablero(), (int) (tam.height - tam.height / 3.5f), false);
         generarCartas(ivj.getCartasPCMano(), tam.height - tam.height / 7, false);
-        
+
         vppl.cargarValores(ivj);
 
     }
@@ -60,11 +60,7 @@ public class ControlVistaPrincipal {
             cvb.setSize((int) tam.getWidth() / 12, (int) tam.getHeight() / 7);
 
             vppl.getContentPane().add(cvb);
-            if (!hidden) {
-                cvb.setValores(cartas.get(i));
-            } else {
-                //TODO: mostrar parte de atras
-            }
+
             Point p = new Point();
 
             //Punto donde la carta sera posicionada relativo a la VistaPrincipal
@@ -74,7 +70,12 @@ public class ControlVistaPrincipal {
 
             cvb.setLocation(p);
             cvb.setVisible(true);
-
+            
+            if (!hidden) {
+                cvb.setValores(cartas.get(i));
+            } else {
+                //TODO: mostrar parte de atras
+            }
         }
     }
 
@@ -97,6 +98,5 @@ public class ControlVistaPrincipal {
     public Juego getJuego() {
         return juego;
     }
-    
-    
+
 }

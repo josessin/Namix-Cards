@@ -50,28 +50,24 @@ public class Juego {
     }
 
     public void cartaClickeda(Carta carta) {
-        //Si el click se realiza por el jugador cuando no esta activo, y se esta jugando contra la pc, se sale inmediatamente
-        if (!carta.getJugador().isActivo() && jugador2.getTipoJugador() == Jugador.TipoJugador.pc) {
-            return;
-        }
-
-        desactivarCartasActivas();
 
         if (carta.isEnJuego()) {
             if (carta.getJugador().equals(jugadorActivo)) {
+                desactivarHechizo();
                 if (!carta.isAtaco()) {
                     cartaCriaturaActiva = carta;
                     cartaCriaturaActiva.setActiva(true);
                 }
-            } else if (carta.getJugador().equals(jugadorPasivo) && cartaCriaturaActiva != null) {
+            } else if (carta.getJugador().equals(jugadorPasivo)) {
                 atacarCarta(carta);
-            } else if (carta.getJugador().equals(jugadorPasivo) && cartaHechizoActiva != null) {
+            } else if (carta.getJugador().equals(jugadorPasivo)) {
                 dañarCarta(carta);
             }
         } else if (carta.getJugador().equals(jugadorActivo)) {
             if (carta.getTipo() == Carta.Tipo.criatura) {
                 jugarCarta(carta);
             } else if (carta.getCoste() <= jugadorActivo.getManaDisponible()) {
+                desactivarCriatura();
                 cartaHechizoActiva = carta;
                 cartaHechizoActiva.setActiva(true);
             }
@@ -174,10 +170,17 @@ public class Juego {
     }
 
     private void atacarCarta(Carta cartaAtacada) {
-        //Se hacen daño
+
+        if (cartaCriaturaActiva == null) {
+            return;
+        }
+        System.out.println("Atacando: " + cartaCriaturaActiva.getNombre() + " ataca a " + cartaAtacada.getNombre());
+        //Se hacen daño (debemos guardar el poder para poder usarlo luego de cambiarlo)
+        int poderCriaturaAtacada = cartaAtacada.getPoder();
         cartaAtacada.setPoder(cartaAtacada.getPoder() - cartaCriaturaActiva.getPoder());
-        cartaCriaturaActiva.setPoder(cartaCriaturaActiva.getPoder() - cartaAtacada.getPoder());
+        cartaCriaturaActiva.setPoder(cartaCriaturaActiva.getPoder() - poderCriaturaAtacada);
         cartaCriaturaActiva.setAtaco(true);
+        cartaCriaturaActiva.setActiva(false);
         //Resolucion
         if (cartaAtacada.getPoder() <= 0) {
             jugadorPasivo.getCartasEnJuego().remove(cartaAtacada);
@@ -191,6 +194,9 @@ public class Juego {
     }
 
     private void dañarCarta(Carta carta) {
+        if(cartaHechizoActiva == null)
+            return;
+        System.out.println("Hechizo: " + cartaHechizoActiva.getNombre() + " daña a " + carta.getNombre());
         carta.setPoder(carta.getPoder() - cartaHechizoActiva.getPoder());
         jugadorActivo.setManaDisponible(jugadorActivo.getManaDisponible() - carta.getCoste());
         if (carta.getPoder() <= 0) {
@@ -240,15 +246,21 @@ public class Juego {
     }
 
     private void desactivarCartasActivas() {
+        desactivarCriatura();
+        desactivarHechizo();
+    }
+
+    private void desactivarHechizo() {
         if (cartaHechizoActiva != null) {
             cartaHechizoActiva.setActiva(false);
             cartaHechizoActiva = null;
         }
+    }
 
+    private void desactivarCriatura() {
         if (cartaCriaturaActiva != null) {
             cartaCriaturaActiva.setActiva(false);
             cartaCriaturaActiva = null;
         }
     }
-
 }
