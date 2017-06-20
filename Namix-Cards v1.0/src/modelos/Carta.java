@@ -24,7 +24,6 @@ public class Carta {
     protected Jugador jugador;
     protected boolean ataco;
     protected boolean activa;
-    protected boolean visible;
     
     public Carta(String nombre, Integer coste, Integer poder, Tipo tipo) {
         this.tipo = tipo;
@@ -33,7 +32,6 @@ public class Carta {
         this.poder = poder;
         this.jugador = null;
         this.enJuego = false;
-        this.visible = true;
     }
 
     public String getNombre() {
@@ -88,13 +86,5 @@ public class Carta {
         this.activa = activa;
     }
 
-    public boolean isVisible() {
-        return visible;
-    }
-
-    public void setVisible(boolean visible) {
-        this.visible = visible;
-    }
-    
     
 }

@@ -43,15 +43,17 @@ public class Juego {
         //OJO! COMENTADO PARA PRUEBAS NO COMMITEAR
 
         //ESTO ES PARA PROBAR VISTA JOSE
-        contVistaPPL = new ControlVistaPrincipal(this);
+        //contVistaPPL = new ControlVistaPrincipal(this);
 
+        
+        contPant = new ControladorPantalla(this);
         nuevoJuego();
-        //contPant = new ControladorPantalla(this);
     }
 
     public void cartaClickeda(Carta carta) {
 
         if (carta.isEnJuego()) {
+            System.out.println("en juego");
             if (carta.getJugador().equals(jugadorActivo)) {
                 desactivarHechizo();
                 if (!carta.isAtaco()) {
@@ -59,17 +61,25 @@ public class Juego {
                     cartaCriaturaActiva.setActiva(true);
                 }
             } else if (carta.getJugador().equals(jugadorPasivo)) {
-                atacarCarta(carta);
-            } else if (carta.getJugador().equals(jugadorPasivo)) {
-                dañarCarta(carta);
+                if (cartaCriaturaActiva != null) {
+                    atacarCarta(carta);
+                } else if (cartaHechizoActiva != null) {
+                    dañarCarta(carta);
+                }
             }
         } else if (carta.getJugador().equals(jugadorActivo)) {
+
             if (carta.getTipo() == Carta.Tipo.criatura) {
                 jugarCarta(carta);
             } else if (carta.getCoste() <= jugadorActivo.getManaDisponible()) {
-                desactivarCriatura();
-                cartaHechizoActiva = carta;
-                cartaHechizoActiva.setActiva(true);
+
+                if (cartaHechizoActiva == null) {
+                    desactivarCriatura();
+                    cartaHechizoActiva = carta;
+                    cartaHechizoActiva.setActiva(true);
+                } else {
+
+                }
             }
         }
 
@@ -82,6 +92,7 @@ public class Juego {
             if (cartaHechizoActiva != null) {
                 dañarOponente(cartaHechizoActiva.getPoder(), oponente);
                 jugadorActivo.getCartasEnMano().remove(cartaHechizoActiva);
+                jugadorActivo.setManaDisponible(jugadorActivo.getManaDisponible()-cartaHechizoActiva.getCoste());
                 cartaHechizoActiva.setActiva(false);
                 cartaHechizoActiva = null;
             }
@@ -150,9 +161,10 @@ public class Juego {
     private void actualizarPantalla() {
 
         infoVisual.actualizarInfo(jugador1, jugador2);
-        //OJO! COMENTADO PARA PRUEBAS NO COMMITEAR
-        //contPant.ActualizarPantalla(infoVisual);
-        contVistaPPL.actualizarPantalla(infoVisual);
+        
+        contPant.ActualizarPantalla(infoVisual);
+        //OJO! PARA PRUEBAS NO COMMITEAR
+        //contVistaPPL.actualizarPantalla(infoVisual);
     }
 
     //Metodos de juego
@@ -194,8 +206,9 @@ public class Juego {
     }
 
     private void dañarCarta(Carta carta) {
-        if(cartaHechizoActiva == null)
+        if (cartaHechizoActiva == null) {
             return;
+        }
         System.out.println("Hechizo: " + cartaHechizoActiva.getNombre() + " daña a " + carta.getNombre());
         carta.setPoder(carta.getPoder() - cartaHechizoActiva.getPoder());
         jugadorActivo.setManaDisponible(jugadorActivo.getManaDisponible() - carta.getCoste());
@@ -210,11 +223,13 @@ public class Juego {
     private void dañarOponente(int daño, Jugador oponente) {
 
         oponente.setVidas(oponente.getVidas() - daño);
-        System.out.println("DAÑO: " + daño);
+        String dañado;
+        dañado = (oponente == jugador1) ? "Jugador 1" : "Jugador 2";
+        System.out.println("DAÑO a " + dañado + ": " + daño);
         if (oponente.getVidas() <= 0) {
             //Juego terminado
             String ganador;
-            ganador = (oponente == jugador1) ? "Jugador 1" : "Jugador 2";
+            ganador = (oponente == jugador1) ? "Jugador 2" : "Jugador 1";
             JOptionPane.showMessageDialog(null, "Juego Terminado! A ganado el " + ganador);
             //TODO: mejorar salida de el programa
             System.exit(0);

@@ -8,6 +8,7 @@ package juego;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelos.Carta;
@@ -19,8 +20,8 @@ import modelos.Jugador;
  */
 class AI {
 
-    private Jugador yo;
-    private Juego juego;
+    private final Jugador yo;
+    private final Juego juego;
     private boolean mueroEnProxTurno;
     private int dañoExtraParaGanar;
     private int poderDisponible;
@@ -91,12 +92,12 @@ class AI {
     private void ataqueDefensivo(ArrayList<Carta> cartasEnJuego) {
         for (Carta c : cartasEnJuego) {
             atacarCarta(c, mejorObjectivoCriatura(c, true));
-            
+
         }
     }
 
     private void ataqueOfensivo(ArrayList<Carta> cartasEnJuego) {
-         for (Carta c : cartasEnJuego) {
+        for (Carta c : cartasEnJuego) {
             atacarCarta(c, mejorObjectivoCriatura(c, false));
         }
     }
@@ -170,21 +171,13 @@ class AI {
                 juego.cartaClickeda(c);
                 juego.oponenteClickeado(yo);
             }
-            
+
         }
     }
 
     private void attacarJugador(ArrayList<Carta> cartas) {
         for (Carta c : cartas) {
             juego.cartaClickeda(c);
-        }
-    }
-
-    private void pause(int millisec) {
-        try {
-            Thread.sleep(millisec);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(AI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -215,7 +208,7 @@ class AI {
     private Carta mejorObjetivoHechizo(Carta hechizo) {
         //buscar carta de igual poder
         for (Carta cObj : juego.getJugadorPasivo().getCartasEnJuego()) {
-            if (cObj.getPoder() == hechizo.getPoder()) {
+            if (Objects.equals(cObj.getPoder(), hechizo.getPoder())) {
                 return cObj;
             }
         }
@@ -244,7 +237,7 @@ class AI {
     private Carta mejorObjectivoCriatura(Carta criatura, boolean noOptimo) {
 
         for (Carta c : juego.getJugadorPasivo().getCartasEnJuego()) {
-            if (c.getPoder() == criatura.getPoder()) {
+            if (Objects.equals(c.getPoder(), criatura.getPoder())) {
                 return c;
             }
         }
@@ -272,6 +265,15 @@ class AI {
         return null;
     }
 
+    private void atacarCarta(Carta cartaAtacante, Carta mejorObjetivo) {
+        if (cartaAtacante == null || mejorObjetivo == null) {
+            return;
+        }
+
+        juego.cartaClickeda(cartaAtacante);
+        juego.cartaClickeda(mejorObjetivo);
+    }
+
     //Ordena basado en poder 
     private ArrayList<Carta> ordenar(ArrayList<Carta> cartas) {
 
@@ -286,13 +288,12 @@ class AI {
         return cartas;
     }
 
-    private void atacarCarta(Carta cartaAtacante, Carta mejorObjetivo) {
-        if (cartaAtacante == null || mejorObjetivo == null) {
-            return;
+    private void pause(int millisec) {
+        try {
+            Thread.sleep(millisec);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(AI.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        juego.cartaClickeda(cartaAtacante);
-        juego.cartaClickeda(mejorObjetivo);
     }
 
 }
