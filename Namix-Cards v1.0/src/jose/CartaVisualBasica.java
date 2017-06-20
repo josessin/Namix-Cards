@@ -5,6 +5,7 @@
  */
 package jose;
 
+import java.awt.Color;
 import juego.Juego;
 import modelos.Carta;
 
@@ -16,7 +17,7 @@ public class CartaVisualBasica extends javax.swing.JPanel {
 
     private Carta carta;
     private Juego juego;
-    
+
     public CartaVisualBasica(Juego juego) {
         initComponents();
         this.juego = juego;
@@ -38,14 +39,14 @@ public class CartaVisualBasica extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 0));
-        setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 0, 0)));
+        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 3));
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 formMouseClicked(evt);
             }
         });
 
-        lblNombre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblNombre.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lblNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNombre.setText("nombre");
 
@@ -77,17 +78,20 @@ public class CartaVisualBasica extends javax.swing.JPanel {
                         .addComponent(jLabel1)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblNombre)
                     .addComponent(lblPoder, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblCoste, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lblNombre)
+                .addGap(42, 42, 42))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblNombre)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblPoder)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -110,6 +114,13 @@ public class CartaVisualBasica extends javax.swing.JPanel {
         lblNombre.setText(carta.getNombre());
         lblCoste.setText(carta.getCoste().toString());
         lblPoder.setText(carta.getPoder().toString());
+        if(carta.isAtaco())
+        {
+            lblNombre.setForeground(Color.orange);
+        }
+        if (carta.isActiva()) {
+            lblNombre.setForeground(Color.green);
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

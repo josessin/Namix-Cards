@@ -8,6 +8,7 @@ package juego;
 import controlador.ControladorPantalla;
 import datos.Datos;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import jose.ControlVistaPrincipal;
 import modelos.Carta;
 import modelos.InfoVisualJuego;
@@ -27,23 +28,25 @@ public class Juego {
     private Jugador jugador1;
     private Jugador jugador2;
     private Jugador jugadorActivo;
+    private Jugador jugadorPasivo;
     private InfoVisualJuego infoVisual;
     private ControladorPantalla contPant;
-    private Carta cartaActiva = null;
+    private Carta cartaCriaturaActiva = null;
+    private Carta cartaHechizoActiva = null;
     private AI ai;
-    
+
     //TEST
     private ControlVistaPrincipal contVistaPPL;
 
     public Juego() {
         infoVisual = new InfoVisualJuego();
         //OJO! COMENTADO PARA PRUEBAS NO COMMITEAR
-       // contPant = new ControladorPantalla();
 
         //ESTO ES PARA PROBAR VISTA JOSE
         contVistaPPL = new ControlVistaPrincipal(this);
 
         nuevoJuego();
+        //contPant = new ControladorPantalla(this);
     }
 
     public void cartaClickeda(Carta carta) {
@@ -52,26 +55,67 @@ public class Juego {
             return;
         }
 
+        desactivarCartasActivas();
+
         if (carta.isEnJuego()) {
-            //TODO;
-        } else {
-            jugarCarta(carta);
+            if (carta.getJugador().equals(jugadorActivo)) {
+                if (!carta.isAtaco()) {
+                    cartaCriaturaActiva = carta;
+                    cartaCriaturaActiva.setActiva(true);
+                }
+            } else if (carta.getJugador().equals(jugadorPasivo) && cartaCriaturaActiva != null) {
+                atacarCarta(carta);
+            } else if (carta.getJugador().equals(jugadorPasivo) && cartaHechizoActiva != null) {
+                dañarCarta(carta);
+            }
+        } else if (carta.getJugador().equals(jugadorActivo)) {
+            if (carta.getTipo() == Carta.Tipo.criatura) {
+                jugarCarta(carta);
+            } else if (carta.getCoste() <= jugadorActivo.getManaDisponible()) {
+                cartaHechizoActiva = carta;
+                cartaHechizoActiva.setActiva(true);
+            }
         }
 
         actualizarPantalla();
     }
 
+    public void oponenteClickeado(Jugador oponente) {
+        if (oponente.equals(jugadorPasivo)) {
+            System.out.println("PASIVO");
+            if (cartaHechizoActiva != null) {
+                dañarOponente(cartaHechizoActiva.getPoder(), oponente);
+                jugadorActivo.getCartasEnMano().remove(cartaHechizoActiva);
+                cartaHechizoActiva.setActiva(false);
+                cartaHechizoActiva = null;
+            }
+            if (cartaCriaturaActiva != null) {
+                dañarOponente(cartaCriaturaActiva.getPoder(), oponente);
+                cartaCriaturaActiva.setAtaco(true);
+                cartaCriaturaActiva.setActiva(false);
+                cartaCriaturaActiva = null;
+
+            }
+        }
+        actualizarPantalla();
+    }
+
     public void terminarTurno() {
+
+        desactivarCartasActivas();
 
         if (jugadorActivo == jugador1) {
             jugadorActivo = jugador2;
+            jugadorPasivo = jugador1;
             jugador1.setActivo(false);
             jugador2.setActivo(true);
         } else {
             jugadorActivo = jugador1;
+            jugadorPasivo = jugador2;
             jugador1.setActivo(true);
             jugador2.setActivo(false);
         }
+        resetarCartas(jugadorActivo);
 
         //Incrementar y resetear el mana
         jugadorActivo.setManaTotal(jugadorActivo.getManaTotal() + 1);
@@ -102,19 +146,20 @@ public class Juego {
         //PC
         jugador2 = new Jugador(mazoJugador2, false);
         jugador2.setTipoJugador(Jugador.TipoJugador.pc);
-        ai = new AI(this,jugador2);
-        
+        jugadorPasivo = jugador2;
+        ai = new AI(this, jugador2);
+
     }
 
     private void actualizarPantalla() {
 
         infoVisual.actualizarInfo(jugador1, jugador2);
-
         //OJO! COMENTADO PARA PRUEBAS NO COMMITEAR
         //contPant.ActualizarPantalla(infoVisual);
         contVistaPPL.actualizarPantalla(infoVisual);
     }
 
+    //Metodos de juego
     private void jugarCarta(Carta carta) {
 
         if (jugadorActivo.getManaDisponible() >= carta.getCoste()) {
@@ -124,7 +169,86 @@ public class Juego {
             //restar el mana disponible
             jugadorActivo.setManaDisponible(jugadorActivo.getManaDisponible() - carta.getCoste());
         }
+        actualizarPantalla();
 
+    }
+
+    private void atacarCarta(Carta cartaAtacada) {
+        //Se hacen daño
+        cartaAtacada.setPoder(cartaAtacada.getPoder() - cartaCriaturaActiva.getPoder());
+        cartaCriaturaActiva.setPoder(cartaCriaturaActiva.getPoder() - cartaAtacada.getPoder());
+        cartaCriaturaActiva.setAtaco(true);
+        //Resolucion
+        if (cartaAtacada.getPoder() <= 0) {
+            jugadorPasivo.getCartasEnJuego().remove(cartaAtacada);
+        }
+
+        if (cartaCriaturaActiva.getPoder() <= 0) {
+            jugadorActivo.getCartasEnJuego().remove(cartaCriaturaActiva);
+            cartaCriaturaActiva = null;
+        }
+        actualizarPantalla();
+    }
+
+    private void dañarCarta(Carta carta) {
+        carta.setPoder(carta.getPoder() - cartaHechizoActiva.getPoder());
+        jugadorActivo.setManaDisponible(jugadorActivo.getManaDisponible() - carta.getCoste());
+        if (carta.getPoder() <= 0) {
+            jugadorPasivo.getCartasEnJuego().remove(carta);
+            jugadorActivo.getCartasEnMano().remove(cartaHechizoActiva);
+            cartaHechizoActiva = null;
+        }
+        actualizarPantalla();
+    }
+
+    private void dañarOponente(int daño, Jugador oponente) {
+
+        oponente.setVidas(oponente.getVidas() - daño);
+        System.out.println("DAÑO: " + daño);
+        if (oponente.getVidas() <= 0) {
+            //Juego terminado
+            String ganador;
+            ganador = (oponente == jugador1) ? "Jugador 1" : "Jugador 2";
+            JOptionPane.showMessageDialog(null, "Juego Terminado! A ganado el " + ganador);
+            //TODO: mejorar salida de el programa
+            System.exit(0);
+        }
+        actualizarPantalla();
+    }
+
+    private void resetarCartas(Jugador jugadorActivo) {
+        for (Carta c : jugadorActivo.getCartasEnJuego()) {
+            c.setAtaco(false);
+            c.setActiva(false);
+        }
+    }
+
+    public Jugador getJugadorActivo() {
+        return jugadorActivo;
+    }
+
+    public Jugador getJugadorPasivo() {
+        return jugadorPasivo;
+    }
+
+    public Jugador getJugador1() {
+        return jugador1;
+    }
+
+    public Jugador getJugador2() {
+        return jugador2;
+    }
+
+    private void desactivarCartasActivas() {
+        if (cartaHechizoActiva != null) {
+            cartaHechizoActiva.setActiva(false);
+            cartaHechizoActiva = null;
+        }
+
+        if (cartaCriaturaActiva != null) {
+            cartaCriaturaActiva.setActiva(false);
+            cartaCriaturaActiva = null;
+        }
     }
 
 }

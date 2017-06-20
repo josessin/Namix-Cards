@@ -33,16 +33,16 @@
                   <Group type="102" attributes="0">
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="lblVidaJugador1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblVidaJugador2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jugador1" max="32767" attributes="0"/>
+                      <Component id="jugador2" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="lblVidaJugador2" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblVidaJugador1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jugador2" max="32767" attributes="0"/>
+                      <Component id="jugador1" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="64" max="32767" attributes="0"/>
@@ -72,7 +72,7 @@
                       <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="lblManaJugador2" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblVidaJugador1" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblVidaJugador2" alignment="1" min="-2" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Component id="jLabel1" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -84,7 +84,7 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                      <Component id="jugador1" min="-2" max="-2" attributes="0"/>
+                      <Component id="jugador2" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="96" max="32767" attributes="0"/>
@@ -99,14 +99,14 @@
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                              <Component id="lblVidaJugador2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblVidaJugador1" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="lblManaJugador1" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jugador2" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jugador1" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                   </Group>
@@ -145,7 +145,7 @@
         <Property name="text" type="java.lang.String" value="Vida"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblVidaJugador1">
+    <Component class="javax.swing.JLabel" name="lblVidaJugador2">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="48" style="0"/>
@@ -177,7 +177,7 @@
         <Property name="text" type="java.lang.String" value="Vida"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblVidaJugador2">
+    <Component class="javax.swing.JLabel" name="lblVidaJugador1">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="48" style="0"/>
@@ -188,7 +188,7 @@
         <Property name="text" type="java.lang.String" value="0"/>
       </Properties>
     </Component>
-    <Container class="javax.swing.JPanel" name="jugador1">
+    <Container class="javax.swing.JPanel" name="jugador2">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="0" red="66" type="rgb"/>
@@ -197,6 +197,9 @@
           <Color blue="0" green="33" red="99" type="rgb"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jugador2MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -232,7 +235,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="jugador2">
+    <Container class="javax.swing.JPanel" name="jugador1">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="99" green="0" red="99" type="rgb"/>
@@ -241,6 +244,9 @@
           <Color blue="0" green="33" red="99" type="rgb"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jugador1MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">

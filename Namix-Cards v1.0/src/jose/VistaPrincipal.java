@@ -53,14 +53,14 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         lblManaJugador2 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        lblVidaJugador1 = new javax.swing.JLabel();
+        lblVidaJugador2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         lblManaJugador1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        lblVidaJugador2 = new javax.swing.JLabel();
-        jugador1 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
+        lblVidaJugador1 = new javax.swing.JLabel();
         jugador2 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jugador1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -90,9 +90,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         jLabel2.setText("Vida");
 
-        lblVidaJugador1.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
-        lblVidaJugador1.setForeground(new java.awt.Color(204, 0, 0));
-        lblVidaJugador1.setText("0");
+        lblVidaJugador2.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        lblVidaJugador2.setForeground(new java.awt.Color(204, 0, 0));
+        lblVidaJugador2.setText("0");
 
         jLabel3.setText("mana");
 
@@ -102,53 +102,63 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         jLabel4.setText("Vida");
 
-        lblVidaJugador2.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
-        lblVidaJugador2.setForeground(new java.awt.Color(204, 0, 0));
-        lblVidaJugador2.setText("0");
+        lblVidaJugador1.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        lblVidaJugador1.setForeground(new java.awt.Color(204, 0, 0));
+        lblVidaJugador1.setText("0");
 
-        jugador1.setBackground(new java.awt.Color(102, 0, 255));
-        jugador1.setForeground(new java.awt.Color(153, 51, 0));
+        jugador2.setBackground(new java.awt.Color(102, 0, 255));
+        jugador2.setForeground(new java.awt.Color(153, 51, 0));
+        jugador2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jugador2MouseClicked(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("2");
-
-        javax.swing.GroupLayout jugador1Layout = new javax.swing.GroupLayout(jugador1);
-        jugador1.setLayout(jugador1Layout);
-        jugador1Layout.setHorizontalGroup(
-            jugador1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jugador1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel6)
-                .addGap(39, 39, 39))
-        );
-        jugador1Layout.setVerticalGroup(
-            jugador1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jugador1Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(jLabel6)
-                .addContainerGap(36, Short.MAX_VALUE))
-        );
-
-        jugador2.setBackground(new java.awt.Color(153, 0, 153));
-        jugador2.setForeground(new java.awt.Color(153, 51, 0));
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("1");
 
         javax.swing.GroupLayout jugador2Layout = new javax.swing.GroupLayout(jugador2);
         jugador2.setLayout(jugador2Layout);
         jugador2Layout.setHorizontalGroup(
             jugador2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jugador2Layout.createSequentialGroup()
-                .addContainerGap(45, Short.MAX_VALUE)
-                .addComponent(jLabel5)
-                .addGap(42, 42, 42))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel6)
+                .addGap(39, 39, 39))
         );
         jugador2Layout.setVerticalGroup(
             jugador2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jugador2Layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addComponent(jLabel6)
+                .addContainerGap(36, Short.MAX_VALUE))
+        );
+
+        jugador1.setBackground(new java.awt.Color(153, 0, 153));
+        jugador1.setForeground(new java.awt.Color(153, 51, 0));
+        jugador1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jugador1MouseClicked(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("1");
+
+        javax.swing.GroupLayout jugador1Layout = new javax.swing.GroupLayout(jugador1);
+        jugador1.setLayout(jugador1Layout);
+        jugador1Layout.setHorizontalGroup(
+            jugador1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jugador1Layout.createSequentialGroup()
+                .addContainerGap(45, Short.MAX_VALUE)
+                .addComponent(jLabel5)
+                .addGap(42, 42, 42))
+        );
+        jugador1Layout.setVerticalGroup(
+            jugador1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jugador1Layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addComponent(jLabel5)
                 .addContainerGap(35, Short.MAX_VALUE))
@@ -164,15 +174,15 @@ public class VistaPrincipal extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblVidaJugador1)
+                        .addComponent(lblVidaJugador2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jugador1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jugador2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblVidaJugador2)
+                        .addComponent(lblVidaJugador1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jugador2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jugador1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39)
@@ -195,7 +205,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                         .addGap(24, 24, 24)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lblManaJugador2)
-                            .addComponent(lblVidaJugador1)
+                            .addComponent(lblVidaJugador2)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel1)
@@ -203,7 +213,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                                 .addGap(21, 21, 21))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(35, 35, 35)
-                        .addComponent(jugador1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jugador2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -214,12 +224,12 @@ public class VistaPrincipal extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(lblVidaJugador2)
+                                .addComponent(lblVidaJugador1)
                                 .addComponent(lblManaJugador1))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addGap(21, 21, 21))
-                            .addComponent(jugador2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jugador1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(44, 44, 44))))
         );
 
@@ -237,6 +247,14 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         cvppl.getJuego().terminarTurno();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jugador2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jugador2MouseClicked
+        cvppl.getJuego().oponenteClickeado(cvppl.getJuego().getJugador2());
+    }//GEN-LAST:event_jugador2MouseClicked
+
+    private void jugador1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jugador1MouseClicked
+        cvppl.getJuego().oponenteClickeado(cvppl.getJuego().getJugador1());
+    }//GEN-LAST:event_jugador1MouseClicked
 
     void cargarValores(InfoVisualJuego ivj) {
         lblManaJugador1.setText(Integer.toString(ivj.getManaDispJugador()));

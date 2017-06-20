@@ -22,7 +22,9 @@ public class Carta {
     protected Integer poder;
     protected boolean enJuego;
     protected Jugador jugador;
-
+    protected boolean ataco;
+    protected boolean activa;
+    
     public Carta(String nombre, Integer coste, Integer poder, Tipo tipo) {
         this.tipo = tipo;
         this.nombre = nombre;
@@ -66,6 +68,22 @@ public class Carta {
 
     public void setJugador(Jugador jugador) {
         this.jugador = jugador;
+    }
+
+    public boolean isAtaco() {
+        return ataco;
+    }
+
+    public void setAtaco(boolean ataco) {
+        this.ataco = ataco;
+    }
+
+    public boolean isActiva() {
+        return activa;
+    }
+
+    public void setActiva(boolean activa) {
+        this.activa = activa;
     }
     
     
