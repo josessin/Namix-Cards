@@ -29,7 +29,8 @@ public class Jugador {
     private int manaDisponible;
     private boolean activo;
     private TipoJugador tipoJugador;
-
+    private String nombre;
+    
     public Jugador(ArrayList<Carta> mazo, boolean juegaPrimero) {
         this.mazo = mazo;
         this.vidas = 20;
@@ -71,7 +72,10 @@ public class Jugador {
                     + "en el mazo");
             return;
         }
-
+        if(cartasEnMano.size() >=7)
+        {
+            System.out.println("No se roba carta, tamaño maximo de cartas en mano");
+        }
         int index = mazo.size() - 1;
         cartasEnMano.add(mazo.get(index));
         mazo.remove(index);
@@ -162,5 +166,15 @@ public class Jugador {
     public void setTipoJugador(TipoJugador tipoJugador) {
         this.tipoJugador = tipoJugador;
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    
+    
 
 }

@@ -44,8 +44,6 @@ public class Juego {
 
         //ESTO ES PARA PROBAR VISTA JOSE
         //contVistaPPL = new ControlVistaPrincipal(this);
-
-        
         contPant = new ControladorPantalla(this);
         nuevoJuego();
     }
@@ -81,21 +79,20 @@ public class Juego {
                 }
             }
         }
-
         actualizarPantalla();
     }
 
     public void oponenteClickeado(Jugador oponente) {
         if (oponente.equals(jugadorPasivo)) {
             if (cartaHechizoActiva != null) {
-                dañarOponente(cartaHechizoActiva.getPoder(), oponente);
+                dañarOponente(cartaHechizoActiva, oponente);
                 jugadorActivo.getCartasEnMano().remove(cartaHechizoActiva);
-                jugadorActivo.setManaDisponible(jugadorActivo.getManaDisponible()-cartaHechizoActiva.getCoste());
+                jugadorActivo.setManaDisponible(jugadorActivo.getManaDisponible() - cartaHechizoActiva.getCoste());
                 cartaHechizoActiva.setActiva(false);
                 cartaHechizoActiva = null;
             }
             if (cartaCriaturaActiva != null) {
-                dañarOponente(cartaCriaturaActiva.getPoder(), oponente);
+                dañarOponente(cartaCriaturaActiva, oponente);
                 cartaCriaturaActiva.setAtaco(true);
                 cartaCriaturaActiva.setActiva(false);
                 cartaCriaturaActiva = null;
@@ -106,10 +103,8 @@ public class Juego {
     }
 
     public void terminarTurno() {
-
-        String jugador = jugadorActivo == jugador1? "Jugador1":"Jugador2";
-        System.out.println("Fin turno " + jugador);
         
+        System.out.println("<<< TURNO DE: " + jugadorPasivo.getNombre().toUpperCase() + " >>>");
         desactivarCartasActivas();
 
         if (jugadorActivo == jugador1) {
@@ -130,6 +125,7 @@ public class Juego {
         jugadorActivo.setManaDisponible(jugadorActivo.getManaTotal());
         jugadorActivo.robarCarta();
 
+        actualizarPantalla();
         if (jugadorActivo.getTipoJugador() == Jugador.TipoJugador.pc) {
             ai.play();
         }
@@ -150,19 +146,23 @@ public class Juego {
         //Humano
         jugador1 = new Jugador(mazoJugador1, true);
         jugador1.setTipoJugador(Jugador.TipoJugador.humano);
+        jugador1.setNombre("Humano");
         jugadorActivo = jugador1;
-        //PC
+
+        //Ordenador
         jugador2 = new Jugador(mazoJugador2, false);
         jugador2.setTipoJugador(Jugador.TipoJugador.pc);
+        jugador2.setNombre("Ordenador");
         jugadorPasivo = jugador2;
         ai = new AI(this, jugador2);
 
+        System.out.println("<<< TURNO DE: " + jugadorActivo.getNombre().toUpperCase() + " >>>");
     }
 
     private void actualizarPantalla() {
 
         infoVisual.actualizarInfo(jugador1, jugador2);
-        
+
         contPant.ActualizarPantalla(infoVisual);
         //OJO! PARA PRUEBAS NO COMMITEAR
         //contVistaPPL.actualizarPantalla(infoVisual);
@@ -172,14 +172,19 @@ public class Juego {
     private void jugarCarta(Carta carta) {
 
         if (jugadorActivo.getManaDisponible() >= carta.getCoste()) {
-            carta.setEnJuego(true);
-            jugadorActivo.getCartasEnMano().remove(carta);
-            jugadorActivo.getCartasEnJuego().add(carta);
-            //restar el mana disponible
-            jugadorActivo.setManaDisponible(jugadorActivo.getManaDisponible() - carta.getCoste());
+            if (jugadorActivo.getCartasEnJuego().size() <= 8) {
+                carta.setEnJuego(true);
+                jugadorActivo.getCartasEnMano().remove(carta);
+                jugadorActivo.getCartasEnJuego().add(carta);
+                //restar el mana disponible
+                jugadorActivo.setManaDisponible(jugadorActivo.getManaDisponible() - carta.getCoste());
+                System.out.println("Jugar Carta: " + carta.getNombre());
+            }else{
+                System.out.println("Intento de jugar nueva criatura negado: no se pueden tener mas de 8 cartas en juego");
+                JOptionPane.showMessageDialog(null, "No se pueden jugar mas cartas, 8 es el máximo");
+            }
         }
         actualizarPantalla();
-
     }
 
     private void atacarCarta(Carta cartaAtacada) {
@@ -196,10 +201,13 @@ public class Juego {
         cartaCriaturaActiva.setActiva(false);
         //Resolucion
         if (cartaAtacada.getPoder() <= 0) {
+            System.out.println("Muere " + cartaAtacada.getNombre() + " de " + cartaAtacada.getJugador().getNombre());
             jugadorPasivo.getCartasEnJuego().remove(cartaAtacada);
+
         }
 
         if (cartaCriaturaActiva.getPoder() <= 0) {
+            System.out.println("Muere " + cartaCriaturaActiva.getNombre() + " de " + cartaCriaturaActiva.getJugador().getNombre());
             jugadorActivo.getCartasEnJuego().remove(cartaCriaturaActiva);
             cartaCriaturaActiva = null;
         }
@@ -214,51 +222,36 @@ public class Juego {
         carta.setPoder(carta.getPoder() - cartaHechizoActiva.getPoder());
         jugadorActivo.setManaDisponible(jugadorActivo.getManaDisponible() - carta.getCoste());
         if (carta.getPoder() <= 0) {
+            System.out.println("Muere " + carta.getNombre() + " de " + carta.getJugador().getNombre());
             jugadorPasivo.getCartasEnJuego().remove(carta);
             jugadorActivo.getCartasEnMano().remove(cartaHechizoActiva);
             cartaHechizoActiva = null;
         }
         actualizarPantalla();
+
     }
 
-    private void dañarOponente(int daño, Jugador oponente) {
+    private void dañarOponente(Carta cartaAgresora, Jugador oponente) {
 
-        oponente.setVidas(oponente.getVidas() - daño);
+        oponente.setVidas(oponente.getVidas() - cartaAgresora.getPoder());
         String dañado;
-        dañado = (oponente == jugador1) ? "Jugador 1" : "Jugador 2";
-        System.out.println("DAÑO a " + dañado + ": " + daño);
+        System.out.println(cartaAgresora.getNombre() + " hace " + cartaAgresora.getPoder() + " daños a " + jugadorPasivo.getNombre());
+        actualizarPantalla();
         if (oponente.getVidas() <= 0) {
             //Juego terminado
-            String ganador;
-            ganador = (oponente == jugador1) ? "Jugador 2" : "Jugador 1";
-            JOptionPane.showMessageDialog(null, "Juego Terminado! A ganado el " + ganador);
+            JOptionPane.showMessageDialog(null, "Juego Terminado! A ganado el" + jugadorActivo.getNombre());
             //TODO: mejorar salida de el programa
             System.exit(0);
         }
-        actualizarPantalla();
+
     }
 
+    //metodos de mantenimiento
     private void resetarCartas(Jugador jugadorActivo) {
         for (Carta c : jugadorActivo.getCartasEnJuego()) {
             c.setAtaco(false);
             c.setActiva(false);
         }
-    }
-
-    public Jugador getJugadorActivo() {
-        return jugadorActivo;
-    }
-
-    public Jugador getJugadorPasivo() {
-        return jugadorPasivo;
-    }
-
-    public Jugador getJugador1() {
-        return jugador1;
-    }
-
-    public Jugador getJugador2() {
-        return jugador2;
     }
 
     private void desactivarCartasActivas() {
@@ -279,4 +272,22 @@ public class Juego {
             cartaCriaturaActiva = null;
         }
     }
+
+    //GETERS
+    public Jugador getJugadorActivo() {
+        return jugadorActivo;
+    }
+
+    public Jugador getJugadorPasivo() {
+        return jugadorPasivo;
+    }
+
+    public Jugador getJugador1() {
+        return jugador1;
+    }
+
+    public Jugador getJugador2() {
+        return jugador2;
+    }
+
 }
