@@ -161,7 +161,7 @@ public class Juego {
         //Humano
         jugador1 = new Jugador(mazoJugador1, true);
         jugador1.setTipoJugador(Jugador.TipoJugador.humano);
-        jugador1.setNombre("Humano");
+        jugador1.setNombre("Tu");
         jugadorActivo = jugador1;
 
         //Ordenador
@@ -254,7 +254,7 @@ public class Juego {
         actualizarPantalla();
         if (oponente.getVidas() <= 0) {
             gameOver = true;
-            contPant.PantallaFinal(jugadorActivo);
+            contPant.PantallaFinal(jugadorActivo,contPant);
             //Juego terminado
             //JOptionPane.showMessageDialog(null, "Juego Terminado! A ganado el" + jugadorActivo.getNombre());
             //TODO: mejorar salida de el programa
