@@ -96,7 +96,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         setTitle("Namix Cards");
         setFocusableWindowState(false);
         setModalExclusionType(java.awt.Dialog.ModalExclusionType.TOOLKIT_EXCLUDE);
-        setResizable(false);
         setSize(new java.awt.Dimension(0, 0));
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
