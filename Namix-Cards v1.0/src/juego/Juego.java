@@ -59,8 +59,8 @@ public class Juego {
             if (carta.getJugador().equals(jugadorActivo)) {
                 desactivarHechizo();
                 if (!carta.isAtaco()) {
-                    if(cartaCriaturaActiva !=null){
-                         cartaCriaturaActiva.setActiva(false);
+                    if (cartaCriaturaActiva != null) {
+                        cartaCriaturaActiva.setActiva(false);
                     }
                     cartaCriaturaActiva = carta;
                     cartaCriaturaActiva.setActiva(true);
@@ -80,7 +80,7 @@ public class Juego {
 
                 if (cartaHechizoActiva == null) {
                     desactivarCriatura();
-                    
+
                     cartaHechizoActiva = carta;
                     cartaHechizoActiva.setActiva(true);
                 } else {
@@ -178,6 +178,9 @@ public class Juego {
 
         infoVisual.actualizarInfo(jugador1, jugador2);
 
+        if (contPant.noActualizar) {
+            return;
+        }
         contPant.ActualizarPantalla(infoVisual);
         //OJO! PARA PRUEBAS NO COMMITEAR
         //contVistaPPL.actualizarPantalla(infoVisual);
@@ -254,7 +257,7 @@ public class Juego {
         actualizarPantalla();
         if (oponente.getVidas() <= 0) {
             gameOver = true;
-            contPant.PantallaFinal(jugadorActivo,contPant);
+            contPant.PantallaFinal(jugadorActivo, contPant);
             //Juego terminado
             //JOptionPane.showMessageDialog(null, "Juego Terminado! A ganado el" + jugadorActivo.getNombre());
             //TODO: mejorar salida de el programa
@@ -310,6 +313,5 @@ public class Juego {
     public ControladorPantalla getContPant() {
         return contPant;
     }
-    
-    
+
 }
