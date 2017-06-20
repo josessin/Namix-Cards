@@ -22,7 +22,7 @@ public class Logger {
     }
     
     public void log(String nuevaLine){
-        fullLog+= nuevaLine + "\n";
+        fullLog+= "  " + nuevaLine + "\n";
         lg.CargarTexto(fullLog);
         
     }
