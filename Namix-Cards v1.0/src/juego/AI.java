@@ -69,11 +69,11 @@ class AI {
             poderOponente += c.getPoder();
         }
         if (poderOponente >= yo.getVidas()) {
-            System.out.println("--Estoy en el horno, muero en proximo turno si no hago algo");
+            juego.logger.log("--Estoy en el horno, muero en proximo turno si no hago algo");
             mueroEnProxTurno = true;
         } else {
             chanceDePerder = calcChanceDePerder();
-            System.out.println("--Mis chances de perder son: " + chanceDePerder);
+            juego.logger.log("--Mis chances de perder son: " + chanceDePerder);
         }
 
     }
@@ -81,18 +81,18 @@ class AI {
     private void jugar() {
         //Matar oponenete si es posible
         if (dañoMaximoPosible >= dañoExtraParaGanar) {
-            System.out.println("--Voy con todo al jugador");
-            System.out.println("--Plan ofensivo");
+            juego.logger.log("--Voy con todo al jugador");
+            juego.logger.log("--Plan ofensivo");
             jugarCartas(combinacionMaxima, true);
             attacarJugador(yo.getCartasEnJuego());
         } else if (mueroEnProxTurno || chanceDePerder > 0.7) {
 
-            System.out.println("--Plan defensivo");
+            juego.logger.log("--Plan defensivo");
             jugarCartas(combinacionMaxima, false);
             ataqueDefensivo(yo.getCartasEnJuego());
             hechizosACriaturas(false);
         } else {
-            System.out.println("--Plan seguro");
+            juego.logger.log("--Plan seguro");
             jugarCartas(combinacionMaxima, false);
             ataqueSeguro(yo.getCartasEnJuego());
             hechizosACriaturas(true);

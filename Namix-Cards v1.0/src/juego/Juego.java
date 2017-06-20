@@ -115,7 +115,7 @@ public class Juego {
         if (gameOver) {
             return;
         }
-        System.out.println("<<< TURNO DE: " + jugadorPasivo.getNombre().toUpperCase() + " >>>");
+        logger.log("\n<<< TURNO DE: " + jugadorPasivo.getNombre().toUpperCase() + " >>>");
         desactivarCartasActivas();
 
         if (jugadorActivo == jugador1) {
@@ -303,4 +303,9 @@ public class Juego {
         return jugador2;
     }
 
+    public ControladorPantalla getContPant() {
+        return contPant;
+    }
+    
+    
 }
