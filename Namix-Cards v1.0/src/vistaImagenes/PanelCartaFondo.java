@@ -13,20 +13,21 @@ import javax.swing.ImageIcon;
  *
  * @author jeron
  */
-public class PanelFondoCartaH extends javax.swing.JPanel {
+public class PanelCartaFondo extends javax.swing.JPanel {
 
-    /**
-     * Creates new form PanelFondoCartaH
-     */
-    public PanelFondoCartaH() {
-        initComponents();
-        
-    }
+  private CartaVisual cv;
     
-         public void paintH(Graphics g){
-       
+    
+   public PanelCartaFondo(CartaVisual cv) {
+        initComponents();
+        this.cv = cv;
+        
+        this.setSize(cv.getWidth(), cv.getHeight());
+    }
+    public void paintC(Graphics g){
+        System.out.println("ACA ESTOY");
         Dimension tam = getSize();
-        ImageIcon fondo = new ImageIcon(getClass().getResource("/imagenes/FondoHechizo.jpg"));
+        ImageIcon fondo = new ImageIcon(getClass().getResource("/imagenes/CartaFondo.jpg"));
         g.drawImage(fondo.getImage(),0,0,getWidth(), getHeight(),null);
         setOpaque(false);
         super.paintComponent(g);

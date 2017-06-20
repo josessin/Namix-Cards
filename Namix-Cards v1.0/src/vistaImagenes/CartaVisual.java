@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import juego.Juego;
 import modelos.Carta;
 import modelos.Jugador;
+import vistas.PantallaPrincipal;
 
 
 /**
@@ -27,25 +28,44 @@ public class CartaVisual extends javax.swing.JPanel {
     private boolean enJuego;
     private Juego juego;
     private ControladorCartaVisual ccv;
+    private Carta carta;
+    
     
 
     private ArrayList<Carta> CartasEnJuego = new ArrayList<Carta>();
     public CartaVisual(Juego juego) {
         initComponents();
+
         this.juego = juego;
+
     }
 
     public void setValores(Carta carta) {
         ccv = new ControladorCartaVisual(juego);
-        Carta ObjetoCarta = new Carta(carta.getNombre(), carta.getCoste(), carta.getPoder(), carta.getTipo());
+        this.carta = carta;
         lblNombre.setText(carta.getNombre());
         lblPoder.setText(carta.getPoder().toString());
         lblMana.setText(carta.getCoste().toString());
         jugador = carta.getJugador();
         tipo = String.valueOf(carta.getTipo());
-        ccv.AgregarFondoCarta(carta.getTipo(), this);
         ccv.AgregarImagenCarta(carta.getNombre(), this);
+        ccv.AgregarFondoCarta(carta.getTipo(), this);
         
+        
+    }
+    
+    public void setValores(Carta carta, boolean escondido) {
+        ccv = new ControladorCartaVisual(juego);
+        this.carta = carta;
+        lblNombre.setVisible(false);
+        lblPoder.setVisible(false);
+        lblMana.setVisible(false);
+        lblNombre.setText(carta.getNombre());
+        lblPoder.setText(carta.getPoder().toString());
+        lblMana.setText(carta.getCoste().toString());
+        jugador = carta.getJugador();
+        tipo = String.valueOf(carta.getTipo());
+        ccv.AgregarFondoManoPc(this);
         
     }
     
@@ -65,14 +85,21 @@ public class CartaVisual extends javax.swing.JPanel {
         lblMana = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(204, 0, 0));
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
 
         lblNombre.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lblNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         lblPoder.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblPoder.setForeground(new java.awt.Color(204, 0, 0));
         lblPoder.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
 
         lblMana.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblMana.setForeground(new java.awt.Color(0, 153, 0));
         lblMana.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -99,6 +126,11 @@ public class CartaVisual extends javax.swing.JPanel {
                     .addComponent(lblMana, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        juego.cartaClickeda(carta);
+        
+    }//GEN-LAST:event_formMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
