@@ -35,7 +35,7 @@ public class Juego {
     private Carta cartaHechizoActiva = null;
     private AI ai;
     public Logger logger;
-    private boolean gameOver;
+    private boolean gameOver = false;
     //TEST
     private ControlVistaPrincipal contVistaPPL;
 
@@ -59,6 +59,9 @@ public class Juego {
             if (carta.getJugador().equals(jugadorActivo)) {
                 desactivarHechizo();
                 if (!carta.isAtaco()) {
+                    if(cartaCriaturaActiva !=null){
+                         cartaCriaturaActiva.setActiva(false);
+                    }
                     cartaCriaturaActiva = carta;
                     cartaCriaturaActiva.setActiva(true);
                 }
@@ -77,6 +80,7 @@ public class Juego {
 
                 if (cartaHechizoActiva == null) {
                     desactivarCriatura();
+                    
                     cartaHechizoActiva = carta;
                     cartaHechizoActiva.setActiva(true);
                 } else {
