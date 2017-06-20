@@ -6,6 +6,8 @@
 package vistas;
 
 import java.awt.Toolkit;
+import java.net.URL;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -20,6 +22,9 @@ public class FinDelJuego extends javax.swing.JFrame {
         initComponents();
         this.setSize(Toolkit.getDefaultToolkit().getScreenSize());
         this.setLocationRelativeTo(this);
+        URL url = getClass().getResource("/imagenes/NamixCardIco.png");
+        ImageIcon imag = new ImageIcon(url);
+        setIconImage(imag.getImage());
     }
 
     /**
@@ -32,6 +37,10 @@ public class FinDelJuego extends javax.swing.JFrame {
     private void initComponents() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("FIN DEL JUEGO");
+        setAlwaysOnTop(true);
+        setResizable(false);
+        setState(1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
