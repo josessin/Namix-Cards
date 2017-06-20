@@ -20,10 +20,10 @@ public class PanelFondoCartaH extends javax.swing.JPanel {
      */
     public PanelFondoCartaH() {
         initComponents();
-        
+        this.setSize(super.getHeight(), super.getWidth());
     }
     
-         public void paintH(Graphics g){
+         public void paint(Graphics g){
        
         Dimension tam = getSize();
         ImageIcon fondo = new ImageIcon(getClass().getResource("/imagenes/FondoHechizo.jpg"));
