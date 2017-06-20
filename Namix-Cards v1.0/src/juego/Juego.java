@@ -107,6 +107,9 @@ public class Juego {
 
     public void terminarTurno() {
 
+        String jugador = jugadorActivo == jugador1? "Jugador1":"Jugador2";
+        System.out.println("Fin turno " + jugador);
+        
         desactivarCartasActivas();
 
         if (jugadorActivo == jugador1) {

@@ -29,12 +29,16 @@ class AI {
     private ArrayList<Carta> combinacionMaxima;
     private float chanceDePerder;
     private float poderOponente;
+    private ArrayList<Par> parCriaturas;
+    private ArrayList<Par> parHechizos;
 
     public AI(Juego juego, Jugador jugador) {
 
         this.yo = jugador;
         this.juego = juego;
         combinacionMaxima = new ArrayList<>();
+        parCriaturas = new ArrayList<>();
+        parHechizos = new ArrayList<>();
     }
 
     public void play() {
@@ -43,6 +47,8 @@ class AI {
         evalVictoria();
         evalDerrota();
         jugar();
+        parCriaturas.clear();
+        parHechizos.clear();
         juego.terminarTurno();
     }
 
@@ -77,9 +83,7 @@ class AI {
         if (dañoMaximoPosible >= dañoExtraParaGanar) {
             jugarCartas(combinacionMaxima, true);
             attacarJugador(yo.getCartasEnJuego());
-            return;
-        }
-        if (mueroEnProxTurno || chanceDePerder > 0.75) {
+        } else if (mueroEnProxTurno || chanceDePerder > 0.75) {
             hechizosACriaturas();
             jugarCartas(combinacionMaxima, false);
             ataqueDefensivo(yo.getCartasEnJuego());
@@ -91,15 +95,16 @@ class AI {
 
     private void ataqueDefensivo(ArrayList<Carta> cartasEnJuego) {
         for (Carta c : cartasEnJuego) {
-            atacarCarta(c, mejorObjectivoCriatura(c, true));
-
+            atacarCriatura(c, mejorObjectivoCriatura(c, true));
         }
+        ejecutarPares(parCriaturas);
     }
 
     private void ataqueOfensivo(ArrayList<Carta> cartasEnJuego) {
         for (Carta c : cartasEnJuego) {
-            atacarCarta(c, mejorObjectivoCriatura(c, false));
+            atacarCriatura(c, mejorObjectivoCriatura(c, false));
         }
+        ejecutarPares(parCriaturas);
     }
 
     private ArrayList<Carta> getCartasJugables() {
@@ -167,9 +172,11 @@ class AI {
         for (Carta c : cartas) {
             if (c.getTipo() == Carta.Tipo.criatura) {
                 juego.cartaClickeda(c);
+                pause(200);
             } else if (conHechizos) {
                 juego.cartaClickeda(c);
-                juego.oponenteClickeado(yo);
+                pause(200);
+                juego.oponenteClickeado(juego.getJugadorPasivo());
             }
 
         }
@@ -178,17 +185,9 @@ class AI {
     private void attacarJugador(ArrayList<Carta> cartas) {
         for (Carta c : cartas) {
             juego.cartaClickeda(c);
+            pause(200);
+            juego.oponenteClickeado(juego.getJugadorPasivo());
         }
-    }
-
-    private float calcChanceDePerder() {
-        float vidasRestantes = (float) (yo.getVidas() - poderOponente) / 20;
-        int cartasManoOp = juego.getJugadorPasivo().getCartasEnMano().size();
-        int manaOp = juego.getJugadorPasivo().getManaTotal();
-        //A mayot vidas restantes, menor es el total
-        int peorCaso = 75;
-        return ((20 - vidasRestantes) * 3 + cartasManoOp + manaOp) / peorCaso;
-
     }
 
     private void hechizosACriaturas() {
@@ -197,12 +196,34 @@ class AI {
             if (hechizo.getTipo() == Carta.Tipo.hechizo && hechizo.getCoste() <= yo.getManaDisponible()) {
                 Carta cartaADañar = mejorObjetivoHechizo(hechizo);
                 if (cartaADañar != null) {
-                    juego.cartaClickeda(hechizo);
-                    juego.cartaClickeda(cartaADañar);
+
+                    parHechizos.add(new Par(hechizo, cartaADañar));
 
                 }
             }
         }
+
+        ejecutarPares(parHechizos);
+    }
+
+    
+    private void ejecutarPares(ArrayList<Par> pares) {
+        for (Par p : pares) {
+            juego.cartaClickeda(p.atacante);
+            pause(200);
+            juego.cartaClickeda(p.objetivo);
+            pause(200);
+        }
+    }
+
+    
+    private void atacarCriatura(Carta cartaAtacante, Carta mejorObjetivo) {
+        if (cartaAtacante == null || mejorObjetivo == null) {
+            return;
+        }
+
+        parCriaturas.add(new Par(cartaAtacante, mejorObjetivo));
+
     }
 
     private Carta mejorObjetivoHechizo(Carta hechizo) {
@@ -265,13 +286,14 @@ class AI {
         return null;
     }
 
-    private void atacarCarta(Carta cartaAtacante, Carta mejorObjetivo) {
-        if (cartaAtacante == null || mejorObjetivo == null) {
-            return;
-        }
+    private float calcChanceDePerder() {
+        float vidasRestantes = (float) (yo.getVidas() - poderOponente) / 20;
+        int cartasManoOp = juego.getJugadorPasivo().getCartasEnMano().size();
+        int manaOp = juego.getJugadorPasivo().getManaTotal();
+        //A mayot vidas restantes, menor es el total
+        int peorCaso = 75;
+        return ((20 - vidasRestantes) * 3 + cartasManoOp + manaOp) / peorCaso;
 
-        juego.cartaClickeda(cartaAtacante);
-        juego.cartaClickeda(mejorObjetivo);
     }
 
     //Ordena basado en poder 
@@ -293,6 +315,17 @@ class AI {
             Thread.sleep(millisec);
         } catch (InterruptedException ex) {
             Logger.getLogger(AI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private class Par {
+
+        Carta atacante;
+        Carta objetivo;
+
+        public Par(Carta atacante, Carta objetivo) {
+            this.atacante = atacante;
+            this.objetivo = objetivo;
         }
     }
 
