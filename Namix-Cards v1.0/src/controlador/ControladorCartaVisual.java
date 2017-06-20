@@ -25,8 +25,11 @@ public class ControladorCartaVisual {
     private Juego juego;
     private ArrayList<CartaVisual> listadoCartas;
     private CartaVisual cv;
-     
+
     //Paneles
+    PanelFondoCartaH fondoH = new PanelFondoCartaH();
+    PanelFondoCartaC fondoC = new PanelFondoCartaC();
+    PanelCartaFondo fondoPC = new PanelCartaFondo();
 
     public ControladorCartaVisual(Juego juego) {
 
@@ -73,7 +76,7 @@ public class ControladorCartaVisual {
     public void AgregarFondoManoPc(CartaVisual cv) {
         this.cv = cv;
         
-        PanelCartaFondo fondoPC = new PanelCartaFondo();
+        
         fondoPC.setSize(cv.getWidth(), cv.getHeight());  
         cv.add(fondoPC, BorderLayout.CENTER);
         fondoPC.repaint();
@@ -89,14 +92,14 @@ public class ControladorCartaVisual {
             
             
         if (tipo.equals(Carta.Tipo.criatura)) {
-            PanelFondoCartaC fondoC = new PanelFondoCartaC();
+            
             fondoC.setSize(cv.getWidth(), cv.getHeight());
             cv.add(fondoC, BorderLayout.CENTER);
             //cv.repaint();
             fondoC.repaint();    
 
         } else {
-            PanelFondoCartaH fondoH = new PanelFondoCartaH();
+            
             fondoH.setSize(cv.getWidth(), cv.getHeight());
             cv.add(fondoH, BorderLayout.CENTER);
             //cv.repaint();
@@ -106,4 +109,19 @@ public class ControladorCartaVisual {
         }
 
     }
+    //Metodo para cambiar el fondo a las cartas
+    /*public void RemueveDespuesDeAtaque(Carta.Tipo tipo, CartaVisual cv){
+    
+        if (tipo.equals(Carta.Tipo.criatura)) {
+            
+            cv.remove(fondoC);
+            AgregarFondoManoPc(cv);
+
+        } else {
+            
+            cv.remove(fondoH);
+            AgregarFondoManoPc(cv);
+        }
+    
+    }*/
 }

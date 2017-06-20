@@ -9,6 +9,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.io.File;
 import javax.swing.ImageIcon;
+import javax.swing.border.Border;
 
 /**
  *
