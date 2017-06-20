@@ -246,10 +246,11 @@ public class Juego {
         jugadorActivo.setManaDisponible(jugadorActivo.getManaDisponible() - carta.getCoste());
         if (carta.getPoder() <= 0) {
             logger.log("Muere " + carta.getNombre() + " de " + carta.getJugador().getNombre());
-            jugadorActivo.getCartasEnJuego().remove(carta);
-            jugadorActivo.getCartasEnMano().remove(cartaHechizoActiva);
-            cartaHechizoActiva = null;
+            jugadorPasivo.getCartasEnJuego().remove(carta);
+
         }
+        jugadorActivo.getCartasEnMano().remove(cartaHechizoActiva);
+        cartaHechizoActiva = null;
         actualizarPantalla();
 
     }
