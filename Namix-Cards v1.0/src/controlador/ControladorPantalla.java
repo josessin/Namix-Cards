@@ -29,9 +29,9 @@ public class ControladorPantalla {
     private Dimension tam;
     PanelPantallaPrin fondo = new PanelPantallaPrin();
 
-    public ControladorPantalla(Juego juego){
+    public ControladorPantalla(Juego juego){      
         this.juego = juego;
-        pp = new PantallaPrincipal(this);
+        pp = new PantallaPrincipal(this);       
         cartasParaMostrar = new ArrayList<>();
         
     }
@@ -39,7 +39,7 @@ public class ControladorPantalla {
 
         Dimension tam = Toolkit.getDefaultToolkit().getScreenSize();
         pp.setSize(tam);
-
+        
         pp.setVisible(true);
     }
     public void PonerFondoAPantallaP(){

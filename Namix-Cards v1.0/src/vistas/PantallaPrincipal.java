@@ -7,9 +7,7 @@ package vistas;
 
 import controlador.ControladorPantalla;
 import java.awt.Dimension;
-import java.net.URL;
 import java.util.ArrayList;
-import javax.swing.ImageIcon;
 import modelos.Carta;
 
 
