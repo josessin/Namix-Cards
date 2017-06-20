@@ -82,7 +82,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         lblManaJ2 = new javax.swing.JLabel();
         lblLifePointsNumJ2 = new javax.swing.JLabel();
         lblManaNumJ2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        AtaqueALaCabeza = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Namix Cards");
@@ -142,7 +142,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         lblManaNumJ2.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         lblManaNumJ2.setForeground(new java.awt.Color(153, 255, 102));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ALaCabeza.png"))); // NOI18N
+        AtaqueALaCabeza.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ALaCabeza.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -174,7 +174,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                                 .addContainerGap())
                             .addComponent(btnTerminarT, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(AtaqueALaCabeza, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -188,7 +188,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                     .addComponent(lblLifePointsJ2)
                     .addComponent(lblManaJ2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(AtaqueALaCabeza, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(btnTerminarT)
                 .addGap(78, 78, 78)
@@ -223,8 +223,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel AtaqueALaCabeza;
     private javax.swing.JButton btnTerminarT;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblLifePointsJ1;
     private javax.swing.JLabel lblLifePointsJ2;
     private javax.swing.JLabel lblLifePointsNumJ1;
