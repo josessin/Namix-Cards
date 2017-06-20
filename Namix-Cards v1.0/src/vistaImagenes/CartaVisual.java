@@ -41,13 +41,17 @@ public class CartaVisual extends javax.swing.JPanel {
     public void setValores(Carta carta) {
         ccv = new ControladorCartaVisual(juego);
         this.carta = carta;
-        lblNombre.setText(carta.getNombre()+" Listo");
         lblPoder.setText(carta.getPoder().toString());
         lblMana.setText(carta.getCoste().toString());
         jugador = carta.getJugador();
         tipo = String.valueOf(carta.getTipo());
         ccv.AgregarImagenCarta(carta.getNombre(), this);
         ccv.AgregarFondoCarta(carta.getTipo(), this);
+        if(carta.isEnJuego() && carta.getTipo().equals(Carta.Tipo.criatura)){
+            lblNombre.setText(carta.getNombre()+" Listo");
+        }else{
+            lblNombre.setText(carta.getNombre());
+        }
         if (carta.isAtaco()) {
             lblNombre.setForeground(Color.DARK_GRAY);
             //ccv.RemueveDespuesDeAtaque(carta.getTipo(), this);
