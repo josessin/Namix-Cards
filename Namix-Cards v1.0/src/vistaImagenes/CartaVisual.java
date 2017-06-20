@@ -7,8 +7,11 @@ package vistaImagenes;
 
 import controlador.ControladorCartaVisual;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import juego.Juego;
 import modelos.Carta;
 import modelos.Jugador;
@@ -34,6 +37,16 @@ public class CartaVisual extends javax.swing.JPanel {
         this.juego = juego;
 
     }
+   /* public void paintC(Graphics g){
+        System.out.println("ACA ESTOY");
+        Dimension tam = getSize();
+        ImageIcon fondo = new ImageIcon(getClass().getResource("/imagenes/FondoMonstruov2.png"));
+        g.drawImage(fondo.getImage(),0, 0, tam.width, tam.height, this);
+        setOpaque(false);
+        super.paint(g);
+        
+    
+    }*/
 
     public void setValores(Carta carta) {
         ccv = new ControladorCartaVisual(juego);
@@ -66,6 +79,12 @@ public class CartaVisual extends javax.swing.JPanel {
         jugador = carta.getJugador();
         tipo = String.valueOf(carta.getTipo());
         ccv.AgregarFondoManoPc(this);
+        if (carta.isAtaco()) {
+            lblNombre.setForeground(Color.GRAY);
+        }
+        if (carta.isActiva()) {
+            lblNombre.setFont(new Font("Tahoma", 1, 14));
+        }
 
     }
 
@@ -83,6 +102,7 @@ public class CartaVisual extends javax.swing.JPanel {
         lblMana = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(204, 0, 0));
+        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
         setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -108,19 +128,19 @@ public class CartaVisual extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+                    .addComponent(lblNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblMana, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                        .addComponent(lblMana, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
                         .addGap(48, 48, 48)
-                        .addComponent(lblPoder, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)))
+                        .addComponent(lblPoder, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 17, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
+                .addComponent(lblNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 16, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblPoder, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblMana, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))

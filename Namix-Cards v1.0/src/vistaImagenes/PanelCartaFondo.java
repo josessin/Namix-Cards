@@ -15,15 +15,14 @@ import javax.swing.ImageIcon;
  */
 public class PanelCartaFondo extends javax.swing.JPanel {
 
-  private CartaVisual cv;
-    
-    
-   public PanelCartaFondo(CartaVisual cv) {
-        initComponents();
-        this.cv = cv;
 
+    
+    
+   public PanelCartaFondo() {
+        initComponents();
+        this.setSize(super.getHeight(), super.getWidth());
     }
-    public void paintC(Graphics g){
+    public void paint(Graphics g){
         System.out.println("ACA ESTOY");
         Dimension tam = getSize();
         ImageIcon fondo = new ImageIcon(getClass().getResource("/imagenes/CartaFondo.jpg"));
