@@ -166,7 +166,7 @@ public class Juego {
         //Humano
         jugador1 = new Jugador(mazoJugador1, true);
         jugador1.setTipoJugador(Jugador.TipoJugador.humano);
-        jugador1.setNombre("Tu");
+        jugador1.setNombre("Jugador");
         jugadorActivo = jugador1;
 
         //Ordenador
