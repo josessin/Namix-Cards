@@ -19,7 +19,12 @@ public class Jugador {
         pc,
         humano
     }
-
+    public enum RobarCartas{
+        robaNormal,
+        noHayMasMazo,
+        noHayMasLugar
+    }
+    
     private ArrayList<Carta> mazo;
     private ArrayList<Carta> cartasEnMano;
     private ArrayList<Carta> cartasEnJuego;
@@ -30,6 +35,7 @@ public class Jugador {
     private boolean activo;
     private TipoJugador tipoJugador;
     private String nombre;
+    
     
     public Jugador(ArrayList<Carta> mazo, boolean juegaPrimero) {
         this.mazo = mazo;
@@ -46,7 +52,7 @@ public class Jugador {
 
         cartasEnJuego = new ArrayList<>();
         cartasEnMano = new ArrayList<>();
-        
+
         asignarJugadorACartas();
         mezclar();
         manoInicial();
@@ -66,28 +72,30 @@ public class Jugador {
     }
 
     ////METODOS PUBLICOS///
-    public void robarCarta() {
+    public RobarCartas robarCarta() {
         if (mazo.size() <= 0) {
             System.out.println("Jugador.robarCarta: no hay mas cartas "
                     + "en el mazo");
-            return;
+            return RobarCartas.noHayMasMazo;
         }
-        if(cartasEnMano.size() >=7)
-        {
-            System.out.println("No se roba carta, tamaño maximo de cartas en mano");
+        else if(cartasEnMano.size() >= 7) {
+            int index = mazo.size() - 1;
+            cartasEnMano.add(mazo.get(index));
+            mazo.remove(index);
+            return RobarCartas.robaNormal;
+
+        } else {
+            return RobarCartas.noHayMasLugar;
         }
-        int index = mazo.size() - 1;
-        cartasEnMano.add(mazo.get(index));
-        mazo.remove(index);
 
     }
 
     public void jugarCarta(Carta carta) {
-        
+
         if (cartasEnMano.contains(carta)) {
             cartasEnJuego.add(carta);
             cartasEnMano.remove(carta);
-        }else{
+        } else {
             System.out.println("Carta.jugarCarta: la carta que se intenta jugar "
                     + "no se encouentra en la mano de el jugador");
         }
@@ -102,7 +110,6 @@ public class Jugador {
     }
 
     //GETTER SETTERS//
-
     public boolean isActivo() {
         return activo;
     }
@@ -110,7 +117,7 @@ public class Jugador {
     public void setActivo(boolean activo) {
         this.activo = activo;
     }
-    
+
     public ArrayList<Carta> getMazo() {
         return mazo;
     }
@@ -174,7 +181,5 @@ public class Jugador {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
-    
 
 }

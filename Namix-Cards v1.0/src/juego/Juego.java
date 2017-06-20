@@ -138,7 +138,12 @@ public class Juego {
         //Incrementar y resetear el mana
         jugadorActivo.setManaTotal(jugadorActivo.getManaTotal() + 1);
         jugadorActivo.setManaDisponible(jugadorActivo.getManaTotal());
-        jugadorActivo.robarCarta();
+        Jugador.RobarCartas rb = jugadorActivo.robarCarta();
+        if (rb == Jugador.RobarCartas.noHayMasLugar) {
+            logger.log("No se pueden robar mas cartas, la mano esta llena");
+        } else if (rb == Jugador.RobarCartas.noHayMasMazo) {
+            logger.log("No se puede robar, no hay mas cartas en el mazo");
+        }
 
         actualizarPantalla();
         if (jugadorActivo.getTipoJugador() == Jugador.TipoJugador.pc) {
@@ -241,7 +246,7 @@ public class Juego {
         jugadorActivo.setManaDisponible(jugadorActivo.getManaDisponible() - carta.getCoste());
         if (carta.getPoder() <= 0) {
             logger.log("Muere " + carta.getNombre() + " de " + carta.getJugador().getNombre());
-            jugadorPasivo.getCartasEnJuego().remove(carta);
+            jugadorActivo.getCartasEnJuego().remove(carta);
             jugadorActivo.getCartasEnMano().remove(cartaHechizoActiva);
             cartaHechizoActiva = null;
         }
