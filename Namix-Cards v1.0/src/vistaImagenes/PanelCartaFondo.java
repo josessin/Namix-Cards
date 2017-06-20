@@ -7,6 +7,7 @@ package vistaImagenes;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.io.File;
 import javax.swing.ImageIcon;
 
 /**
@@ -21,11 +22,13 @@ public class PanelCartaFondo extends javax.swing.JPanel {
    public PanelCartaFondo() {
         initComponents();
         this.setSize(super.getHeight(), super.getWidth());
+        
     }
     public void paint(Graphics g){
+        String sep = File.separator;
         System.out.println("ACA ESTOY");
         Dimension tam = getSize();
-        ImageIcon fondo = new ImageIcon(getClass().getResource("/imagenes/CartaFondo.jpg"));
+        ImageIcon fondo = new ImageIcon(getClass().getResource(sep+"imagenes"+sep+"CartaFondo.jpg"));
         g.drawImage(fondo.getImage(),0,0,getWidth(), getHeight(),null);
         setOpaque(false);
         super.paintComponent(g);

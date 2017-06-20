@@ -9,6 +9,7 @@ import controlador.ControladorPantalla;
 import java.awt.Dimension;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
@@ -29,9 +30,10 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private int manaDisJ, manaDisP;
 
     public PantallaPrincipal(final ControladorPantalla conp) {
+        String sep = File.separator;
         initComponents();
         this.conp = conp;
-        URL url = getClass().getResource("/imagenes/NamixCardIco.png");
+        URL url = getClass().getResource(sep+"imagenes"+sep+"NamixCardIco.png");
         ImageIcon imag = new ImageIcon(url);
         setIconImage(imag.getImage());
 
@@ -170,6 +172,21 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jSeparator1.setBackground(new java.awt.Color(51, 255, 255));
+        jSeparator1.setForeground(new java.awt.Color(0, 0, 240));
+
+        jSeparator2.setBackground(new java.awt.Color(153, 153, 153));
+        jSeparator2.setForeground(new java.awt.Color(255, 0, 0));
+
+        jSeparator3.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
+
+        jSeparator5.setBackground(new java.awt.Color(51, 255, 255));
+        jSeparator5.setForeground(new java.awt.Color(0, 0, 204));
+
+        jSeparator6.setBackground(new java.awt.Color(153, 153, 153));
+        jSeparator6.setForeground(new java.awt.Color(255, 0, 0));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -202,6 +219,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnTerminarT))
+                    .addComponent(jSeparator3)
+                    .addComponent(jSeparator5)
+                    .addComponent(jSeparator6)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(AtaqueALaCabeza, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -209,10 +229,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jSeparator2)
-                        .addContainerGap())
-                    .addComponent(jSeparator3)
-                    .addComponent(jSeparator5)
-                    .addComponent(jSeparator6)))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
