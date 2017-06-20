@@ -23,7 +23,9 @@ public class LogsJuego extends javax.swing.JFrame {
         
         URL url = getClass().getResource("/imagenes/NamixCardIco.png");
         ImageIcon imag = new ImageIcon(url);
-        setIconImage(imag.getImage());        
+        setIconImage(imag.getImage());
+        this.setVisible(true);
+        
         
     }
     
