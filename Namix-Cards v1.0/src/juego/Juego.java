@@ -53,7 +53,6 @@ public class Juego {
     public void cartaClickeda(Carta carta) {
 
         if (carta.isEnJuego()) {
-            System.out.println("en juego");
             if (carta.getJugador().equals(jugadorActivo)) {
                 desactivarHechizo();
                 if (!carta.isAtaco()) {
@@ -88,7 +87,6 @@ public class Juego {
 
     public void oponenteClickeado(Jugador oponente) {
         if (oponente.equals(jugadorPasivo)) {
-            System.out.println("PASIVO");
             if (cartaHechizoActiva != null) {
                 dañarOponente(cartaHechizoActiva.getPoder(), oponente);
                 jugadorActivo.getCartasEnMano().remove(cartaHechizoActiva);
