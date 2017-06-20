@@ -71,7 +71,7 @@ public class ControladorPantalla {
 
         //SE LLAMAN A LOS METODOS PARA CREAR LAS CARTAS DE LOS JUGADORES
         CargarCartas(inf.getCartasJugadorMano(), tam.height / 7.0F, false);
-        CargarCartas(inf.getCartasPCMano(), (tam.height - tam.height / 90.0f), true);
+        CargarCartas(inf.getCartasPCMano(), (tam.height - tam.height / 90.0f), false);
         CargarCartas(inf.getCartasJugadorTablero(), (int) (tam.height / 2.7F), false);
         CargarCartas(inf.getCartasPCTablero(), (int) (tam.height - tam.height / 3.7f), false);
 
@@ -129,7 +129,7 @@ public class ControladorPantalla {
         FinDelJuego pantalla = new FinDelJuego();
         PanelFinal fondo = new PanelFinal();
         
-        if(Ganador.equals("Jugador 1")){
+        if(Ganador.equals("Humano")){
             
             String[] nombreFondo = new String[5];
             for (int i = 0; i < nombreFondo.length; i++) {
@@ -143,7 +143,9 @@ public class ControladorPantalla {
             fondo.setNombre(nombreDeArchivoSelec);
             
             pantalla.add(fondo,BorderLayout.CENTER);
+            
             fondo.repaint();
+            pantalla.setVisible(true);
         }else{
             
             String[] nombreFondo = new String[5];
@@ -158,7 +160,9 @@ public class ControladorPantalla {
             fondo.setNombre(nombreDeArchivoSelec);
             
             pantalla.add(fondo,BorderLayout.CENTER);
+            
             fondo.repaint();
+            pantalla.setVisible(true);
         
         
         }

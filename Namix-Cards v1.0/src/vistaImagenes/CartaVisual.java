@@ -125,7 +125,7 @@ public class CartaVisual extends javax.swing.JPanel {
 
         lblMana.setBackground(new java.awt.Color(0, 0, 51));
         lblMana.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lblMana.setForeground(new java.awt.Color(0, 153, 0));
+        lblMana.setForeground(new java.awt.Color(102, 255, 0));
         lblMana.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
