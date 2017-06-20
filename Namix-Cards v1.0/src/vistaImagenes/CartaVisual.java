@@ -41,7 +41,7 @@ public class CartaVisual extends javax.swing.JPanel {
     public void setValores(Carta carta) {
         ccv = new ControladorCartaVisual(juego);
         this.carta = carta;
-        lblNombre.setText(carta.getNombre());
+        lblNombre.setText(carta.getNombre()+" Listo");
         lblPoder.setText(carta.getPoder().toString());
         lblMana.setText(carta.getCoste().toString());
         jugador = carta.getJugador();
@@ -49,10 +49,14 @@ public class CartaVisual extends javax.swing.JPanel {
         ccv.AgregarImagenCarta(carta.getNombre(), this);
         ccv.AgregarFondoCarta(carta.getTipo(), this);
         if (carta.isAtaco()) {
-            lblNombre.setForeground(Color.GRAY);
+            lblNombre.setForeground(Color.DARK_GRAY);
+            //ccv.RemueveDespuesDeAtaque(carta.getTipo(), this);
+            lblNombre.setFont(new Font("Tahoma", 1, 14));
+            lblNombre.setText(carta.getNombre()+"(Zzz)");
         }
         if (carta.isActiva()) {
             lblNombre.setFont(new Font("Tahoma", 1, 14));
+            lblNombre.setForeground(Color.red);
             
         }
 
@@ -64,17 +68,22 @@ public class CartaVisual extends javax.swing.JPanel {
         lblNombre.setVisible(false);
         lblPoder.setVisible(false);
         lblMana.setVisible(false);
-        lblNombre.setText(carta.getNombre());
+        lblNombre.setText(carta.getNombre()+" Listo");
         lblPoder.setText(carta.getPoder().toString());
         lblMana.setText(carta.getCoste().toString());
         jugador = carta.getJugador();
         tipo = String.valueOf(carta.getTipo());
         ccv.AgregarFondoManoPc(this);
         if (carta.isAtaco()) {
-            lblNombre.setForeground(Color.GRAY);
+            lblNombre.setForeground(Color.DARK_GRAY);
+            //ccv.RemueveDespuesDeAtaque(carta.getTipo(), this);
+            lblNombre.setFont(new Font("Tahoma", 1, 14));
+            lblNombre.setText(carta.getNombre()+"(Zzz)");
+            
         }
         if (carta.isActiva()) {
             lblNombre.setFont(new Font("Tahoma", 1, 14));
+            lblNombre.setForeground(Color.red);
         }
 
     }
