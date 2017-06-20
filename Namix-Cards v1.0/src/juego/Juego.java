@@ -34,7 +34,8 @@ public class Juego {
     private Carta cartaCriaturaActiva = null;
     private Carta cartaHechizoActiva = null;
     private AI ai;
-
+    private Logger logger;
+    
     //TEST
     private ControlVistaPrincipal contVistaPPL;
 
@@ -44,6 +45,7 @@ public class Juego {
 
         //ESTO ES PARA PROBAR VISTA JOSE
         //contVistaPPL = new ControlVistaPrincipal(this);
+        logger = new Logger();
         contPant = new ControladorPantalla(this);
         nuevoJuego();
     }
