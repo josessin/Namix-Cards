@@ -14,13 +14,16 @@ import LogsJuego.LogsJuego;
 public class Logger {
     
     private LogsJuego lg;
+    private String fullLog;
     
     public Logger(){
         lg = new LogsJuego();
+        fullLog = "";
     }
     
     public void log(String nuevaLine){
-        lg.CargarTexto(nuevaLine);
+        fullLog+= nuevaLine + "\n";
+        lg.CargarTexto(fullLog);
         
     }
     
