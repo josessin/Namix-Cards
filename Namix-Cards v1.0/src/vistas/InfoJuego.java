@@ -16,7 +16,15 @@ public class InfoJuego extends javax.swing.JFrame {
      */
     public InfoJuego() {
         initComponents();
-        TxtComoJugar.setText("");
+        TxtComoJugar.setText("/nComo se juega: "
+                + "/n El juego consiste en derrotar al oponente acabando con sus total de vidas(LifePoint). Para ello contamos con diferentes tipos de criaturas y hechizos."
+                + "Goblins, lomens, elfos, venenos, truenos, entre otros necesitan de mana, identificado con un color verde, que se requieren para poder jugarla "
+                + "un contador del mismo color te indicara cuanto te resta por usar por turno."
+                + "/n Para atacar al jugador es necesario tener una criatura en el campo o poseer un hechizo, haciendo click sobre el  mismo, se vera en color rojo, y esta lista para seleccionar objetivo. "
+                + "el paso sigueinte es seleccionar el objetivo ya sea a una criatura (haciendo click sobre la ella) o al oponente (haciendo click sobre la espada situada debajo de su total de vidas)"
+                + "hasta dejar en 0 sus vidas."
+                + "/n Dicho esto el juego consiste en manterener el equilibrio entre un control de campo y el daño al oponente. Para sacarle el mayor probecho a el mana en cada turno." );
+        
     }
 
     /**
