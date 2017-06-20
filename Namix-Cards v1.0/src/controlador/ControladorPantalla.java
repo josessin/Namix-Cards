@@ -11,6 +11,7 @@ import java.awt.Point;
 import java.awt.Toolkit;
 import java.util.ArrayList;
 import juego.Juego;
+import juego.NamixCard;
 import modelos.Carta;
 import modelos.InfoVisualJuego;
 import modelos.Jugador;
@@ -138,16 +139,18 @@ public class ControladorPantalla {
                 String nombreArchivo = "Victoria" + (i + 1);
                 nombreFondo[i] = nombreArchivo;
             }
-            int numRandom = (int) Math.round(Math.random()*5);
+            int numRandom = (int) Math.round(Math.random()*4);
             
             String nombreDeArchivoSelec = nombreFondo[numRandom];
-            
+            fondo.setSize(pantalla.getSize());
             fondo.setNombre(nombreDeArchivoSelec);
             
             pantalla.add(fondo,BorderLayout.CENTER);
             
             fondo.repaint();
-            pantalla.setVisible(true);
+            
+            pp.setVisible(false);
+            pantalla.setVisible(true);            
         }else{
             
             String[] nombreFondo = new String[5];
@@ -155,15 +158,17 @@ public class ControladorPantalla {
                 String nombreArchivo = "HasPerdido" + (i + 1);
                 nombreFondo[i] = nombreArchivo;
             }
-            int numRandom = (int) Math.round(Math.random()*5);
+            int numRandom = (int) Math.round(Math.random()*4);
             
             String nombreDeArchivoSelec = nombreFondo[numRandom];
-            
+            fondo.setSize(pantalla.getSize());
             fondo.setNombre(nombreDeArchivoSelec);
             
             pantalla.add(fondo,BorderLayout.CENTER);
             
             fondo.repaint();
+            
+            pp.setVisible(false);
             pantalla.setVisible(true);
         
         

@@ -5,6 +5,8 @@
  */
 package vistas;
 
+import java.awt.Toolkit;
+
 /**
  *
  * @author jeron
@@ -16,6 +18,8 @@ public class FinDelJuego extends javax.swing.JFrame {
      */
     public FinDelJuego() {
         initComponents();
+        this.setSize(Toolkit.getDefaultToolkit().getScreenSize());
+        this.setLocationRelativeTo(this);
     }
 
     /**
