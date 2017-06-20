@@ -25,7 +25,7 @@ public class PanelPantallaPrin extends javax.swing.JPanel {
      public void paint(Graphics g){
         String sep = File.separator;
         Dimension tam = getSize();
-        ImageIcon fondo = new ImageIcon(getClass().getResource(sep+"imagenes"+sep+"FondoNamix.jpg"));
+        ImageIcon fondo = new ImageIcon(getClass().getResource("/imagenes/FondoNamix.jpg"));
         g.drawImage(fondo.getImage(),0,0,getWidth(), getHeight(),null);
         setOpaque(false);
         super.paintComponent(g);

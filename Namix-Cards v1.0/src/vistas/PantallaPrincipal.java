@@ -33,7 +33,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         String sep = File.separator;
         initComponents();
         this.conp = conp;
-        URL url = getClass().getResource(sep+"imagenes"+sep+"NamixCardIco.png");
+        URL url = getClass().getResource("/imagenes/NamixCardIco.png");
         ImageIcon imag = new ImageIcon(url);
         setIconImage(imag.getImage());
 

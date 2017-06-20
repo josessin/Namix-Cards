@@ -21,7 +21,7 @@ public class Datos {
 
         String sep = File.separator;
         if (nombre == null) {
-            nombre = "src"+sep+"csv"+sep+"mazo1v2.csv";
+            nombre = "src/csv/mazo1v2.csv";
         }
 
         try {
