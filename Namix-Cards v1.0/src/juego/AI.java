@@ -71,9 +71,11 @@ class AI {
             poderOponente += c.getPoder();
         }
         if (poderOponente >= yo.getVidas()) {
+            System.out.println("Estoy en el horno, muero en proximo turno si no hago algo");
             mueroEnProxTurno = true;
         } else {
             chanceDePerder = calcChanceDePerder();
+            System.out.println("Mis chances de perder son: " + chanceDePerder);
         }
 
     }
@@ -81,6 +83,7 @@ class AI {
     private void jugar() {
         //Matar oponenete si es posible
         if (dañoMaximoPosible >= dañoExtraParaGanar) {
+            System.out.println("Voy con todo al jugador");
             jugarCartas(combinacionMaxima, true);
             attacarJugador(yo.getCartasEnJuego());
         } else if (mueroEnProxTurno || chanceDePerder > 0.75) {
@@ -94,17 +97,33 @@ class AI {
     }
 
     private void ataqueDefensivo(ArrayList<Carta> cartasEnJuego) {
+
+        System.out.println("Ataque defensivo");
+        //Attacar criaturas
         for (Carta c : cartasEnJuego) {
             atacarCriatura(c, mejorObjectivoCriatura(c, true));
         }
         ejecutarPares(parCriaturas);
+        //atacar jugador
+        for (Carta c : cartasEnJuego) {
+            if (!c.isAtaco()) {
+                attacarJugador(c);
+            }
+        }
     }
 
     private void ataqueOfensivo(ArrayList<Carta> cartasEnJuego) {
+        System.out.println("Ataque ofensivo");
         for (Carta c : cartasEnJuego) {
             atacarCriatura(c, mejorObjectivoCriatura(c, false));
         }
         ejecutarPares(parCriaturas);
+        //atacar jugador
+        for (Carta c : cartasEnJuego) {
+            if (!c.isAtaco()) {
+                attacarJugador(c);
+            }
+        }
     }
 
     private ArrayList<Carta> getCartasJugables() {
@@ -182,6 +201,14 @@ class AI {
         }
     }
 
+    private void attacarJugador(Carta carta) {
+
+        juego.cartaClickeda(carta);
+        pause(200);
+        juego.oponenteClickeado(juego.getJugadorPasivo());
+
+    }
+
     private void attacarJugador(ArrayList<Carta> cartas) {
         for (Carta c : cartas) {
             juego.cartaClickeda(c);
@@ -206,7 +233,6 @@ class AI {
         ejecutarPares(parHechizos);
     }
 
-    
     private void ejecutarPares(ArrayList<Par> pares) {
         for (Par p : pares) {
             juego.cartaClickeda(p.atacante);
@@ -216,7 +242,6 @@ class AI {
         }
     }
 
-    
     private void atacarCriatura(Carta cartaAtacante, Carta mejorObjetivo) {
         if (cartaAtacante == null || mejorObjetivo == null) {
             return;
@@ -291,8 +316,8 @@ class AI {
         int cartasManoOp = juego.getJugadorPasivo().getCartasEnMano().size();
         int manaOp = juego.getJugadorPasivo().getManaTotal();
         //A mayot vidas restantes, menor es el total
-        int peorCaso = 75;
-        return ((20 - vidasRestantes) * 3 + cartasManoOp + manaOp) / peorCaso;
+        int peorCaso = 55;
+        return ((20 - vidasRestantes) * 2 + cartasManoOp + manaOp) / peorCaso;
 
     }
 
