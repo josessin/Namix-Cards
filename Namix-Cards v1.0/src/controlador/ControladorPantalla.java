@@ -11,7 +11,6 @@ import java.awt.Point;
 import java.awt.Toolkit;
 import java.util.ArrayList;
 import juego.Juego;
-import juego.NamixCard;
 import modelos.Carta;
 import modelos.InfoVisualJuego;
 import modelos.Jugador;
@@ -41,6 +40,11 @@ public class ControladorPantalla {
 
     }
 
+    public PantallaPrincipal getPp() {
+        return pp;
+    }
+    
+
     public void StartPantalla() {
 
         Dimension tam = Toolkit.getDefaultToolkit().getScreenSize();
@@ -62,7 +66,7 @@ public class ControladorPantalla {
 
         DestruirCartasViejas();
         //Se inicializa la pantalla
-
+        
         StartPantalla();
         tam = pp.getSize();
 
@@ -134,41 +138,41 @@ public class ControladorPantalla {
         
         if(Ganador.getTipoJugador().equals(Jugador.TipoJugador.humano)){
             
-            String[] nombreFondo = new String[5];
+          /*  String[] nombreFondo = new String[5];
             for (int i = 0; i < nombreFondo.length; i++) {
                 String nombreArchivo = "Victoria" + (i + 1);
                 nombreFondo[i] = nombreArchivo;
             }
             int numRandom = (int) Math.round(Math.random()*4);
             
-            String nombreDeArchivoSelec = nombreFondo[numRandom];
+            String nombreDeArchivoSelec = nombreFondo[numRandom];*/
             fondo.setSize(pantalla.getSize());
-            fondo.setNombre(nombreDeArchivoSelec);
+            fondo.setNombre("Victoria");
             
             pantalla.add(fondo,BorderLayout.CENTER);
             
             fondo.repaint();
             
-            pp.setVisible(false);
+            pp.invisible();
             pantalla.setVisible(true);            
         }else{
             
-            String[] nombreFondo = new String[5];
+ /*           String[] nombreFondo = new String[5];
             for (int i = 0; i < nombreFondo.length; i++) {
                 String nombreArchivo = "HasPerdido" + (i + 1);
                 nombreFondo[i] = nombreArchivo;
             }
             int numRandom = (int) Math.round(Math.random()*4);
             
-            String nombreDeArchivoSelec = nombreFondo[numRandom];
+            String nombreDeArchivoSelec = nombreFondo[numRandom];*/
             fondo.setSize(pantalla.getSize());
-            fondo.setNombre(nombreDeArchivoSelec);
+            fondo.setNombre("Derrota");
             
             pantalla.add(fondo,BorderLayout.CENTER);
             
             fondo.repaint();
             
-            pp.setVisible(false);
+            pp.invisible();
             pantalla.setVisible(true);
         
         

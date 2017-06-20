@@ -70,6 +70,12 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         lblManaNumJ1.setText(String.valueOf(inf.getManaDispJugador()));
         lblManaNumJ2.setText(String.valueOf(inf.getManaDispPC()));
     }
+    
+    public void invisible(){
+    
+        this.setVisible(false);
+    
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
