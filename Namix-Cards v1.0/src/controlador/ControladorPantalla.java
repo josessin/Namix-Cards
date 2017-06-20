@@ -131,12 +131,12 @@ public class ControladorPantalla {
         
         if(Ganador.equals("Jugador 1")){
             
-            String[] nombreFondo = new String[4];
+            String[] nombreFondo = new String[5];
             for (int i = 0; i < nombreFondo.length; i++) {
                 String nombreArchivo = "Victoria" + (i + 1);
                 nombreFondo[i] = nombreArchivo;
             }
-            int numRandom = (int) Math.round(Math.random()*4);
+            int numRandom = (int) Math.round(Math.random()*5);
             
             String nombreDeArchivoSelec = nombreFondo[numRandom];
             
@@ -146,12 +146,12 @@ public class ControladorPantalla {
             fondo.repaint();
         }else{
             
-            String[] nombreFondo = new String[3];
+            String[] nombreFondo = new String[5];
             for (int i = 0; i < nombreFondo.length; i++) {
                 String nombreArchivo = "HasPerdido" + (i + 1);
                 nombreFondo[i] = nombreArchivo;
             }
-            int numRandom = (int) Math.round(Math.random()*3);
+            int numRandom = (int) Math.round(Math.random()*5);
             
             String nombreDeArchivoSelec = nombreFondo[numRandom];
             
