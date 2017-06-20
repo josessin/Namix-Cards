@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import juego.Juego;
 import modelos.Carta;
 import modelos.InfoVisualJuego;
+import modelos.Jugador;
 import vistaImagenes.CartaVisual;
 import vistaImagenes.PanelFinal;
 import vistaImagenes.PanelPantallaPrin;
@@ -125,11 +126,12 @@ public class ControladorPantalla {
         return juego;
     }
     
-    public void PantallaFinal(String Ganador){
+    public void PantallaFinal(Jugador Ganador){
         FinDelJuego pantalla = new FinDelJuego();
         PanelFinal fondo = new PanelFinal();
         
-        if(Ganador.equals("Humano")){
+        
+        if(Ganador.getTipoJugador().equals(Jugador.TipoJugador.humano)){
             
             String[] nombreFondo = new String[5];
             for (int i = 0; i < nombreFondo.length; i++) {

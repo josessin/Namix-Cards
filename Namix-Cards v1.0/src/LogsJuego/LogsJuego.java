@@ -65,6 +65,8 @@ public class LogsJuego extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
         txtJuego.setBackground(new java.awt.Color(0, 0, 0));
+        txtJuego.setBorder(null);
+        txtJuego.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         txtJuego.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtJuego.setEnabled(false);
         txtJuego.setOpaque(false);
