@@ -38,7 +38,6 @@ public class ControladorCartaVisual {
     //METODO PARA IMAGEN DEL MONSTRUO EN EL CENTRO DE LA CARTA
     public void AgregarImagenCarta(String nombre, CartaVisual cv) {
         this.cv = cv;
-        System.out.println("Estoy en agregar imagen de carta");
         PanelImagenCarta imaCart = new PanelImagenCarta();
         imaCart.setNombre(nombre);
 
@@ -83,7 +82,6 @@ public class ControladorCartaVisual {
 
     public void AgregarFondoCarta(Carta.Tipo tipo, CartaVisual cv) {
         this.cv = cv;
-        System.out.println("Estot en Agregar FondoCarta");
         
         
         /*cv.add(fondoC,BorderLayout.CENTER);

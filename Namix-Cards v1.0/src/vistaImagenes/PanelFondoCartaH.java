@@ -25,7 +25,6 @@ public class PanelFondoCartaH extends javax.swing.JPanel {
     }
     
          public void paint(Graphics g){
-       String sep = File.separator;
         Dimension tam = getSize();
         ImageIcon fondo = new ImageIcon(getClass().getResource("/imagenes/FondoHechizo.jpg"));
         g.drawImage(fondo.getImage(),0,0,getWidth(), getHeight(),null);

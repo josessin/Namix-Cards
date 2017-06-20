@@ -25,8 +25,6 @@ public class PanelCartaFondo extends javax.swing.JPanel {
         
     }
     public void paint(Graphics g){
-        String sep = File.separator;
-        System.out.println("ACA ESTOY");
         Dimension tam = getSize();
         ImageIcon fondo = new ImageIcon(getClass().getResource("/imagenes/CartaFondo.jpg"));
         g.drawImage(fondo.getImage(),0,0,getWidth(), getHeight(),null);
