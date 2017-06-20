@@ -7,7 +7,9 @@ package vistas;
 
 import controlador.ControladorPantalla;
 import java.awt.Dimension;
+import java.net.URL;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import modelos.Carta;
 
 
@@ -26,6 +28,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     public PantallaPrincipal(final ControladorPantalla conp) {
         initComponents();
         this.conp = conp;
+        
     }
 
     public ArrayList getEnvioInfo() {

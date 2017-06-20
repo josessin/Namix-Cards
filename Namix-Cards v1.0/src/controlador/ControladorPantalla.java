@@ -39,6 +39,7 @@ public class ControladorPantalla {
 
         Dimension tam = Toolkit.getDefaultToolkit().getScreenSize();
         pp.setSize(tam);
+
         pp.setVisible(true);
     }
     public void PonerFondoAPantallaP(){
