@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import juego.Juego;
 import modelos.Carta;
 import modelos.Jugador;
+import vistas.PantallaPrincipal;
 
 
 /**
@@ -29,11 +30,14 @@ public class CartaVisual extends javax.swing.JPanel {
     private ControladorCartaVisual ccv;
     private Carta carta;
     
+    
 
     private ArrayList<Carta> CartasEnJuego = new ArrayList<Carta>();
     public CartaVisual(Juego juego) {
         initComponents();
+
         this.juego = juego;
+
     }
 
     public void setValores(Carta carta) {
@@ -44,9 +48,24 @@ public class CartaVisual extends javax.swing.JPanel {
         lblMana.setText(carta.getCoste().toString());
         jugador = carta.getJugador();
         tipo = String.valueOf(carta.getTipo());
-        ccv.AgregarFondoCarta(carta.getTipo(), this);
         ccv.AgregarImagenCarta(carta.getNombre(), this);
+        ccv.AgregarFondoCarta(carta.getTipo(), this);
         
+        
+    }
+    
+    public void setValores(Carta carta, boolean escondido) {
+        ccv = new ControladorCartaVisual(juego);
+        this.carta = carta;
+        lblNombre.setVisible(false);
+        lblPoder.setVisible(false);
+        lblMana.setVisible(false);
+        lblNombre.setText(carta.getNombre());
+        lblPoder.setText(carta.getPoder().toString());
+        lblMana.setText(carta.getCoste().toString());
+        jugador = carta.getJugador();
+        tipo = String.valueOf(carta.getTipo());
+        ccv.AgregarFondoManoPc(this);
         
     }
     
@@ -108,6 +127,7 @@ public class CartaVisual extends javax.swing.JPanel {
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
         juego.cartaClickeda(carta);
+        
     }//GEN-LAST:event_formMouseClicked
 
 
