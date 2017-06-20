@@ -40,8 +40,8 @@ public class Jugador {
             this.manaTotal = 1;
             this.activo = true;
         } else {
-            this.manaDisponible = 2;
-            this.manaTotal = 2;
+            this.manaDisponible = 1;
+            this.manaTotal = 1;
         }
 
         cartasEnJuego = new ArrayList<>();
