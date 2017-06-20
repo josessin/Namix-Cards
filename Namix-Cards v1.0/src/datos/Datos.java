@@ -1,6 +1,7 @@
 package datos;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,8 +19,9 @@ public class Datos {
         BufferedReader buffer = null;
         ArrayList<Carta> mazo = new ArrayList<Carta>();
 
+        String sep = File.separator;
         if (nombre == null) {
-            nombre = "src/csv/mazo1v2.csv";
+            nombre = "src"+sep+"csv"+sep+"mazo1v2.csv";
         }
 
         try {
