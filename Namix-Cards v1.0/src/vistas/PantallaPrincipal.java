@@ -28,6 +28,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private Dimension tam = getToolkit().getScreenSize();
     private ArrayList envioInfo = new ArrayList();
     private int manaDisJ, manaDisP;
+    
 
     public PantallaPrincipal(final ControladorPantalla conp) {
         String sep = File.separator;

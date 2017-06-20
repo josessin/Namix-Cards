@@ -32,6 +32,7 @@ public class ControladorPantalla {
     private InfoVisualJuego inf;
     private Dimension tam;
     PanelPantallaPrin fondo = new PanelPantallaPrin();
+    public boolean noActualizar;
 
     public ControladorPantalla(Juego juego) {
         this.juego = juego;
@@ -131,10 +132,10 @@ public class ControladorPantalla {
         return juego;
     }
     
-    public void PantallaFinal(Jugador Ganador, ControladorPantalla contPant){
+    public void PantallaFinal(Jugador Ganador, ControladorPantalla conp){
         FinDelJuego pantalla = new FinDelJuego();
         PanelFinal fondo = new PanelFinal();
-        
+        noActualizar = true;
         
         if(Ganador.getTipoJugador().equals(Jugador.TipoJugador.humano)){
             
@@ -153,8 +154,11 @@ public class ControladorPantalla {
             
             fondo.repaint();
             
+            
+            pantalla.setVisible(true); 
+            PantallaPrincipal pp = conp.getPp();
+            //pp.setVisible(false);
             pp.invisible();
-            pantalla.setVisible(true);            
         }else{
             
  /*           String[] nombreFondo = new String[5];
@@ -172,8 +176,12 @@ public class ControladorPantalla {
             
             fondo.repaint();
             
-            pp.invisible();
+            
+           
             pantalla.setVisible(true);
+            PantallaPrincipal pp = conp.getPp();
+            //pp.setVisible(false);
+            pp.invisible();
         
         
         }
