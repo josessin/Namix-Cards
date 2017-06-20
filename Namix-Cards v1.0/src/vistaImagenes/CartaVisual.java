@@ -37,17 +37,7 @@ public class CartaVisual extends javax.swing.JPanel {
         this.juego = juego;
 
     }
-   /* public void paintC(Graphics g){
-        System.out.println("ACA ESTOY");
-        Dimension tam = getSize();
-        ImageIcon fondo = new ImageIcon(getClass().getResource("/imagenes/FondoMonstruov2.png"));
-        g.drawImage(fondo.getImage(),0, 0, tam.width, tam.height, this);
-        setOpaque(false);
-        super.paint(g);
-        
-    
-    }*/
-
+   
     public void setValores(Carta carta) {
         ccv = new ControladorCartaVisual(juego);
         this.carta = carta;
@@ -63,6 +53,7 @@ public class CartaVisual extends javax.swing.JPanel {
         }
         if (carta.isActiva()) {
             lblNombre.setFont(new Font("Tahoma", 1, 14));
+            
         }
 
     }
@@ -113,13 +104,15 @@ public class CartaVisual extends javax.swing.JPanel {
         lblNombre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
+        lblPoder.setBackground(new java.awt.Color(0, 0, 51));
         lblPoder.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblPoder.setForeground(new java.awt.Color(204, 0, 0));
-        lblPoder.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblPoder.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
+        lblMana.setBackground(new java.awt.Color(0, 0, 51));
         lblMana.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblMana.setForeground(new java.awt.Color(0, 153, 0));
-        lblMana.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblMana.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -127,23 +120,22 @@ public class CartaVisual extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblMana, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
-                        .addGap(48, 48, 48)
-                        .addComponent(lblPoder, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)))
+                .addComponent(lblNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(lblMana, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addComponent(lblPoder, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 16, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblPoder, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblMana, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(lblNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblMana, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblPoder, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
