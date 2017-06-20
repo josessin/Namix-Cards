@@ -35,7 +35,7 @@ public class Juego {
     private Carta cartaHechizoActiva = null;
     private AI ai;
     public Logger logger;
-    
+    private boolean gameOver;
     //TEST
     private ControlVistaPrincipal contVistaPPL;
 
@@ -51,6 +51,9 @@ public class Juego {
     }
 
     public void cartaClickeda(Carta carta) {
+        if (gameOver) {
+            return;
+        }
 
         if (carta.isEnJuego()) {
             if (carta.getJugador().equals(jugadorActivo)) {
@@ -85,6 +88,10 @@ public class Juego {
     }
 
     public void oponenteClickeado(Jugador oponente) {
+        if (gameOver) {
+            return;
+        }
+
         if (oponente.equals(jugadorPasivo)) {
             if (cartaHechizoActiva != null) {
                 dañarOponente(cartaHechizoActiva, oponente);
@@ -105,7 +112,9 @@ public class Juego {
     }
 
     public void terminarTurno() {
-        
+        if (gameOver) {
+            return;
+        }
         System.out.println("<<< TURNO DE: " + jugadorPasivo.getNombre().toUpperCase() + " >>>");
         desactivarCartasActivas();
 
@@ -181,7 +190,7 @@ public class Juego {
                 //restar el mana disponible
                 jugadorActivo.setManaDisponible(jugadorActivo.getManaDisponible() - carta.getCoste());
                 logger.log("Jugar Carta: " + carta.getNombre());
-            }else{
+            } else {
                 logger.log("Intento de jugar nueva criatura negado: no se pueden tener mas de 8 cartas en juego");
                 JOptionPane.showMessageDialog(null, "No se pueden jugar mas cartas, 8 es el máximo");
             }
@@ -240,6 +249,7 @@ public class Juego {
         logger.log(cartaAgresora.getNombre() + " hace " + cartaAgresora.getPoder() + " daños a " + jugadorPasivo.getNombre());
         actualizarPantalla();
         if (oponente.getVidas() <= 0) {
+            gameOver = true;
             contPant.PantallaFinal(jugadorActivo);
             //Juego terminado
             //JOptionPane.showMessageDialog(null, "Juego Terminado! A ganado el" + jugadorActivo.getNombre());
