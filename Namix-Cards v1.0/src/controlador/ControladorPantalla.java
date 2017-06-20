@@ -40,7 +40,7 @@ public class ControladorPantalla {
     public void StartPantalla() {
 
         Dimension tam = Toolkit.getDefaultToolkit().getScreenSize();
-        pp.setSize(tam);
+        //pp.setSize(tam);
 
         pp.setVisible(true);
     }
