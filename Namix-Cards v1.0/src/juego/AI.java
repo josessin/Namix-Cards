@@ -231,12 +231,6 @@ class AI {
 
         }
 
-        if (charlatan) {
-            juego.logger.log("--Mejor combo de daño:");
-            for (Carta c : combinacionDañoMaxima) {
-                juego.logger.log(c.getNombre());
-            }
-        }
         return mejorSumPoder;
     }
 
@@ -279,12 +273,7 @@ class AI {
             }
 
         }
-        if (charlatan) {
-            juego.logger.log("--Mejor combo de criaturas");
-            for (Carta c : mejorCombinacionCriaturas) {
-                juego.logger.log(c.getNombre());
-            }
-        }
+        
     }
 
     private int calcDañoNesesario() {
