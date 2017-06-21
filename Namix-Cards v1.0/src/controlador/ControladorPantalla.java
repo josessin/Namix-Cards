@@ -42,6 +42,8 @@ public class ControladorPantalla {
         cartasParaMostrar = new ArrayList<>();
         pp = new PantallaPrincipal(this);
     }
+    
+    
 
     public PantallaPrincipal getPp() {
         return pp;
@@ -183,5 +185,5 @@ public class ControladorPantalla {
         }
 
     }
-
+    
 }

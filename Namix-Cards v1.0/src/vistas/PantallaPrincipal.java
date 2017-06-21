@@ -12,7 +12,10 @@ import java.awt.event.ComponentEvent;
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import juego.NamixCard;
 import modelos.Carta;
 import modelos.InfoVisualJuego;
 
@@ -98,11 +101,14 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         lblManaNumJ2 = new javax.swing.JLabel();
         AtaqueALaCabeza = new javax.swing.JLabel();
         AtaqueALaCabeza1 = new javax.swing.JLabel();
+        BtnRetirada = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Namix Cards");
         setFocusableWindowState(false);
         setModalExclusionType(java.awt.Dialog.ModalExclusionType.TOOLKIT_EXCLUDE);
+        setUndecorated(true);
+        setResizable(false);
         setSize(new java.awt.Dimension(0, 0));
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -173,6 +179,16 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        BtnRetirada.setBackground(new java.awt.Color(153, 153, 255));
+        BtnRetirada.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        BtnRetirada.setText("Retirada");
+        BtnRetirada.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnRetirada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnRetiradaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -199,14 +215,16 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                             .addComponent(lblManaNumJ2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblManaJ2))
                         .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnTerminarT))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(AtaqueALaCabeza, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(AtaqueALaCabeza1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(BtnRetirada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnTerminarT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -220,9 +238,11 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                     .addComponent(lblManaJ2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(AtaqueALaCabeza, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 412, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 404, Short.MAX_VALUE)
                 .addComponent(btnTerminarT)
-                .addGap(52, 52, 52)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BtnRetirada)
+                .addGap(31, 31, 31)
                 .addComponent(AtaqueALaCabeza1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -263,6 +283,19 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_AtaqueALaCabeza1MouseClicked
 
+    private void BtnRetiradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRetiradaActionPerformed
+        this.setVisible(false);
+        NamixCard retirada = new NamixCard();
+        retirada.main(null);
+        try {
+            this.removeAll();
+            this.finalize();
+            
+        } catch (Throwable ex) {
+            Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_BtnRetiradaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -270,6 +303,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AtaqueALaCabeza;
     private javax.swing.JLabel AtaqueALaCabeza1;
+    private javax.swing.JButton BtnRetirada;
     private javax.swing.JButton btnTerminarT;
     private javax.swing.JLabel lblLifePointsJ1;
     private javax.swing.JLabel lblLifePointsJ2;

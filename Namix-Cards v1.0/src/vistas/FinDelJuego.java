@@ -5,6 +5,7 @@
  */
 package vistas;
 
+import controlador.ControladorPantalla;
 import java.awt.Toolkit;
 import java.net.URL;
 import javax.swing.ImageIcon;
@@ -42,7 +43,6 @@ public class FinDelJuego extends javax.swing.JFrame {
         setAlwaysOnTop(true);
         setUndecorated(true);
         setResizable(false);
-        setState(1);
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 formMouseClicked(evt);
