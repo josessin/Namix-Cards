@@ -118,6 +118,7 @@ public class InfoJuego extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        iJ.AgregarBotones();
         iJ.setVisible(true);
         
         this.setVisible(false);
