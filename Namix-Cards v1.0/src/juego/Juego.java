@@ -210,7 +210,7 @@ public class Juego {
 
     private void atacarCarta(Carta cartaAtacada) {
 
-        if (cartaCriaturaActiva == null) {
+        if (cartaCriaturaActiva == null ) {
             return;
         }
         logger.log("Atacando: " + cartaCriaturaActiva.getNombre() + " ataca a " + cartaAtacada.getNombre());
