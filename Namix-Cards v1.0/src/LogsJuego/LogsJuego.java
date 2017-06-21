@@ -56,7 +56,7 @@ public class LogsJuego extends javax.swing.JFrame {
         txtJuego = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("Logs");
+        setTitle("Informe de Batalla");
         setAlwaysOnTop(true);
         setBackground(new java.awt.Color(0, 0, 0));
         setForeground(java.awt.Color.black);

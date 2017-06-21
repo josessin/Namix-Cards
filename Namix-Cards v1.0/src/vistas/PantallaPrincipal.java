@@ -285,15 +285,15 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     private void BtnRetiradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRetiradaActionPerformed
         this.setVisible(false);
-        NamixCard retirada = new NamixCard();
-        retirada.main(null);
-        try {
-            this.removeAll();
-            this.finalize();
-            
-        } catch (Throwable ex) {
-            Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        InicioJuego retirada = new InicioJuego(conp.getJuego());
+        retirada.setVisible(true);
+//        try {
+//            this.removeAll();
+//            this.finalize();
+//            
+//        } catch (Throwable ex) {
+//            Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }//GEN-LAST:event_BtnRetiradaActionPerformed
 
     /**

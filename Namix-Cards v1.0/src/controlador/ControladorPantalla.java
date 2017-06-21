@@ -128,6 +128,7 @@ public class ControladorPantalla {
         //Actualizar VistaPrincipal para vizualisar cambios
         pp.revalidate();
         pp.remove(fondo);
+        
         cartasParaMostrar.clear();
 
     }
@@ -137,10 +138,10 @@ public class ControladorPantalla {
     }
 
     public void PantallaFinal(Jugador Ganador, ControladorPantalla conp, Juego juego) {
-        FinDelJuego pantalla = new FinDelJuego();
+        FinDelJuego pantalla = new FinDelJuego(juego);
         PanelFinal fondo = new PanelFinal();
         noActualizar = true;
-
+        
         if (Ganador.getTipoJugador().equals(Jugador.TipoJugador.humano)) {
 
             /*  String[] nombreFondo = new String[5];
@@ -161,6 +162,7 @@ public class ControladorPantalla {
             pantalla.setVisible(true);
             PantallaPrincipal pp = conp.getPp();
             pp.invisible();
+            
         } else {
 
             /*           String[] nombreFondo = new String[5];
@@ -181,6 +183,7 @@ public class ControladorPantalla {
             pantalla.setVisible(true);
             PantallaPrincipal pp = conp.getPp();
             pp.invisible();
+
 
         }
 

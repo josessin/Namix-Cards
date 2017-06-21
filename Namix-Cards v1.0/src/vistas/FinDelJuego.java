@@ -9,6 +9,8 @@ import controlador.ControladorPantalla;
 import java.awt.Toolkit;
 import java.net.URL;
 import javax.swing.ImageIcon;
+import juego.Juego;
+import juego.Logger;
 import juego.NamixCard;
 
 /**
@@ -16,11 +18,12 @@ import juego.NamixCard;
  * @author jeron
  */
 public class FinDelJuego extends javax.swing.JFrame {
-
+    private Juego PartidaAnterior;
     /**
      * Creates new form FinDelJuego
      */
-    public FinDelJuego() {
+    public FinDelJuego(Juego PartidaAnterior) {
+        this.PartidaAnterior = PartidaAnterior;
         initComponents();
         this.setSize(Toolkit.getDefaultToolkit().getScreenSize());
         this.setLocationRelativeTo(this);
@@ -64,8 +67,8 @@ public class FinDelJuego extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
-        NamixCard nuevo = new NamixCard();
-        nuevo.main(null);
+        InicioJuego nuevoComienzo = new InicioJuego(PartidaAnterior);
+        nuevoComienzo.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_formMouseClicked
 
