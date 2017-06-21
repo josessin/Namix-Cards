@@ -243,7 +243,7 @@ public class Juego {
         }
         logger.log("Hechizo: " + cartaHechizoActiva.getNombre() + " daña a " + carta.getNombre());
         carta.setPoder(carta.getPoder() - cartaHechizoActiva.getPoder());
-        jugadorActivo.setManaDisponible(jugadorActivo.getManaDisponible() - carta.getCoste());
+        jugadorActivo.setManaDisponible(jugadorActivo.getManaDisponible() - cartaHechizoActiva.getCoste());
         if (carta.getPoder() <= 0) {
             logger.log("Muere " + carta.getNombre() + " de " + carta.getJugador().getNombre());
             jugadorPasivo.getCartasEnJuego().remove(carta);

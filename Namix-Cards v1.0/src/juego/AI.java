@@ -407,8 +407,8 @@ class AI {
         int cartasManoOp = juego.getJugadorPasivo().getCartasEnMano().size();
         int manaOp = juego.getJugadorPasivo().getManaTotal();
         //A mayot vidas restantes, menor es el total
-        int peorCaso = 55;
-        return ((20 - vidasRestantes) * 2 + cartasManoOp + manaOp) / peorCaso;
+        int peorCaso = 90;
+        return ((30 - vidasRestantes) * 2.5f + cartasManoOp + manaOp) / peorCaso;
 
     }
 

@@ -28,6 +28,7 @@ public class Logger {
     }
     
     public void destruir(){
+        lg.setVisible(false);
         lg = null;
         
     }
