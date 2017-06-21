@@ -216,7 +216,7 @@ public class Juego {
         logger.log("Atacando: " + cartaCriaturaActiva.getNombre() + " ataca a " + cartaAtacada.getNombre());
         //Se hacen daño (debemos guardar el poder para poder usarlo luego de cambiarlo)
         int poderCriaturaAtacada = cartaAtacada.getPoder();
-        cartaAtacada.setPoder(cartaAtacada.getPoder() - cartaCriaturaActiva.getPoder());
+        cartaAtacada.setPoder(poderCriaturaAtacada - cartaCriaturaActiva.getPoder());
         cartaCriaturaActiva.setPoder(cartaCriaturaActiva.getPoder() - poderCriaturaAtacada);
         cartaCriaturaActiva.setAtaco(true);
         cartaCriaturaActiva.setActiva(false);
@@ -229,9 +229,9 @@ public class Juego {
 
         if (cartaCriaturaActiva.getPoder() <= 0) {
             logger.log("Muere " + cartaCriaturaActiva.getNombre() + " de " + cartaCriaturaActiva.getJugador().getNombre());
-            jugadorActivo.getCartasEnJuego().remove(cartaCriaturaActiva);
-            cartaCriaturaActiva = null;
+            jugadorActivo.getCartasEnJuego().remove(cartaCriaturaActiva); 
         }
+        cartaCriaturaActiva = null;
         actualizarPantalla();
     }
 
