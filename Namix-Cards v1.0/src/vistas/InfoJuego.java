@@ -32,13 +32,13 @@ public class InfoJuego extends javax.swing.JFrame {
         setIconImage(imag.getImage());
         
         TxtComoJugar.setText("\nComo se juega: "
-                +"\n El juego consiste en derrotar al oponente acabando con sus total de vidas(LifePoint). Para ello contamos con diferentes tipos de criaturas y hechizos.\n"
-                + "Goblins, lomens, elfos, venenos, truenos, entre otros necesitan de mana, identificado con un color verde, que se requieren para poder jugarla\n "
-                + "un contador del mismo color te indicara cuanto te resta por usar por turno.\n"
-                + "\n Para atacar al jugador es necesario tener una criatura en el campo o poseer un hechizo, haciendo click sobre el  mismo, se vera en color rojo, y esta lista para seleccionar objetivo.\n"
-                + "el paso sigueinte es seleccionar el objetivo ya sea a una criatura (haciendo click sobre la ella) o al oponente (haciendo click sobre la espada situada debajo de su total de vidas)\n"
+                +"\n El juego consiste en derrotar al oponente acabando con su total de vida(LifePoint). Para ello contamos con diferentes tipos de criaturas y hechizos.\n"
+                + "Goblins, Golemns, elfos, venenos, truenos, entre otros, requieren de maná para su invocación(identificado con color verde)\n "
+                + "Un contador(también de color verde) indicará la cantidad de maná restante a usar(o no) en el turno.\n"
+                + "\n Para atacar al jugador es necesario tener una criatura en el campo o poseer un hechizo, haciendo click sobre el  mismo, se verá en color rojo, y esta lista para seleccionar objetivo.\n"
+                + "El paso siguiente es seleccionar el objetivo ya sea una criatura (haciendo click sobre la ella) o al oponente (haciendo click sobre la espada situada debajo de su total de vidas)\n"
                 + "hasta dejar en 0 sus vidas.\n"
-                + "\n Dicho esto el juego consiste en manterener el equilibrio entre un control de campo y el daño al oponente. Para sacarle el mayor probecho a el mana en cada turno." );
+                + "\n Dicho esto el juego consiste en mantener el equilibrio entre un control de campo y el daño al oponente. Para sacarle el mayor provecho al mana en cada turno." );
         
     }
     //SE AGREGA FONDO A VISTA
