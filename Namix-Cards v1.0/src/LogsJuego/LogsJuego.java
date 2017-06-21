@@ -31,7 +31,7 @@ public class LogsJuego extends javax.swing.JFrame {
         
         
     }
-    
+    //METODO PARA CARGAR EL TEXTO INFORMA QUE ESTA OCURRIENDO EN LA BATALLA
     public void CargarTexto(String log){
         
         txtJuego.removeAll();

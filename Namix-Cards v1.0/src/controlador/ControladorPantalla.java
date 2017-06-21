@@ -25,17 +25,20 @@ import vistas.PantallaPrincipal;
  * @author jeron
  */
 public class ControladorPantalla {
-
+    //OBJETOS
     private Juego juego;
-    private final PantallaPrincipal pp;
-    private ArrayList<CartaVisual> cartasParaMostrar;
     private InfoVisualJuego inf;
+    //VARIABLES
+    private ArrayList<CartaVisual> cartasParaMostrar;
     private Dimension tam;
-    PanelPantallaPrin fondo = new PanelPantallaPrin();
-
     public boolean noActualizar;
-    int a;
-
+    //VISTAS
+    private final PantallaPrincipal pp;
+    //PANELES
+    PanelPantallaPrin fondo = new PanelPantallaPrin();
+    
+    
+    //CONSTRUCTOR
     public ControladorPantalla(Juego juego) {
         this.juego = juego;
 
@@ -43,12 +46,12 @@ public class ControladorPantalla {
         pp = new PantallaPrincipal(this);
     }
     
-    
+    //METODOS
 
     public PantallaPrincipal getPp() {
         return pp;
     }
-
+    //INICIALIZA PANTALLA PRINCIPAL
     public void StartPantalla() {
 
         Dimension tam = Toolkit.getDefaultToolkit().getScreenSize();
@@ -57,13 +60,13 @@ public class ControladorPantalla {
         pp.setVisible(true);
 
     }
-
+    //SE COLOCA FONDO A LA PANTALLA PRINCIPAL
     public void PonerFondoAPantallaP() {
 
         pp.add(fondo, BorderLayout.CENTER);
         fondo.repaint();
     }
-
+    //ACTUALIZACION DE PANTALLA
     public void ActualizarPantalla(InfoVisualJuego inf) {
         if (inf == null) {
             return;
@@ -119,7 +122,7 @@ public class ControladorPantalla {
         }
 
     }
-
+    //Destruye cartas y fondo del Tablero
     private void DestruirCartasViejas() {
 
         for (int i = 0; i < cartasParaMostrar.size(); i++) {
@@ -136,7 +139,7 @@ public class ControladorPantalla {
     public Juego getJuego() {
         return juego;
     }
-
+    //METODO PARA COLOCAR LA PANTALLA FINAL SE DEJA CODIGO COMENTADO PARA FUTUROS CAMBIOS
     public void PantallaFinal(Jugador Ganador, ControladorPantalla conp, Juego juego) {
         FinDelJuego pantalla = new FinDelJuego(juego);
         PanelFinal fondo = new PanelFinal();

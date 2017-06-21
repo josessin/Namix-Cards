@@ -12,11 +12,7 @@ import java.awt.event.ComponentEvent;
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
-import juego.NamixCard;
-import modelos.Carta;
 import modelos.InfoVisualJuego;
 
 /**
@@ -30,13 +26,13 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     //Variables
     private Dimension tam = getToolkit().getScreenSize();
     private ArrayList envioInfo = new ArrayList();
-    private int manaDisJ, manaDisP;
+
     
 
     public PantallaPrincipal(final ControladorPantalla conp) {
-        String sep = File.separator;
         initComponents();
         this.conp = conp;
+        //SE COLOCA ICONO A VENTANA
         URL url = getClass().getResource("/imagenes/NamixCardIco.png");
         ImageIcon imag = new ImageIcon(url);
         setIconImage(imag.getImage());
@@ -51,22 +47,16 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 }
             }
         });
-
+        
         Dimension tam = getToolkit().getScreenSize();
         this.setPreferredSize(tam);
         pack();
         this.setVisible(true);
 
     }
+    
 
-    public ArrayList getEnvioInfo() {
-        return envioInfo;
-    }
-
-    public void setEnvioInfo(ArrayList envioInfo) {
-        this.envioInfo = envioInfo;
-    }
-
+    //METODO PARA CARGAR LA INFORMACION RECIBIDA POR INFOVISUALJUEGO
     public void CargaInfoJuego(InfoVisualJuego inf) {
 
         lblLifePointsNumJ1.setText(String.valueOf(inf.getVidasJugador()));
@@ -74,7 +64,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         lblManaNumJ1.setText(String.valueOf(inf.getManaDispJugador()));
         lblManaNumJ2.setText(String.valueOf(inf.getManaDispPC()));
     }
-    
+    //METODO PARA HACER INVISIBLE LA PANTALLA
     public void invisible(){
     
         this.setVisible(false);
@@ -287,13 +277,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         this.setVisible(false);
         InicioJuego retirada = new InicioJuego(conp.getJuego());
         retirada.setVisible(true);
-//        try {
-//            this.removeAll();
-//            this.finalize();
-//            
-//        } catch (Throwable ex) {
-//            Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-//        }
     }//GEN-LAST:event_BtnRetiradaActionPerformed
 
     /**

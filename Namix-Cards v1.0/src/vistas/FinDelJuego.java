@@ -18,6 +18,7 @@ import juego.NamixCard;
  * @author jeron
  */
 public class FinDelJuego extends javax.swing.JFrame {
+    //OBJETOS
     private Juego PartidaAnterior;
     /**
      * Creates new form FinDelJuego

@@ -16,11 +16,12 @@ import vistaImagenes.PanelPantallaPrin;
  * @author jeron
  */
 public class InfoJuego extends javax.swing.JFrame {
-    
+    //VISTAS
     private InicioJuego iJ;
     /**
      * Creates new form InfoJuego
      */
+    //CONSTRUCTOR
     public InfoJuego(InicioJuego ij) {
         this.iJ = ij;
         initComponents();
@@ -40,6 +41,7 @@ public class InfoJuego extends javax.swing.JFrame {
                 + "\n Dicho esto el juego consiste en manterener el equilibrio entre un control de campo y el daño al oponente. Para sacarle el mayor probecho a el mana en cada turno." );
         
     }
+    //SE AGREGA FONDO A VISTA
     public void AgregarFondo(){
     
         PanelPantallaPrin fondo = new PanelPantallaPrin();
@@ -69,7 +71,7 @@ public class InfoJuego extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Old English Text MT", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Como Juegar");
+        jLabel1.setText("Como Jugar");
 
         TxtComoJugar.setFont(new java.awt.Font("Old English Text MT", 1, 24)); // NOI18N
         TxtComoJugar.setDisabledTextColor(new java.awt.Color(0, 0, 0));

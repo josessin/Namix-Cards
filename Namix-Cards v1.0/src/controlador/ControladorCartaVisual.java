@@ -20,23 +20,25 @@ import vistaImagenes.PanelImagenCarta;
  * @author jeron
  */
 public class ControladorCartaVisual {
-    //Vistas
-
+    
+    //OBJETOS
     private Juego juego;
+    //VARIABLES
     private ArrayList<CartaVisual> listadoCartas;
+    //VISTAS
     private CartaVisual cv;
 
     //Paneles
     PanelFondoCartaH fondoH = new PanelFondoCartaH();
     PanelFondoCartaC fondoC = new PanelFondoCartaC();
     PanelCartaFondo fondoPC = new PanelCartaFondo();
-
+    //CONSTRICTOR
     public ControladorCartaVisual(Juego juego) {
 
         this.juego = juego;
         listadoCartas = new ArrayList<>();
     }
-    //METODO
+    //METODOS
 
     //METODO PARA IMAGEN DEL MONSTRUO EN EL CENTRO DE LA CARTA
     public void AgregarImagenCarta(String nombre, CartaVisual cv) {
@@ -59,7 +61,7 @@ public class ControladorCartaVisual {
         cv.add(imaCart);
 
     }
-
+    //CREA VISTA CARTA VISUAL Y LA CARGA
     public void AgregarCarta(CartaVisual cv, Carta carta, Juego juego, boolean escondido) {
 
         this.cv = cv;
@@ -72,7 +74,7 @@ public class ControladorCartaVisual {
 
         }
     }
-
+    //AGREGA EL FONDO DE LA CARTA DE LA PC
     public void AgregarFondoManoPc(CartaVisual cv) {
         this.cv = cv;
         
@@ -82,7 +84,7 @@ public class ControladorCartaVisual {
         fondoPC.repaint();
 
     }
-
+    //AGREGA FONDO DE LA CARTA AL JUGADOR
     public void AgregarFondoCarta(Carta.Tipo tipo, CartaVisual cv) {
         this.cv = cv;
         
@@ -109,7 +111,8 @@ public class ControladorCartaVisual {
         }
 
     }
-    //Metodo para cambiar el fondo a las cartas
+    //METODO QUE LE QUITA EL FONDO DESPUES DE ATACAR A LA CARTAS EN EL TABLERO
+    //SE COMENTA POR SI EN UN FUTURO ES NECESARIO
     /*public void RemueveDespuesDeAtaque(Carta.Tipo tipo, CartaVisual cv){
     
         if (tipo.equals(Carta.Tipo.criatura)) {

@@ -20,15 +20,17 @@ import vistaImagenes.PanelPantallaInicio;
  * @author jeron
  */
 public class InicioJuego extends javax.swing.JFrame {
-   
+   //VISTAS
     private InfoJuego iJ;
+    //OBJETOS
     private Juego PartidaAnterior;
     /**
      * Creates new form InicioJuego
      */
+    //CONTROLADOR VACIO (UNICAMENTE SE LLAMA DESDE EL MAIN)
     public InicioJuego() {
            
-
+        //SE CREA UN PANEL PARA AGREGAR FONDO
         PanelPantallaInicio fondo = new PanelPantallaInicio();
         initComponents();
         
@@ -36,6 +38,7 @@ public class InicioJuego extends javax.swing.JFrame {
         this.setSize(Toolkit.getDefaultToolkit().getScreenSize());
         this.add(fondo,BorderLayout.CENTER);
          fondo.repaint();
+         //SE COLOCA ICONO A LA VENTANA
         URL url = getClass().getResource("/imagenes/NamixCardIco.png");
         ImageIcon imag = new ImageIcon(url);
         setIconImage(imag.getImage());
@@ -45,7 +48,8 @@ public class InicioJuego extends javax.swing.JFrame {
        
 
     }
-        public InicioJuego(Juego PartidaAnterior) {
+    //CONSTRUCTOR SOBRECARGADO SE LLAMA SIEMPRE DESPUES DE UNA PARTIDA
+    public InicioJuego(Juego PartidaAnterior) {
            this.PartidaAnterior = PartidaAnterior;
 
         PanelPantallaInicio fondo = new PanelPantallaInicio();
@@ -62,7 +66,7 @@ public class InicioJuego extends javax.swing.JFrame {
         
 
     }
-        
+        //METODO PARA AGREGAR BOTONES A LA PANTALLA
         public void AgregarBotones(){
             
             BotonesParaInicioJuego botones = new BotonesParaInicioJuego(this, PartidaAnterior);
@@ -79,7 +83,7 @@ public class InicioJuego extends javax.swing.JFrame {
         
         }
     
-    
+    //METODO PARA BORRAR DE MEMORIA LA PANTALLA INFOJUEGO
     public void EliminarInfo(InfoJuego info){
         
         info = null;
