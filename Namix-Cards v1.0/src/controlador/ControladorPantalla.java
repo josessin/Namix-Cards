@@ -85,7 +85,7 @@ public class ControladorPantalla {
 
         //SE LLAMAN A LOS METODOS PARA CREAR LAS CARTAS DE LOS JUGADORES
         CargarCartas(inf.getCartasJugadorMano(), tam.height / 7.0F, false);
-        CargarCartas(inf.getCartasPCMano(), (tam.height - tam.height / 90.0f), false);
+        CargarCartas(inf.getCartasPCMano(), (tam.height - tam.height / 90.0f), true);
         CargarCartas(inf.getCartasJugadorTablero(), (int) (tam.height / 2.7F), false);
         CargarCartas(inf.getCartasPCTablero(), (int) (tam.height - tam.height / 3.7f), false);
 
