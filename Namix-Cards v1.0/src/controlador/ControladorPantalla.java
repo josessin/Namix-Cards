@@ -136,7 +136,7 @@ public class ControladorPantalla {
         return juego;
     }
 
-    public void PantallaFinal(Jugador Ganador, ControladorPantalla conp) {
+    public void PantallaFinal(Jugador Ganador, ControladorPantalla conp, Juego juego) {
         FinDelJuego pantalla = new FinDelJuego();
         PanelFinal fondo = new PanelFinal();
         noActualizar = true;

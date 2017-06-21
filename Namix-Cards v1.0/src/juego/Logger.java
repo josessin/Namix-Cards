@@ -27,5 +27,10 @@ public class Logger {
         
     }
     
+    public void destruir(){
+        lg = null;
+        
+    }
+    
     
 }

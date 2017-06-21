@@ -263,7 +263,7 @@ public class Juego {
         actualizarPantalla();
         if (oponente.getVidas() <= 0) {
             gameOver = true;
-            contPant.PantallaFinal(jugadorActivo, contPant);
+            contPant.PantallaFinal(jugadorActivo, contPant,this);
             //Juego terminado
             //JOptionPane.showMessageDialog(null, "Juego Terminado! A ganado el" + jugadorActivo.getNombre());
             //TODO: mejorar salida de el programa
