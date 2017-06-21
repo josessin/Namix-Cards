@@ -56,7 +56,7 @@ public class LogsJuego extends javax.swing.JFrame {
         txtJuego = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("Informe de Batalla");
+        setTitle("Notas");
         setAlwaysOnTop(true);
         setBackground(new java.awt.Color(0, 0, 0));
         setForeground(java.awt.Color.black);
@@ -97,9 +97,7 @@ public class LogsJuego extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
