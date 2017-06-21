@@ -77,7 +77,7 @@ public class Jugador {
             System.out.println("Jugador.robarCarta: no hay mas cartas "
                     + "en el mazo");
             return RobarCartas.noHayMasMazo;
-        } else if (cartasEnMano.size() >= 7) {
+        } else if (cartasEnMano.size() >= Juego.MAX_EN_MANO) {
             return RobarCartas.noHayMasLugar;
         } else {
 

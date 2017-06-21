@@ -21,10 +21,13 @@ import modelos.Jugador;
 public class Juego {
 
     //VARIABLES GLOBALES ESTATICAS
-    public static final int VIDAS = 30;
+    public static final int VIDAS = 25;
     public static final int MANO_INICIAL = 5;
+    public static final int MAX_EN_MANO = 7;
+    public static final int MAX_EN_JUEGO = 8;
     public static final boolean HOMBRE_VS_PC = true;
-
+    public static final boolean CHARLATAN = true;
+    
     private Jugador jugador1;
     private Jugador jugador2;
     private Jugador jugadorActivo;
@@ -174,7 +177,7 @@ public class Juego {
         jugador2.setTipoJugador(Jugador.TipoJugador.pc);
         jugador2.setNombre("Ordenador");
         jugadorPasivo = jugador2;
-        ai = new AI(this, jugador2);
+        ai = new AI(this, jugador2,CHARLATAN);
 
         logger.log("<<< TURNO DE: " + jugadorActivo.getNombre().toUpperCase() + " >>>");
     }
@@ -195,7 +198,7 @@ public class Juego {
     private void jugarCarta(Carta carta) {
 
         if (jugadorActivo.getManaDisponible() >= carta.getCoste()) {
-            if (jugadorActivo.getCartasEnJuego().size() <= 8) {
+            if (jugadorActivo.getCartasEnJuego().size() <= MAX_EN_JUEGO) {
                 carta.setEnJuego(true);
                 jugadorActivo.getCartasEnMano().remove(carta);
                 jugadorActivo.getCartasEnJuego().add(carta);

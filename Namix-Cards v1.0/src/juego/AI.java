@@ -18,6 +18,8 @@ import modelos.Jugador;
  */
 class AI {
 
+    public boolean charlatan;
+
     private final Jugador yo;
     private final Juego juego;
     private boolean mueroEnProxTurno;
@@ -30,15 +32,17 @@ class AI {
     private final ArrayList<Par> parCriaturas;
     private final ArrayList<Par> parHechizos;
 
-    public AI(Juego juego, Jugador jugador) {
+    public AI(Juego juego, Jugador jugador, boolean charlatan) {
 
         this.yo = jugador;
         this.juego = juego;
+        this.charlatan = charlatan;
         combinacionDañoMaxima = new ArrayList<>();
         mejorCombinacionCriaturas = new ArrayList<>();
         parCriaturas = new ArrayList<>();
         parHechizos = new ArrayList<>();
         cartasJugables = new ArrayList<>();
+
     }
 
     public void play() {
@@ -74,11 +78,13 @@ class AI {
             poderOponente += c.getPoder();
         }
         if (poderOponente >= yo.getVidas()) {
-            juego.logger.log("--Estoy en el horno, muero en proximo turno si no hago algo");
+
             mueroEnProxTurno = true;
         } else {
             chanceDePerder = calcChanceDePerder();
-            juego.logger.log("--Mis chances de perder son: " + chanceDePerder);
+            if (charlatan) {
+                juego.logger.log("--Mis chances de perder son: " + chanceDePerder);
+            }
         }
 
     }
@@ -86,18 +92,30 @@ class AI {
     private void jugar() {
         //Matar oponenete si es posible
         if (dañoMaximoPosible >= dañoExtraParaGanar) {
-            juego.logger.log("--Voy con todo al jugador");
-            juego.logger.log("--Plan ofensivo");
+            if (charlatan) {
+                juego.logger.log("--Voy con todo al jugador");
+                juego.logger.log("--Plan ofensivo");
+            }
             jugarCartas(combinacionDañoMaxima, true);
             attacarJugador(yo.getCartasEnJuego());
-        } else if (mueroEnProxTurno || chanceDePerder > 0.6) {
+        } else if (mueroEnProxTurno || chanceDePerder > 0.62f) {
 
-            juego.logger.log("--Plan defensivo");
+            if (charlatan) {
+                juego.logger.log("--Plan defensivo");
+            }
             jugarCartas(mejorCombinacionCriaturas, false);
             ataqueDefensivo(yo.getCartasEnJuego());
             hechizosACriaturas(false);
+            if (mueroEnProxTurno) {
+                if (charlatan) {
+                    juego.logger.log("--Estoy en el horno, muero en proximo turno si no hago algo...");
+                }
+                tirarTodosLosHechizos();
+            }
         } else {
-            juego.logger.log("--Plan seguro");
+            if (charlatan) {
+                juego.logger.log("--Plan seguro");
+            }
             jugarCartas(mejorCombinacionCriaturas, false);
             ataqueSeguro(yo.getCartasEnJuego());
             hechizosACriaturas(true);
@@ -196,11 +214,12 @@ class AI {
 
         }
 
-        juego.logger.log("MEJOR COMBO DAÑO:");
-        for (Carta c : combinacionDañoMaxima) {
-            juego.logger.log(c.getNombre());
+        if (charlatan) {
+            juego.logger.log("--Mejor combo de daño:");
+            for (Carta c : combinacionDañoMaxima) {
+                juego.logger.log(c.getNombre());
+            }
         }
-
         return mejorSumPoder;
     }
 
@@ -243,12 +262,12 @@ class AI {
             }
 
         }
-
-        juego.logger.log("MEJOR COMBO CRIATURAS:");
-        for (Carta c : mejorCombinacionCriaturas) {
-            juego.logger.log(c.getNombre());
+        if (charlatan) {
+            juego.logger.log("--Mejor combo de criaturas");
+            for (Carta c : mejorCombinacionCriaturas) {
+                juego.logger.log(c.getNombre());
+            }
         }
-
     }
 
     private int calcDañoNesesario() {
@@ -347,6 +366,37 @@ class AI {
         return null;
     }
 
+    //Tirar todos los hechizos en mano a las criaturas del oponente (de manera bruta)
+    private void tirarTodosLosHechizos() {
+
+        parHechizos.clear();
+        //Lista con hechizos que se pueden tirar
+        ArrayList<Carta> hechizos = new ArrayList<>();
+        int manaDip = yo.getManaDisponible();
+        for (Carta c : yo.getCartasEnMano()) {
+            if (c.getTipo() == Carta.Tipo.hechizo) {
+                if (manaDip >= c.getCoste()) {
+                    hechizos.add(c);
+                    manaDip -= c.getCoste();
+                }
+            }
+        }
+        //crear pares para ejecutar
+        for (Carta c : juego.getJugadorPasivo().getCartasEnJuego()) {
+            if (hechizos.isEmpty()) {
+                break;
+            }
+            parHechizos.add(new Par(hechizos.get(0), c));
+            hechizos.remove(0);
+        }
+
+        ejecutarPares(parHechizos);
+        //iterar
+        if (!juego.getJugadorPasivo().getCartasEnJuego().isEmpty() && !hechizos.isEmpty()) {
+            tirarTodosLosHechizos();
+        }
+    }
+
     private Carta mejorObjectivoCriatura(Carta criatura, boolean optimo) {
 
         for (Carta c : juego.getJugadorPasivo().getCartasEnJuego()) {
@@ -407,8 +457,8 @@ class AI {
         int cartasManoOp = juego.getJugadorPasivo().getCartasEnMano().size();
         int manaOp = juego.getJugadorPasivo().getManaTotal();
         //A mayot vidas restantes, menor es el total
-        int peorCaso = 90;
-        return ((30 - vidasRestantes) * 2.5f + cartasManoOp + manaOp) / peorCaso;
+        float peorCaso = Juego.VIDAS * 2.5f + (Juego.MAX_EN_JUEGO * Juego.MAX_EN_MANO) / 3f;
+        return ((Juego.VIDAS - vidasRestantes) * 2.5f + (cartasManoOp * manaOp) / 3f) / peorCaso;
 
     }
 
