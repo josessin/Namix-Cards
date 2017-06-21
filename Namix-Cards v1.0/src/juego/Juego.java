@@ -21,7 +21,7 @@ import modelos.Jugador;
 public class Juego {
 
     //VARIABLES GLOBALES ESTATICAS
-    public static final int VIDAS = 20;
+    public static final int VIDAS = 30;
     public static final int MANO_INICIAL = 5;
     public static final boolean HOMBRE_VS_PC = true;
 

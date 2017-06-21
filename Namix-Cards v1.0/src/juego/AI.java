@@ -24,19 +24,21 @@ class AI {
     private int dañoExtraParaGanar;
     private int poderDisponible;
     private int dañoMaximoPosible;
-    private ArrayList<Carta> combinacionMaxima;
+    private ArrayList<Carta> combinacionDañoMaxima, mejorCombinacionCriaturas, cartasJugables;
     private float chanceDePerder;
     private float poderOponente;
-    private ArrayList<Par> parCriaturas;
-    private ArrayList<Par> parHechizos;
+    private final ArrayList<Par> parCriaturas;
+    private final ArrayList<Par> parHechizos;
 
     public AI(Juego juego, Jugador jugador) {
 
         this.yo = jugador;
         this.juego = juego;
-        combinacionMaxima = new ArrayList<>();
+        combinacionDañoMaxima = new ArrayList<>();
+        mejorCombinacionCriaturas = new ArrayList<>();
         parCriaturas = new ArrayList<>();
         parHechizos = new ArrayList<>();
+        cartasJugables = new ArrayList<>();
     }
 
     public void play() {
@@ -53,10 +55,13 @@ class AI {
     private void evalVictoria() {
         //Resetar valores
         poderDisponible = 0;
-        combinacionMaxima.clear();
+        combinacionDañoMaxima.clear();
+        mejorCombinacionCriaturas.clear();
+        cartasJugables.clear();
 
         dañoExtraParaGanar = calcDañoNesesario();
         dañoMaximoPosible = calcDañoMaximo();
+        mejorCombinacioCriaturas(cartasJugables);
 
     }
 
@@ -83,17 +88,17 @@ class AI {
         if (dañoMaximoPosible >= dañoExtraParaGanar) {
             juego.logger.log("--Voy con todo al jugador");
             juego.logger.log("--Plan ofensivo");
-            jugarCartas(combinacionMaxima, true);
+            jugarCartas(combinacionDañoMaxima, true);
             attacarJugador(yo.getCartasEnJuego());
         } else if (mueroEnProxTurno || chanceDePerder > 0.7) {
 
             juego.logger.log("--Plan defensivo");
-            jugarCartas(combinacionMaxima, false);
+            jugarCartas(mejorCombinacionCriaturas, false);
             ataqueDefensivo(yo.getCartasEnJuego());
             hechizosACriaturas(false);
         } else {
             juego.logger.log("--Plan seguro");
-            jugarCartas(combinacionMaxima, false);
+            jugarCartas(mejorCombinacionCriaturas, false);
             ataqueSeguro(yo.getCartasEnJuego());
             hechizosACriaturas(true);
         }
@@ -144,7 +149,6 @@ class AI {
 
     private ArrayList<Carta> getCartasJugables() {
         //Seleccionas entre todas las cartas disponibles las jugables con el mana
-        ArrayList<Carta> cartasJugables = new ArrayList<>();
         for (Carta c : yo.getCartasEnMano()) {
             if (c.getCoste() < yo.getManaDisponible()) {
                 cartasJugables.add(c);
@@ -156,11 +160,11 @@ class AI {
 
     private int calcDañoMaximo() {
         int max = poderDisponible;
-        max += cambinacionMaxima(getCartasJugables());
+        max += cambinacionDañoMaxima(getCartasJugables());
         return max;
     }
 
-    private int cambinacionMaxima(ArrayList<Carta> cartasJugables) {
+    private int cambinacionDañoMaxima(ArrayList<Carta> cartasJugables) {
 
         int mejorSumPoder = 0;
 
@@ -187,12 +191,64 @@ class AI {
 
             if (poder > mejorSumPoder) {
                 mejorSumPoder = poder;
-                combinacionMaxima = combActual;
+                combinacionDañoMaxima = combActual;
             }
 
         }
 
+        juego.logger.log("MEJOR COMBO DAÑO:");
+        for (Carta c : combinacionDañoMaxima) {
+            juego.logger.log(c.getNombre());
+        }
+
         return mejorSumPoder;
+    }
+
+    private void mejorCombinacioCriaturas(ArrayList<Carta> cartasJugables) {
+
+        int mejorSumPoder = 0;
+
+        for (Carta c : cartasJugables) {
+
+            if (c.getTipo() == Carta.Tipo.hechizo) {
+                continue;
+            }
+
+            int mana = yo.getManaDisponible();
+            int poder = 0;
+            ArrayList<Carta> combActual = new ArrayList<>();
+            combActual.add(c);
+            poder += c.getPoder();
+            mana -= c.getCoste();
+
+            for (Carta e : cartasJugables) {
+                if (e.getTipo() == Carta.Tipo.hechizo) {
+                    continue;
+                }
+                if (combActual.contains(e)) {
+                    continue;
+                }
+
+                if (e.getCoste() > mana) {
+                    continue;
+                }
+                combActual.add(e);
+                mana -= e.getCoste();
+                poder += e.getPoder();
+            }
+
+            if (poder > mejorSumPoder) {
+                mejorSumPoder = poder;
+                mejorCombinacionCriaturas = combActual;
+            }
+
+        }
+
+        juego.logger.log("MEJOR COMBO CRIATURAS:");
+        for (Carta c : mejorCombinacionCriaturas) {
+            juego.logger.log(c.getNombre());
+        }
+
     }
 
     private int calcDañoNesesario() {
