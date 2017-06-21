@@ -8,6 +8,7 @@ package vistas;
 import java.awt.Toolkit;
 import java.net.URL;
 import javax.swing.ImageIcon;
+import juego.NamixCard;
 
 /**
  *
@@ -39,8 +40,14 @@ public class FinDelJuego extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("FIN DEL JUEGO");
         setAlwaysOnTop(true);
+        setUndecorated(true);
         setResizable(false);
         setState(1);
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -55,6 +62,12 @@ public class FinDelJuego extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        NamixCard nuevo = new NamixCard();
+        nuevo.main(null);
+        this.setVisible(false);
+    }//GEN-LAST:event_formMouseClicked
 
     /**
      * @param args the command line arguments

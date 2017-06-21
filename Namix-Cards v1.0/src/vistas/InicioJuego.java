@@ -5,17 +5,41 @@
  */
 package vistas;
 
+import controlador.ControladorPantalla;
+import java.awt.BorderLayout;
+import java.awt.Toolkit;
+import java.net.URL;
+import javax.swing.ImageIcon;
+import juego.Juego;
+import vistaImagenes.PanelPantallaInicio;
+
 /**
  *
  * @author jeron
  */
 public class InicioJuego extends javax.swing.JFrame {
-
+   
+    private InfoJuego iJ;
     /**
      * Creates new form InicioJuego
      */
     public InicioJuego() {
+           
+
+        PanelPantallaInicio fondo = new PanelPantallaInicio();
         initComponents();
+        this.setSize(Toolkit.getDefaultToolkit().getScreenSize());
+        this.add(fondo,BorderLayout.CENTER);
+         fondo.repaint();
+        URL url = getClass().getResource("/imagenes/NamixCardIco.png");
+        ImageIcon imag = new ImageIcon(url);
+        setIconImage(imag.getImage());
+
+    }
+    
+    public void EliminarInfo(InfoJuego info){
+        
+        info = null;
     }
 
     /**
@@ -27,26 +51,112 @@ public class InicioJuego extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnStart = new javax.swing.JButton();
+        btnHelp = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
+        btnSalir1 = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Namix Cards");
+        setUndecorated(true);
+        setResizable(false);
+        setState(1);
+
+        btnStart.setBackground(new java.awt.Color(255, 255, 153));
+        btnStart.setFont(new java.awt.Font("Old English Text MT", 1, 18)); // NOI18N
+        btnStart.setText("Start");
+        btnStart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStartActionPerformed(evt);
+            }
+        });
+
+        btnHelp.setBackground(new java.awt.Color(255, 255, 153));
+        btnHelp.setFont(new java.awt.Font("Old English Text MT", 1, 18)); // NOI18N
+        btnHelp.setText("Help");
+        btnHelp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHelpActionPerformed(evt);
+            }
+        });
+
+        btnSalir.setBackground(new java.awt.Color(255, 255, 153));
+        btnSalir.setFont(new java.awt.Font("Old English Text MT", 1, 18)); // NOI18N
+        btnSalir.setText("Exit");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
+
+        btnSalir1.setBackground(new java.awt.Color(255, 255, 153));
+        btnSalir1.setFont(new java.awt.Font("Old English Text MT", 1, 18)); // NOI18N
+        btnSalir1.setText("2 Players");
+        btnSalir1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalir1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(255, 255, 255)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnSalir1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btnStart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnHelp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(380, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(225, 225, 225)
+                .addComponent(btnStart)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnHelp)
+                .addGap(9, 9, 9)
+                .addComponent(btnSalir1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnSalir)
+                .addContainerGap(244, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
+        Juego juego = new Juego();
+        
+        this.setVisible(false);
+    }//GEN-LAST:event_btnStartActionPerformed
+
+    private void btnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHelpActionPerformed
+        iJ = new InfoJuego(this);
+        iJ.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnHelpActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void btnSalir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSalir1ActionPerformed
 
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnHelp;
+    private javax.swing.JButton btnSalir;
+    private javax.swing.JButton btnSalir1;
+    private javax.swing.JButton btnStart;
     // End of variables declaration//GEN-END:variables
 }

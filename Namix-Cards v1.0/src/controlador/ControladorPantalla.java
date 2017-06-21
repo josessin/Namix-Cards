@@ -32,19 +32,20 @@ public class ControladorPantalla {
     private InfoVisualJuego inf;
     private Dimension tam;
     PanelPantallaPrin fondo = new PanelPantallaPrin();
+
     public boolean noActualizar;
+    int a;
 
     public ControladorPantalla(Juego juego) {
         this.juego = juego;
-        pp = new PantallaPrincipal(this);
-        cartasParaMostrar = new ArrayList<>();
 
+        cartasParaMostrar = new ArrayList<>();
+        pp = new PantallaPrincipal(this);
     }
 
     public PantallaPrincipal getPp() {
         return pp;
     }
-    
 
     public void StartPantalla() {
 
@@ -52,6 +53,7 @@ public class ControladorPantalla {
         //pp.setSize(tam);
 
         pp.setVisible(true);
+
     }
 
     public void PonerFondoAPantallaP() {
@@ -65,10 +67,10 @@ public class ControladorPantalla {
             return;
         }
 
-        DestruirCartasViejas();
         //Se inicializa la pantalla
-        
+        DestruirCartasViejas();
         StartPantalla();
+
         tam = pp.getSize();
 
         this.inf = inf;
@@ -131,15 +133,15 @@ public class ControladorPantalla {
     public Juego getJuego() {
         return juego;
     }
-    
-    public void PantallaFinal(Jugador Ganador, ControladorPantalla conp){
+
+    public void PantallaFinal(Jugador Ganador, ControladorPantalla conp) {
         FinDelJuego pantalla = new FinDelJuego();
         PanelFinal fondo = new PanelFinal();
         noActualizar = true;
-        
-        if(Ganador.getTipoJugador().equals(Jugador.TipoJugador.humano)){
-            
-          /*  String[] nombreFondo = new String[5];
+
+        if (Ganador.getTipoJugador().equals(Jugador.TipoJugador.humano)) {
+
+            /*  String[] nombreFondo = new String[5];
             for (int i = 0; i < nombreFondo.length; i++) {
                 String nombreArchivo = "Victoria" + (i + 1);
                 nombreFondo[i] = nombreArchivo;
@@ -149,19 +151,17 @@ public class ControladorPantalla {
             String nombreDeArchivoSelec = nombreFondo[numRandom];*/
             fondo.setSize(pantalla.getSize());
             fondo.setNombre("Victoria");
-            
-            pantalla.add(fondo,BorderLayout.CENTER);
-            
+
+            pantalla.add(fondo, BorderLayout.CENTER);
+
             fondo.repaint();
-            
-            
-            pantalla.setVisible(true); 
+
+            pantalla.setVisible(true);
             PantallaPrincipal pp = conp.getPp();
-            //pp.setVisible(false);
             pp.invisible();
-        }else{
-            
- /*           String[] nombreFondo = new String[5];
+        } else {
+
+            /*           String[] nombreFondo = new String[5];
             for (int i = 0; i < nombreFondo.length; i++) {
                 String nombreArchivo = "HasPerdido" + (i + 1);
                 nombreFondo[i] = nombreArchivo;
@@ -171,21 +171,17 @@ public class ControladorPantalla {
             String nombreDeArchivoSelec = nombreFondo[numRandom];*/
             fondo.setSize(pantalla.getSize());
             fondo.setNombre("Derrota");
-            
-            pantalla.add(fondo,BorderLayout.CENTER);
-            
+
+            pantalla.add(fondo, BorderLayout.CENTER);
+
             fondo.repaint();
-            
-            
-           
+
             pantalla.setVisible(true);
             PantallaPrincipal pp = conp.getPp();
-            //pp.setVisible(false);
             pp.invisible();
-        
-        
+
         }
-    
+
     }
 
 }
