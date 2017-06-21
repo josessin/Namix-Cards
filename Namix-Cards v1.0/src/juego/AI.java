@@ -98,7 +98,7 @@ class AI {
             }
             jugarCartas(combinacionDañoMaxima, true);
             attacarJugador(yo.getCartasEnJuego());
-        } else if (mueroEnProxTurno || chanceDePerder > 0.62f) {
+        } else if (mueroEnProxTurno || chanceDePerder > 0.60f) {
 
             if (charlatan) {
                 juego.logger.log("--Plan defensivo");
@@ -117,7 +117,11 @@ class AI {
                 juego.logger.log("--Plan seguro");
             }
             jugarCartas(mejorCombinacionCriaturas, false);
-            ataqueSeguro(yo.getCartasEnJuego());
+            if (chanceDePerder > 0.40) {
+                ataqueOfensivo(yo.getCartasEnJuego());
+            }else{
+                 ataqueSeguro(yo.getCartasEnJuego());
+            }
             hechizosACriaturas(true);
         }
     }
@@ -168,7 +172,7 @@ class AI {
     private ArrayList<Carta> getCartasJugables() {
         //Seleccionas entre todas las cartas disponibles las jugables con el mana
         for (Carta c : yo.getCartasEnMano()) {
-            if (c.getCoste() < yo.getManaDisponible()) {
+            if (c.getCoste() <= yo.getManaDisponible()) {
                 cartasJugables.add(c);
             }
         }
@@ -187,6 +191,10 @@ class AI {
         int mejorSumPoder = 0;
 
         for (Carta c : cartasJugables) {
+
+            if (c.getCoste() > yo.getManaDisponible()) {
+                continue;
+            }
 
             int mana = yo.getManaDisponible();
             int poder = 0;
@@ -209,7 +217,9 @@ class AI {
 
             if (poder > mejorSumPoder) {
                 mejorSumPoder = poder;
-                combinacionDañoMaxima = combActual;
+                combinacionDañoMaxima.clear();
+                combinacionDañoMaxima.addAll(combActual);
+
             }
 
         }
@@ -229,7 +239,7 @@ class AI {
 
         for (Carta c : cartasJugables) {
 
-            if (c.getTipo() == Carta.Tipo.hechizo) {
+            if (c.getTipo() == Carta.Tipo.hechizo || c.getCoste() > yo.getManaDisponible()) {
                 continue;
             }
 
@@ -255,10 +265,10 @@ class AI {
                 mana -= e.getCoste();
                 poder += e.getPoder();
             }
-
             if (poder > mejorSumPoder) {
                 mejorSumPoder = poder;
-                mejorCombinacionCriaturas = combActual;
+                mejorCombinacionCriaturas.clear();
+                mejorCombinacionCriaturas.addAll(combActual);
             }
 
         }
@@ -400,7 +410,7 @@ class AI {
     private Carta mejorObjectivoCriatura(Carta criatura, boolean optimo) {
 
         for (Carta c : juego.getJugadorPasivo().getCartasEnJuego()) {
-            if (Objects.equals(c.getPoder(), criatura.getPoder())) {
+            if (c.getPoder() == criatura.getPoder()) {
                 return c;
             }
         }
@@ -460,20 +470,6 @@ class AI {
         float peorCaso = Juego.VIDAS * 2.5f + (Juego.MAX_EN_JUEGO * Juego.MAX_EN_MANO) / 3f;
         return ((Juego.VIDAS - vidasRestantes) * 2.5f + (cartasManoOp * manaOp) / 3f) / peorCaso;
 
-    }
-
-    //Ordena basado en poder 
-    private ArrayList<Carta> ordenar(ArrayList<Carta> cartas) {
-
-        //Ordenar
-        Collections.sort(cartas, new Comparator<Carta>() {
-            @Override
-            public int compare(Carta o1, Carta o2) {
-                return o1.getPoder().compareTo(o2.getPoder());
-            }
-        });
-
-        return cartas;
     }
 
     private class Par {

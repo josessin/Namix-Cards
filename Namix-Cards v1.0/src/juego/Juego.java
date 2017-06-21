@@ -9,7 +9,6 @@ import controlador.ControladorPantalla;
 import datos.Datos;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import jose.ControlVistaPrincipal;
 import modelos.Carta;
 import modelos.InfoVisualJuego;
 import modelos.Jugador;
@@ -21,7 +20,7 @@ import modelos.Jugador;
 public class Juego {
 
     //VARIABLES GLOBALES ESTATICAS
-    public static final int VIDAS = 25;
+    public static final int VIDAS = 30;
     public static final int MANO_INICIAL = 5;
     public static final int MAX_EN_MANO = 7;
     public static final int MAX_EN_JUEGO = 8;
@@ -40,14 +39,10 @@ public class Juego {
     public Logger logger;
     private boolean gameOver = false;
     //TEST
-    private ControlVistaPrincipal contVistaPPL;
 
     public Juego() {
         infoVisual = new InfoVisualJuego();
-        //OJO! COMENTADO PARA PRUEBAS NO COMMITEAR
 
-        //ESTO ES PARA PROBAR VISTA JOSE
-        //contVistaPPL = new ControlVistaPrincipal(this);
         logger = new Logger();
         contPant = new ControladorPantalla(this);
         nuevoJuego();
@@ -267,10 +262,6 @@ public class Juego {
         if (oponente.getVidas() <= 0) {
             gameOver = true;
             contPant.PantallaFinal(jugadorActivo, contPant,this);
-            //Juego terminado
-            //JOptionPane.showMessageDialog(null, "Juego Terminado! A ganado el" + jugadorActivo.getNombre());
-            //TODO: mejorar salida de el programa
-            //System.exit(0);
         }
 
     }
