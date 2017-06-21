@@ -39,7 +39,7 @@ public class Jugador {
 
     public Jugador(ArrayList<Carta> mazo, boolean juegaPrimero) {
         this.mazo = mazo;
-        this.vidas = 20;
+        this.vidas = Juego.VIDAS;
 
         if (juegaPrimero) {
             this.manaDisponible = 1;

@@ -90,7 +90,7 @@ class AI {
             juego.logger.log("--Plan ofensivo");
             jugarCartas(combinacionDañoMaxima, true);
             attacarJugador(yo.getCartasEnJuego());
-        } else if (mueroEnProxTurno || chanceDePerder > 0.7) {
+        } else if (mueroEnProxTurno || chanceDePerder > 0.6) {
 
             juego.logger.log("--Plan defensivo");
             jugarCartas(mejorCombinacionCriaturas, false);
